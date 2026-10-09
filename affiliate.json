@@ -3,5 +3,11 @@
  "ads": false,
  "amazon": false,
  "partners": [],
- "perks": {}
+ "perks": {
+  "pk-rakuten": {
+   "text": "楽天ブックスの対象商品ページ（応募は楽天ブックス公式から）",
+   "label": "楽天で見る",
+   "url": "https://hb.afl.rakuten.co.jp/ichiba/58588721.c41e33b2.58588722.02a243f1/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18537075%2F"
+  }
+ }
 }
