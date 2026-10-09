@@ -1,0 +1,7 @@
+{
+ "_note": "アフィリエイト設定。partners はサイトの「抽選に強くなる準備」枠、perks は抽選ID→その行に出すPRリンク。リンクが空のものは表示されない。",
+ "ads": false,
+ "amazon": false,
+ "partners": [],
+ "perks": {}
+}

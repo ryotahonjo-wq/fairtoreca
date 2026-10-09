@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta property="og:title" content="フェアトレカ"><meta property="og:description" content="ポケカ・ワンピースカード・ドラゴンボールの抽選を締切順にまとめて毎朝更新。"><meta property="og:type" content="website"><meta property="og:url" content="https://fairtoreca.com/"><link rel="canonical" href="https://fairtoreca.com/"><title>フェアトレカ</title>
+<meta name="description" content="ポケカ・ワンピースカード・ドラゴンボールのトレカ抽選を締切順にまとめて毎朝更新。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: a departure-board index. Header + 7-day deadline strip, then rows grouped by deadline day; time sits in a fixed left column like a timetable. */
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --ink:#10131c; --muted:#646b7a; --faint:#9aa0ad; --line:#e3e6ec;
+  --accent:#3346d3; --hot:#d23a2f; --hot-soft:#fbe9e7;
+  --pk:#e8b100; --op:#d02b39; --db:#ec6a12;
+  --foil:linear-gradient(100deg,#7fd6ff 0%,#b59cff 28%,#ff9fd2 52%,#ffe08a 76%,#8ef0c4 100%);
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0c0e14; --surface:#141822; --ink:#eef0f5; --muted:#a0a7b6; --faint:#6b7282; --line:#232836;
+  --accent:#93a2ff; --hot:#ff7a6e; --hot-soft:#2e1714;
+  --pk:#ffd23f; --op:#ff6672; --db:#ff9447; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c0e14; --surface:#141822; --ink:#eef0f5; --muted:#a0a7b6; --faint:#6b7282; --line:#232836;
+  --accent:#93a2ff; --hot:#ff7a6e; --hot-soft:#2e1714;
+  --pk:#ffd23f; --op:#ff6672; --db:#ff9447; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:820px;margin:0 auto;padding-inline:16px;padding-block:40px 72px;display:flex;flex-direction:column;gap:32px}
+
+/* header */
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+h1{font-weight:900;font-size:clamp(34px,8vw,56px);line-height:1.05;letter-spacing:-.01em;margin:6px 0 0;text-wrap:balance}
+.foil{height:4px;width:96px;border-radius:2px;background:var(--foil);margin-top:16px}
+.lede{margin:14px 0 0;color:var(--muted);font-size:15px;max-width:52ch}
+.lede b{color:var(--ink);font-weight:700;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.lede b.hot{color:var(--hot)}
+.updated{font-family:var(--mono);font-size:12px;color:var(--faint);margin-top:8px}
+
+/* week strip */
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
+.day{all:unset;box-sizing:border-box;cursor:pointer;padding:10px 6px 12px;display:flex;flex-direction:column;align-items:center;gap:6px;border-right:1px solid var(--line);min-width:0}
+.day:last-child{border-right:0}
+.day:hover{background:color-mix(in srgb,var(--ink) 3%,transparent)}
+.day[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.day[aria-pressed="true"] .dw,.day[aria-pressed="true"] .dc{color:var(--bg);opacity:.75}
+.day:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.dw{font-size:11px;color:var(--muted);letter-spacing:.06em}
+.dd{font-family:var(--mono);font-weight:600;font-size:18px;line-height:1;font-variant-numeric:tabular-nums}
+.day.sun .dw{color:var(--hot)}
+.dots{display:flex;flex-wrap:wrap;justify-content:center;gap:3px;min-height:8px;max-width:48px}
+.dot{width:7px;height:7px;border-radius:50%}
+.dc{font-family:var(--mono);font-size:11px;color:var(--faint)}
+.week-cap{font-size:12px;color:var(--muted);margin-top:8px;display:flex;gap:14px;flex-wrap:wrap}
+.week-cap i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:1px}
+
+/* controls */
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg button{all:unset;cursor:pointer;font-size:13px;font-weight:700;padding:6px 14px;border-radius:999px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible{outline:2px solid var(--accent)}
+.switch{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);cursor:pointer}
+.switch input{accent-color:var(--accent);width:16px;height:16px}
+.daynote{font-size:13px;color:var(--muted);display:flex;gap:10px;align-items:center}
+.daynote button{all:unset;cursor:pointer;color:var(--accent);font-weight:700}
+
+/* board */
+.board{display:flex;flex-direction:column;gap:28px}
+.group{display:flex;flex-direction:column}
+.gh{display:flex;align-items:baseline;gap:10px;padding-bottom:8px;border-bottom:2px solid var(--ink)}
+.gh h2{margin:0;font-size:17px;font-weight:900;letter-spacing:.02em}
+.gh .sub{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.gh .n{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.gh.hot{border-color:var(--hot)} .gh.hot h2{color:var(--hot)}
+.row{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
+.t{font-family:var(--mono);font-variant-numeric:tabular-nums;display:flex;flex-direction:column;gap:2px}
+.t b{font-size:17px;font-weight:600;line-height:1.2}
+.t span{font-size:11px;color:var(--faint)}
+.t span.hot{color:var(--hot);font-weight:600}
+.body{min-width:0;display:flex;flex-direction:column;gap:3px}
+.line1{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.g{font-size:11px;font-weight:700;letter-spacing:.04em;display:inline-flex;align-items:center;gap:5px;color:var(--muted)}
+.g::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--c)}
+.meth{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 6px}
+.new{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;padding:1px 6px;border-radius:4px;background:var(--foil);color:#10131c}
+.prod{font-weight:700;font-size:15.5px;line-height:1.45;overflow-wrap:anywhere}
+.shop{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.note{font-size:12px;color:var(--faint)}
+.perk{font-size:12px;margin-top:4px;display:inline-flex;gap:6px;align-items:baseline;color:var(--muted)}
+.perk a{color:var(--accent);font-weight:700;text-decoration:none}
+.perk a:hover{text-decoration:underline}
+.pr{font-family:var(--mono);font-size:9px;letter-spacing:.08em;border:1px solid var(--faint);color:var(--faint);border-radius:3px;padding:0 3px}
+.go{align-self:center;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;transition:border-color .15s,background .15s}
+.go:hover{border-color:var(--ink)}
+.go:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.go.none{color:var(--faint);border-style:dashed;cursor:default}
+@media (max-width:520px){
+  .row{grid-template-columns:64px minmax(0,1fr)}
+  .go{grid-column:2;justify-self:start;margin-top:6px}
+}
+.empty{padding:18px 0;color:var(--muted);font-size:14px;border-bottom:1px solid var(--line)}
+
+/* partners */
+.partners{display:flex;flex-direction:column;gap:12px}
+.partners .gh{border-color:var(--line);border-bottom-width:1px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;text-decoration:none;min-width:0;transition:border-color .15s}
+.pcard:hover{border-color:var(--ink)}
+.pcard .ptop{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.pcard .pname{font-weight:700;font-size:14.5px}
+.pcard .pwhy{font-size:12.5px;color:var(--muted);line-height:1.6}
+.pcard .pcta{font-size:12.5px;font-weight:700;color:var(--accent);margin-top:auto}
+
+details.past summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--muted);padding:6px 0}
+details.past .row{opacity:.55}
+footer a{color:var(--muted)}
+.pledge{margin:14px 0 0;font-weight:700;font-size:clamp(17px,3.6vw,21px);line-height:1.5;letter-spacing:.02em}
+.rules{display:flex;flex-direction:column;gap:12px}
+.rules .gh{border-color:var(--line);border-bottom-width:1px}
+.rgrid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;counter-reset:r}
+.rgrid li{counter-increment:r;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.rgrid li b{font-size:14.5px;display:flex;gap:8px;align-items:baseline}
+.rgrid li b::before{content:counter(r);font-family:var(--mono);font-size:12px;color:var(--faint)}
+.rgrid li span{font-size:12.5px;color:var(--muted);line-height:1.6}
+footer .links{display:flex;gap:14px;flex-wrap:wrap}
+footer{border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+</head><body style="margin:0">
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Fair Toreca · ポケカ / ワンピカ / ドラゴンボールの抽選まとめ</div>
+    <h1>フェアトレカ</h1>
+    <p class="pledge">公式から、定価で。<br>ほしい人みんなに、買えるチャンスを。</p>
+    <div class="foil" aria-hidden="true"></div>
+    <p class="lede" id="lede">トレカの抽選を締切の早い順に並べています。</p>
+    <div class="updated" id="updated"></div>
+  </header>
+
+  <div>
+    <div class="week" id="week" role="group" aria-label="7日間の締切"></div>
+    <div class="week-cap"><span><i style="background:var(--pk)"></i>ポケカ</span><span><i style="background:var(--op)"></i>ワンピカ</span><span><i style="background:var(--db)"></i>ドラゴンボール</span><span>点の数＝その日に締切る抽選</span></div>
+  </div>
+
+  <div class="controls">
+    <div class="seg" role="group" aria-label="タイトル">
+      <button id="g-all" data-g="all" aria-pressed="true">すべて</button>
+      <button id="g-pk" data-g="pokemon" aria-pressed="false">ポケカ</button>
+      <button id="g-op" data-g="onepiece" aria-pressed="false">ワンピカ</button>
+      <button id="g-db" data-g="dragonball" aria-pressed="false">ドラゴンボール</button>
+    </div>
+    <label class="switch"><input type="checkbox" id="online-only"> ネット応募だけ</label>
+  </div>
+  <div class="daynote" id="daynote" hidden></div>
+
+  <div class="board" id="board"></div>
+
+  <section class="rules" aria-labelledby="rules-h">
+    <div class="gh"><h2 id="rules-h">応募の約束</h2><span class="sub">転売のない抽選を、みんなで</span></div>
+    <ol class="rgrid">
+      <li><b>公式ページから応募</b><span>リンクは各ショップの公式ページです。代行や非公式のフォームは使わない。</span></li>
+      <li><b>1人1口を守る</b><span>家族やサブアカウントでの重複応募はしない。当たる人が増えるのは、みんなが守ったとき。</span></li>
+      <li><b>転売目的で応募しない</b><span>遊ぶ・集める人のための抽選です。高額な転売品も買わないことが、定価で買える近道。</span></li>
+      <li><b>当たったら期限内に購入</b><span>キャンセルは次の人のチャンスを減らします。支払い方法と期限を先に確認しておこう。</span></li>
+    </ol>
+  </section>
+
+  <section class="partners" id="partners" hidden>
+    <div class="gh"><h2>抽選に強くなる準備</h2><span class="sub">応募条件になりやすい会員・カード</span></div>
+    <div class="pgrid" id="pgrid"></div>
+  </section>
+
+  <details class="past" id="past"><summary>締切済み（直近7日）</summary><div id="pastlist"></div></details>
+
+  <footer>
+    <span id="adnote" hidden>当サイトはアフィリエイト広告（PR）を利用しています。</span>
+    <span id="amznote" hidden>Amazonのアソシエイトとして、フェアトレカは適格販売により収入を得ています。</span>
+    <span class="links"><a href="about.html">運営者情報・プライバシーポリシー</a><a href="oripa.html">オリパについて（18歳以上）</a></span>
+    <span>毎朝9時前に各ショップと抽選情報サイトを確認して更新しています。非公式のまとめなので、応募前に必ず各ショップの公式ページで条件と期間を確認してください。</span>
+  </footer>
+</div>
+
+<script type="application/json" id="lottery-data">{"updatedAt": "2026-10-09T08:53:00+09:00", "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式", "lotteries": [{"id": "db-bsb-ichikawa", "addedAt": "2026-10-09T01:55:00+09:00", "game": "dragonball", "method": "sns", "note": "X抽選・店頭受取", "product": "フュージョンワールド BRIGHTNESS OF HOPE", "shop": "ブックオフスーパーバザー ショップス市川店", "source": "https://www.cardchusen.com/dragonball", "url": "https://x.com/BSBshops_HO/status/2097193686811750646"}, {"id": "db-bunkyodo-nishino3", "addedAt": "2026-10-09T08:53:00+09:00", "game": "dragonball", "method": "store", "note": "店頭応募・会員登録必要・店頭受取。締切未定", "product": "フュージョンワールド BRIGHTNESS OF HOPE【FB11】", "shop": "文教堂 西野3条店（札幌）", "source": "https://toreka-chusen.com/category/dragonball/", "url": "https://toreka-chusen.com/lottery/brightness-of-hope-bunkyodo-nishino3jo-20260903/"}, {"id": "db-cardbuncle", "addedAt": "2026-10-09T01:55:00+09:00", "game": "dragonball", "method": "sns", "note": "Xで応募。締切はX投稿で確認", "product": "フュージョンワールド STORY BOOSTER 01", "shop": "トレカーバンクル", "source": "https://www.cardchusen.com/dragonball", "url": "https://x.com/cardbuncle/status/2085913856422130067"}, {"id": "db-cardcrew", "addedAt": "2026-10-09T01:55:00+09:00", "game": "dragonball", "method": "sns", "note": "会員限定。締切はX投稿で確認", "product": "フュージョンワールド BRIGHTNESS OF HOPE", "shop": "CARD CREW 通販", "source": "https://www.cardchusen.com/dragonball", "url": "https://x.com/CARDCREW_tuhan/status/2097152924564795604"}, {"id": "op-aeon-kyushu", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-11T23:59:00+09:00", "game": "onepiece", "method": "app", "note": "iAEONアプリ・店頭受取", "product": "EB-05", "result": "10/30 12時以降", "shop": "イオン九州", "source": "https://nyuka-now.com/archives/97393", "start": "2026-10-03T00:00:00+09:00", "url": "https://www.aeon-kyushu.info/customer/information/archives/135"}, {"id": "op-ario", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-11T21:00:00+09:00", "game": "onepiece", "method": "store", "note": "店頭QRからLivePocketで応募。締切は閉店まで", "product": "EB-05", "shop": "イトーヨーカドー アリオ 一部店舗", "source": "https://nyuka-now.com/archives/97393", "start": "2026-10-09T10:00:00+09:00"}, {"id": "op-dexta", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-12T23:59:00+09:00", "game": "onepiece", "method": "online", "note": "Web抽選・店頭受取", "product": "OP-17", "shop": "公式ショップ デクスタ 各店", "source": "https://nyuka-now.com/archives/97393", "start": "2026-10-08T10:00:00+09:00", "url": "https://parks2.bandainamco-am.co.jp/category/ECCL00000054/"}, {"id": "op-dmm", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-13T15:00:00+09:00", "game": "onepiece", "method": "online", "product": "ブースターパック OP-17・OP-16・OP-15・OP-13", "result": "10/16から4日以内にメール", "shop": "DMM通販", "source": "https://nyuka-now.com/archives/97393", "start": "2026-10-07T15:00:00+09:00", "url": "https://www.dmm.com/mono/hobby/-/list/=/article=keyword/id=308378/"}, {"id": "op-dorasuta", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-09T23:59:00+09:00", "game": "onepiece", "method": "online", "note": "会員限定・店頭受取", "product": "OP-17", "result": "10/13予定", "shop": "ドラゴンスター 各店", "source": "https://nyuka-now.com/archives/97393", "start": "2026-10-06T22:00:00+09:00", "url": "https://dorasuta.membercard.jp/lottery"}, {"id": "op-fullcomp-eb05", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-13T11:59:00+09:00", "game": "onepiece", "method": "online", "note": "LivePocketで応募・店頭受取", "product": "EB-05", "result": "10/23〜10/24", "shop": "フルコンプ 一部店舗", "source": "https://nyuka-now.com/archives/97393", "start": "2026-10-05T10:34:00+09:00", "url": "https://livepocket.jp/e/abnrt"}, {"id": "op-fullcomp-heroines", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-13T11:59:00+09:00", "game": "onepiece", "method": "online", "note": "LivePocketで応募・店頭受取", "product": "ONE PIECE HEROINES PRECIOUS BOX", "result": "10/23〜10/24", "shop": "フルコンプ 一部店舗", "source": "https://nyuka-now.com/archives/97393", "start": "2026-10-05T10:34:00+09:00", "url": "https://livepocket.jp/e/57_nt"}, {"id": "op-jumpcs-nike", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-18T23:58:00+09:00", "game": "onepiece", "method": "order", "note": "受注販売・WJ定期購読者限定", "product": "プレミアムカードコレクション Nikeコラボ（WJ定期購読限定）", "shop": "ジャンプキャラクターズストア", "source": "https://nyuka-now.com/archives/97393", "start": "2026-09-18T13:00:00+09:00", "url": "https://jumpcs.shueisha.co.jp/shop/g/g4530430588220/"}, {"id": "op-mugiwara", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-10T23:59:00+09:00", "game": "onepiece", "method": "online", "note": "Web抽選・店頭受取", "product": "OP-17・EB-03", "result": "10/11〜10/13予定", "shop": "ONE PIECE 麦わらストア 各店", "source": "https://nyuka-now.com/archives/97393", "start": "2026-10-08T00:00:00+09:00", "url": "https://www.mugiwara-store.com/news/2981/"}, {"id": "op-pb-4th", "addedAt": "2026-10-09T01:55:00+09:00", "game": "onepiece", "method": "online", "note": "締切は商品ページで確認", "product": "4th Anniversary Set（2次抽選）", "shop": "プレミアムバンダイ", "source": "https://nyuka-now.com/archives/97393", "start": "2026-10-14T12:00:00+09:00", "url": "https://p-bandai.jp/item/item-1000255670/"}, {"id": "op-pb-onepieceday", "addedAt": "2026-10-09T01:55:00+09:00", "game": "onepiece", "method": "online", "note": "締切は商品ページで確認", "product": "プレミアムカードコレクション -ONE PIECE DAY'26-", "shop": "プレミアムバンダイ", "source": "https://nyuka-now.com/archives/97393", "start": "2026-10-05T12:00:00+09:00", "url": "https://p-bandai.jp/item/item-1000259109/"}, {"id": "pk-aeon-30th", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-14T23:59:00+09:00", "game": "pokemon", "method": "online", "product": "30th CELEBRATION BOX（20パック）", "result": "当選者のみメール", "shop": "イオンスタイルオンライン", "source": "https://nyuka-now.com/archives/2459", "start": "2026-10-07T11:00:00+09:00", "url": "https://aeonretail.com/Page/k-lottery_cardgame.aspx"}, {"id": "pk-hareruya2", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-12T23:59:00+09:00", "game": "pokemon", "method": "online", "note": "LivePocketで応募・店頭受取", "product": "30th CELEBRATION カードセット各種", "result": "10/13予定", "shop": "晴れる屋2 各店（西日本）", "source": "https://nyuka-now.com/archives/2459", "start": "2026-10-05T12:00:00+09:00", "url": "https://livepocket.jp/e/da7vx"}, {"id": "pk-hobbyzone", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-11T21:00:00+09:00", "game": "pokemon", "method": "store", "note": "店頭POPのQRから応募。締切は店舗により異なる", "product": "30th CELEBRATION カードセット各種", "shop": "ホビーゾーン 各店", "source": "https://nyuka-now.com/archives/2459", "start": "2026-10-09T10:00:00+09:00"}, {"id": "pk-joshin", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-13T20:00:00+09:00", "game": "pokemon", "method": "app", "product": "30th CELEBRATION カードセット各種", "result": "10/14 12:00頃", "shop": "ジョーシン", "source": "https://nyuka-now.com/archives/2459", "start": "2026-10-07T10:00:00+09:00", "url": "https://shop.joshin.co.jp/app/"}, {"id": "pk-kojima", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-09T23:59:00+09:00", "game": "pokemon", "method": "app", "product": "30th CELEBRATION カードセット各種", "result": "10/16", "shop": "コジマ", "source": "https://nyuka-now.com/archives/2459", "start": "2026-10-02T00:00:00+09:00", "url": "https://www.kojima.net/shop/app/kojima_appli.html"}, {"id": "pk-nojima", "addedAt": "2026-10-09T01:55:00+09:00", "game": "pokemon", "method": "invite", "note": "招待制・会員ID必須", "product": "シークレット販売会（30th CELEBRATION BOX・ワンピカ等）", "result": "メールで随時", "shop": "ノジマオンライン", "source": "https://nyuka-now.com/archives/2459", "start": "2026-10-04T18:00:00+09:00", "url": "https://contents.online.nojima.co.jp/secret202609/"}, {"id": "pk-otakara-box", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-11T23:45:00+09:00", "game": "pokemon", "method": "app", "product": "30th CELEBRATION BOX／プレミアムデッキセット", "result": "10/14頃", "shop": "お宝創庫・プレイズ", "source": "https://nyuka-now.com/archives/2459", "start": "2026-10-08T12:00:00+09:00", "url": "https://www.otakarasouko.com/information/103177275/"}, {"id": "pk-otakara-set", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-11T23:45:00+09:00", "game": "pokemon", "method": "app", "product": "30th CELEBRATION カードセット各種", "result": "10/14頃", "shop": "お宝創庫・プレイズ", "source": "https://nyuka-now.com/archives/2459", "start": "2026-10-08T12:00:00+09:00", "url": "https://www.otakarasouko.com/information/103171570/"}, {"id": "pk-plaza55", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-09T23:59:00+09:00", "game": "pokemon", "method": "online", "note": "Googleフォームで応募", "product": "30th CELEBRATION カードセット各種", "result": "10/10〜10/11", "shop": "トレカプラザ55 通販", "source": "https://nyuka-now.com/archives/2459", "start": "2026-10-05T20:00:00+09:00", "url": "https://docs.google.com/forms/d/e/1FAIpQLScFDRaP8uznF7DE326QuRh1lN7_-extpcI1DU3T3ppqNsEk4A/viewform"}, {"id": "pk-pokecen-extra", "addedAt": "2026-10-09T01:55:00+09:00", "game": "pokemon", "method": "online", "note": "12月頃に追加抽選の予定", "product": "30th CELEBRATION BOX等 追加抽選（予告）", "shop": "ポケモンセンターオンライン", "source": "https://nyuka-now.com/archives/2459", "upcoming": true, "url": "https://www.pokemoncenter-online.com/news/?id=20260929"}, {"id": "pk-rakuten", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-18T23:59:00+09:00", "game": "pokemon", "method": "online", "note": "クレカ払いのみ・1人1個", "product": "30th CELEBRATION・メガドリーム・ストームエメラルダほか（ワンピカも対象）", "result": "当選者購入 10/29〜11/3", "shop": "楽天ブックス", "source": "楽天ブックス商品ページ", "start": "2026-10-14T10:00:00+09:00", "url": "https://books.rakuten.co.jp/rb/18537075/"}, {"id": "pk-ryunoshippo", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-09T23:59:00+09:00", "game": "pokemon", "method": "online", "note": "会員限定", "product": "30th CELEBRATION カードセット各種", "result": "10/14 17〜18時頃", "shop": "竜のしっぽ 各店", "source": "https://nyuka-now.com/archives/2459", "start": "2026-10-05T10:00:00+09:00", "url": "https://ryuunoshippo.membercard.jp/"}, {"id": "pk-torechamp", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-11T23:59:00+09:00", "game": "pokemon", "method": "sns", "note": "各店のXアカウントへDM", "product": "30th CELEBRATION カードセット6種", "result": "10/14（当選者のみDM）", "shop": "トレカチャンピオン 各店", "source": "https://nyuka-now.com/archives/2459", "start": "2026-10-05T00:00:00+09:00"}, {"id": "pk-torekastation", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-11T23:59:00+09:00", "game": "pokemon", "method": "store", "note": "店頭のQRコードから応募", "product": "30th CELEBRATION カードセット各種", "result": "10/12", "shop": "トレカステーション 各店", "source": "https://nyuka-now.com/archives/2459", "start": "2026-10-05T10:00:00+09:00"}, {"id": "pk-yamashiroya", "addedAt": "2026-10-09T01:55:00+09:00", "end": "2026-10-09T23:59:00+09:00", "game": "pokemon", "method": "online", "note": "LivePocketで応募", "product": "30th CELEBRATION カードセット各種", "result": "10/12〜10/13", "shop": "ヤマシロヤ（上野）", "source": "https://nyuka-now.com/archives/2459", "start": "2026-10-07T10:00:00+09:00", "url": "https://livepocket.jp/e/0fak7"}], "partners": [], "ads": false, "amazon": false}</script>
+<script>
+const DATA = JSON.parse(document.getElementById("lottery-data").textContent);
+const rows = DATA.lotteries || [];
+const GAME = {pokemon:"ポケカ", onepiece:"ワンピカ", dragonball:"ドラゴンボール"};
+const GVAR = {pokemon:"var(--pk)", onepiece:"var(--op)", dragonball:"var(--db)"};
+const METHOD = {online:"Web抽選", app:"アプリ", store:"店頭", sns:"SNS", invite:"招待制", order:"受注"};
+const ONLINE = new Set(["online","app","sns","invite","order"]);
+const DOW = "日月火水木金土";
+const H = 3600e3, DAY = 24*H;
+let game = "all", onlineOnly = false, pickDay = null;
+try { const s = JSON.parse(localStorage.getItem("toreka-filter")||"{}"); if (GAME[s.game]) game = s.game; onlineOnly = !!s.onlineOnly; } catch(e) {}
+const $ = id => document.getElementById(id);
+
+// all dates are shown in Japan time regardless of the viewer's clock
+const jst = t => new Date(t + 9*H);
+const dayKey = t => { const j = jst(t); return j.getUTCFullYear()*10000 + (j.getUTCMonth()+1)*100 + j.getUTCDate(); };
+const md = t => { const j = jst(t); return `${j.getUTCMonth()+1}/${j.getUTCDate()}`; };
+const dow = t => DOW[jst(t).getUTCDay()];
+const hm = t => { const j = jst(t); return String(j.getUTCHours()).padStart(2,"0")+":"+String(j.getUTCMinutes()).padStart(2,"0"); };
+const full = iso => iso ? `${md(Date.parse(iso))}(${dow(Date.parse(iso))}) ${hm(Date.parse(iso))}` : "未定";
+function left(ms){ const h = Math.floor(ms/H), m = Math.floor(ms%H/60e3); return h >= 48 ? `あと${Math.floor(h/24)}日` : h >= 1 ? `あと${h}時間` : `あと${m}分`; }
+function esc(t){ const d = document.createElement("div"); d.textContent = t ?? ""; return d.innerHTML; }
+function safeUrl(u){ try { const x = new URL(u); return /^https?:$/.test(x.protocol) ? x.href : null; } catch(e){ return null; } }
+function status(r, now){
+  const s = r.start ? Date.parse(r.start) : null, e = r.end ? Date.parse(r.end) : null;
+  if (e && e < now) return "done";
+  if ((s && s > now) || (!s && r.upcoming)) return "soon";
+  return "open";
+}
+const visible = r => (game === "all" || r.game === game) && (!onlineOnly || ONLINE.has(r.method));
+
+function rowHTML(r, now, mode){
+  const e = r.end ? Date.parse(r.end) : null, s = r.start ? Date.parse(r.start) : null;
+  const isNew = r.addedAt && now - Date.parse(r.addedAt) < DAY;
+  let t;
+  if (mode === "soon") t = `<b>${s ? hm(s) : "—"}</b><span>${s ? md(s)+"("+dow(s)+") 開始" : "開始日未定"}</span>`;
+  else if (mode === "done") t = `<b>${e ? hm(e) : "—"}</b><span>${e ? md(e)+" 終了" : ""}</span>`;
+  else t = e ? `<b>${hm(e)}</b><span class="${e-now < DAY ? "hot":""}">${left(e-now)}</span>` : `<b>—</b><span>締切未定</span>`;
+  const url = safeUrl(r.url);
+  const perkUrl = r.perk && safeUrl(r.perk.url);
+  const period = `${full(r.start)} 〜 ${full(r.end)}${r.result ? "　発表 "+esc(r.result) : ""}`;
+  return `<article class="row">
+    <div class="t">${t}</div>
+    <div class="body">
+      <div class="line1"><span class="g" style="--c:${GVAR[r.game]||"var(--faint)"}">${esc(GAME[r.game]||r.game)}</span><span class="meth">${esc(METHOD[r.method]||r.method||"")}</span>${isNew ? '<span class="new">NEW</span>' : ""}</div>
+      <div class="prod">${esc(r.product)}</div>
+      <div class="shop">${esc(r.shop)}</div>
+      <div class="note">${period}${r.note ? "　/　"+esc(r.note) : ""}</div>
+      ${perkUrl ? `<div class="perk"><span class="pr">PR</span>${esc(r.perk.text||"")} <a href="${esc(perkUrl)}" target="_blank" rel="noopener sponsored">${esc(r.perk.label||"詳しく")} ↗</a></div>` : ""}
+    </div>
+    ${url ? `<a class="go" href="${esc(url)}" target="_blank" rel="noopener">応募ページ ↗</a>` : `<span class="go none">店頭・SNSで</span>`}
+  </article>`;
+}
+
+function render(){
+  const now = Date.now(), today = dayKey(now);
+  const vis = rows.filter(visible);
+  const open = vis.filter(r => status(r, now) === "open");
+  const soon = vis.filter(r => status(r, now) === "soon");
+  const done = vis.filter(r => status(r, now) === "done" && now - Date.parse(r.end) < 7*DAY);
+
+  // lede
+  const todayN = open.filter(r => r.end && dayKey(Date.parse(r.end)) === today).length;
+  const newN = vis.filter(r => r.addedAt && now - Date.parse(r.addedAt) < DAY && status(r,now) !== "done").length;
+  $("lede").innerHTML = `今日締切 <b class="hot">${todayN}</b> 件、受付中 <b>${open.length}</b> 件、これから開始 <b>${soon.length}</b> 件${newN ? `、新着 <b>${newN}</b> 件` : ""}。締切の早い順に並べています。`;
+  $("updated").textContent = DATA.updatedAt ? `最終更新 ${full(DATA.updatedAt)}` : "";
+
+  // week strip
+  let w = "";
+  for (let i = 0; i < 7; i++){
+    const t = now + i*DAY, k = dayKey(t);
+    const ds = open.filter(r => r.end && dayKey(Date.parse(r.end)) === k);
+    const label = i === 0 ? "今日" : i === 1 ? "明日" : dow(t);
+    w += `<button class="day ${jst(t).getUTCDay()===0?"sun":""}" data-k="${k}" aria-pressed="${pickDay===k}" aria-label="${md(t)} 締切${ds.length}件">
+      <span class="dw">${label}</span><span class="dd">${md(t).split("/")[1]}</span>
+      <span class="dots">${ds.slice(0,12).map(r=>`<i class="dot" style="background:${GVAR[r.game]}"></i>`).join("")}</span>
+      <span class="dc">${ds.length || "·"}</span></button>`;
+  }
+  $("week").innerHTML = w;
+  $("week").querySelectorAll(".day").forEach(b => b.onclick = () => { const k = +b.dataset.k; pickDay = pickDay === k ? null : k; render(); });
+
+  // groups by deadline day
+  const groups = new Map();
+  const sorted = open.slice().sort((a,b)=>(a.end?Date.parse(a.end):9e15)-(b.end?Date.parse(b.end):9e15));
+  for (const r of sorted){
+    const k = r.end ? dayKey(Date.parse(r.end)) : "none";
+    if (pickDay && k !== pickDay) continue;
+    if (!groups.has(k)) groups.set(k, []);
+    groups.get(k).push(r);
+  }
+  let html = "";
+  for (const [k, list] of groups){
+    let title, sub = "", hot = false;
+    if (k === "none"){ title = "締切未定"; sub = "公式・SNSで締切を確認"; }
+    else {
+      const t = Date.parse(list[0].end);
+      const diff = Math.round((Date.UTC(Math.floor(k/10000), Math.floor(k/100)%100-1, k%100) - Date.UTC(Math.floor(today/10000), Math.floor(today/100)%100-1, today%100))/DAY);
+      title = diff === 0 ? "今日締切" : diff === 1 ? "明日締切" : `${md(t)}(${dow(t)}) 締切`;
+      sub = diff <= 1 ? `${md(t)}(${dow(t)})` : "";
+      hot = diff === 0;
+    }
+    html += `<section class="group"><div class="gh ${hot?"hot":""}"><h2>${title}</h2><span class="sub">${sub}</span><span class="n">${list.length}件</span></div>${list.map(r=>rowHTML(r,now,"open")).join("")}</section>`;
+  }
+  if (!pickDay){
+    const ss = soon.slice().sort((a,b)=>(a.start?Date.parse(a.start):9e15)-(b.start?Date.parse(b.start):9e15));
+    html += `<section class="group"><div class="gh"><h2>これから開始</h2><span class="sub">予告・受付前</span><span class="n">${ss.length}件</span></div>${ss.length ? ss.map(r=>rowHTML(r,now,"soon")).join("") : '<div class="empty">開始予定の抽選はまだありません。</div>'}</section>`;
+  }
+  if (!html) html = `<div class="empty">この条件に合う抽選はありません。</div>`;
+  $("board").innerHTML = html;
+
+  const dn = $("daynote");
+  if (pickDay){ dn.hidden = false; dn.innerHTML = `${String(pickDay%10000).replace(/^(\d+)(\d\d)$/,(m,a,b)=>+a+"/"+ +b)} に締切る抽選だけ表示中 <button id="clearday">すべて表示</button>`; $("clearday").onclick = () => { pickDay = null; render(); }; }
+  else dn.hidden = true;
+
+  $("pastlist").innerHTML = done.length ? done.sort((a,b)=>Date.parse(b.end)-Date.parse(a.end)).map(r=>rowHTML(r,now,"done")).join("") : '<div class="empty">直近7日で締切った抽選はありません。</div>';
+
+  document.querySelectorAll(".seg button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.g === game)));
+  $("online-only").checked = onlineOnly;
+}
+
+// partners (affiliate). Only rendered when the data has entries.
+const partners = (DATA.partners || []).filter(p => safeUrl(p.url));
+const anyPerk = rows.some(r => r.perk && safeUrl(r.perk.url));
+if (partners.length){
+  $("partners").hidden = false;
+  $("pgrid").innerHTML = partners.map(p => `<a class="pcard" href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener sponsored">
+    <div class="ptop"><span class="pname">${esc(p.name)}</span><span class="pr">PR</span></div>
+    <div class="pwhy">${esc(p.why||"")}</div><span class="pcta">${esc(p.cta||"詳しく見る")} ↗</span></a>`).join("");
+}
+$("adnote").hidden = !(partners.length || anyPerk || DATA.ads);
+$("amznote").hidden = !DATA.amazon;
+
+document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => { game = b.dataset.g; save(); render(); }));
+$("online-only").addEventListener("change", e => { onlineOnly = e.target.checked; save(); render(); });
+function save(){ try { localStorage.setItem("toreka-filter", JSON.stringify({game, onlineOnly})); } catch(e) {} }
+render();
+setInterval(render, 60e3);
+</script>
+
+</body></html>
