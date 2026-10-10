@@ -7,43 +7,92 @@
    "name": "カーナベル（トレカ通販）",
    "why": "6万種類以上のシングルから1枚単位で探せる。抽選に外れたカードを必要な分だけそろえたいときに。",
    "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+AGVFH6+49YI+C0QPE",
-   "cta": "カーナベルで探す"
+   "cta": "カーナベルで探す",
+   "banner": {
+    "href": "https://px.a8.net/svt/ejp?a8mat=4BECH4+AGVFH6+49YI+BYT9D",
+    "img": "https://www24.a8.net/svt/bgt?aid=261009832633&wid=002&eno=01&mid=s00000019953002010000&mc=1",
+    "pixel": "https://www16.a8.net/0.gif?a8mat=4BECH4+AGVFH6+49YI+BYT9D",
+    "w": 300,
+    "h": 250
+   }
   },
   {
    "name": "トレトク（トレカ通販）",
    "why": "ポケカ・ワンピカのシングルやサプライを通販で。",
    "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+AJULI2+2QOI+1BN3TU",
-   "cta": "トレトクで探す"
+   "cta": "トレトクで探す",
+   "banner": {
+    "href": "https://px.a8.net/svt/ejp?a8mat=4BECH4+AJULI2+2QOI+1BQJA9",
+    "img": "https://www29.a8.net/svt/bgt?aid=261009832638&wid=002&eno=01&mid=s00000012789008018000&mc=1",
+    "pixel": "https://www19.a8.net/0.gif?a8mat=4BECH4+AJULI2+2QOI+1BQJA9",
+    "w": 300,
+    "h": 250
+   }
   },
   {
    "name": "Bee本舗通販店",
    "why": "トレカとサプライの通販。抽選の告知もよく出しているお店。",
    "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+8350D6+5NJ8+5YJRM",
-   "cta": "Bee本舗通販店を見る"
+   "cta": "Bee本舗通販店を見る",
+   "banner": {
+    "href": "https://px.a8.net/svt/ejp?a8mat=4BECH4+8350D6+5NJ8+5Z6WX",
+    "img": "https://www25.a8.net/svt/bgt?aid=261009832489&wid=002&eno=01&mid=s00000026378001004000&mc=1",
+    "pixel": "https://www11.a8.net/0.gif?a8mat=4BECH4+8350D6+5NJ8+5Z6WX",
+    "w": 300,
+    "h": 250
+   }
   },
   {
    "name": "もえたく！（宅配買取）",
    "why": "遊ばなくなったカードを1点から宅配で買取。ダブったカードの整理に。",
    "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+8TC2ZE+1SOW+2HFQHU",
-   "cta": "もえたく！を見る"
+   "cta": "もえたく！を見る",
+   "banner": {
+    "href": "https://px.a8.net/svt/ejp?a8mat=4BECH4+8TC2ZE+1SOW+2HDT1T",
+    "img": "https://www23.a8.net/svt/bgt?aid=261009832533&wid=002&eno=01&mid=s00000008384015013000&mc=1",
+    "pixel": "https://www19.a8.net/0.gif?a8mat=4BECH4+8TC2ZE+1SOW+2HDT1T",
+    "w": 300,
+    "h": 250
+   }
   },
   {
    "name": "ふるいち トレカ買取",
    "why": "スリーブに入れたまま送れる宅配買取。上場企業の運営。",
    "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+81CPJU+5W1M+BWVTE",
-   "cta": "ふるいちを見る"
+   "cta": "ふるいちを見る",
+   "banner": {
+    "href": "https://px.a8.net/svt/ejp?a8mat=4BECH4+81CPJU+5W1M+BXB8X",
+    "img": "https://www23.a8.net/svt/bgt?aid=261009832486&wid=002&eno=01&mid=s00000027481002003000&mc=1",
+    "pixel": "https://www16.a8.net/0.gif?a8mat=4BECH4+81CPJU+5W1M+BXB8X",
+    "w": 300,
+    "h": 250
+   }
   },
   {
    "name": "トレトク（宅配買取）",
    "why": "使わないカードをまとめて宅配で買取。",
    "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+8ZAF16+2QOI+NTJWY",
-   "cta": "トレトク買取を見る"
+   "cta": "トレトク買取を見る",
+   "banner": {
+    "href": "https://px.a8.net/svt/ejp?a8mat=4BECH4+8ZAF16+2QOI+OBCCH",
+    "img": "https://www27.a8.net/svt/bgt?aid=261009832543&wid=002&eno=01&mid=s00000012789004084000&mc=1",
+    "pixel": "https://www16.a8.net/0.gif?a8mat=4BECH4+8ZAF16+2QOI+OBCCH",
+    "w": 300,
+    "h": 250
+   }
   },
   {
    "name": "カーナベル（買取）",
    "why": "トレカ専門店の買取サービス。",
    "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+AI2AOQ+49YI+5YJRM",
-   "cta": "カーナベル買取を見る"
+   "cta": "カーナベル買取を見る",
+   "banner": {
+    "href": "https://px.a8.net/svt/ejp?a8mat=4BECH4+AI2AOQ+49YI+5ZMCH",
+    "img": "https://www29.a8.net/svt/bgt?aid=261009832635&wid=002&eno=01&mid=s00000019953001006000&mc=1",
+    "pixel": "https://www19.a8.net/0.gif?a8mat=4BECH4+AI2AOQ+49YI+5ZMCH",
+    "w": 300,
+    "h": 250
+   }
   }
  ],
  "perks": {

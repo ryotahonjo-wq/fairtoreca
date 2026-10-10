@@ -142,8 +142,12 @@ h1{font-weight:900;font-size:clamp(32px,8vw,52px);line-height:1.05;letter-spacin
 /* partners */
 .partners{display:flex;flex-direction:column;gap:12px}
 .partners .gh{border-color:var(--line);border-bottom-width:1px}
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
-.pcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;text-decoration:none;min-width:0;transition:border-color .15s}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+@media (max-width:620px){.pgrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:16px;margin-inline:-16px;padding:2px 16px 8px;scrollbar-width:none}.pgrid::-webkit-scrollbar{display:none}.pcard{flex:0 0 250px;scroll-snap-align:start}}
+.pban{display:block;margin:-14px -16px 4px;border-radius:12px 12px 0 0;overflow:hidden;background:color-mix(in srgb,var(--ink) 5%,transparent);aspect-ratio:6/5}
+.pban img{display:block;width:100%;height:100%;object-fit:contain}
+.ppx{position:absolute;width:1px;height:1px;opacity:0}
+.pcard{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;text-decoration:none;min-width:0;transition:border-color .15s}
 .pcard:hover{border-color:var(--ink)}
 .pcard .ptop{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .pcard .pname{font-weight:700;font-size:14.5px}
@@ -410,9 +414,11 @@ const partners = (DATA.partners || []).filter(p => safeUrl(p.url));
 const anyPerk = rows.some(r => r.perk && safeUrl(r.perk.url));
 if (partners.length){
   $("partners").hidden = false;
-  $("pgrid").innerHTML = partners.map(p => `<a class="pcard" href="${esc(safeUrl(p.url))}" target="_blank" rel="noopener sponsored">
+  $("pgrid").innerHTML = partners.map(p => { const bn = p.banner && safeUrl(p.banner.href) && safeUrl(p.banner.img) ? p.banner : null;
+    return `<a class="pcard" href="${esc(safeUrl(bn ? bn.href : p.url))}" target="_blank" rel="nofollow noopener sponsored">
+    ${bn ? `<span class="pban"><img src="${esc(bn.img)}" width="${+bn.w||300}" height="${+bn.h||250}" alt="${esc(p.name)}" loading="lazy" onerror="this.parentNode.remove()"></span>${safeUrl(bn.pixel) ? `<img class="ppx" src="${esc(bn.pixel)}" width="1" height="1" alt="" loading="lazy">` : ""}` : ""}
     <div class="ptop"><span class="pname">${esc(p.name)}</span><span class="pr">PR</span></div>
-    <div class="pwhy">${esc(p.why||"")}</div><span class="pcta">${esc(p.cta||"詳しく見る")} ↗</span></a>`).join("");
+    <div class="pwhy">${esc(p.why||"")}</div><span class="pcta">${esc(p.cta||"詳しく見る")} ↗</span></a>`; }).join("");
 }
 $("adnote").hidden = !(partners.length || anyPerk || DATA.ads);
 $("amznote").hidden = !DATA.amazon;
