@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-10T08:55:00+09:00",
+ "updatedAt": "2026-10-11T08:55:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -502,7 +502,7 @@
   {
    "id": "db-tsutaya-tosa",
    "game": "dragonball",
-   "product": "フュージョンワールド DUAL EVOLUTION・CROSS FORCE",
+   "product": "フュージョンワールド STORY BOOSTER 01・DUAL EVOLUTION・CROSS FORCE",
    "shop": "TSUTAYA 土佐道路店",
    "method": "online",
    "start": "2026-10-09T09:00:00+09:00",
@@ -510,7 +510,8 @@
    "url": "https://x.com/T_TOSA_TCG/status/2108347963185791253",
    "note": "会員限定・締切は告知を確認",
    "source": "https://www.cardchusen.com/dragonball",
-   "addedAt": "2026-10-10T08:55:00+09:00"
+   "addedAt": "2026-10-10T08:55:00+09:00",
+   "end": "2026-10-10T23:59:00+09:00"
   },
   {
    "id": "db-rakuten",
@@ -525,6 +526,47 @@
    "source": "https://www.cardchusen.com/dragonball",
    "upcoming": true,
    "addedAt": "2026-10-10T08:55:00+09:00"
+  },
+  {
+   "id": "pk-yamashiroya-os",
+   "game": "pokemon",
+   "product": "30th CELEBRATION BOX／プレミアムデッキセット エーフィ・ブラッキー",
+   "shop": "ヤマシロヤ オンラインショップ",
+   "method": "online",
+   "start": "2026-10-10T21:30:00+09:00",
+   "end": "2026-10-12T21:30:00+09:00",
+   "result": "10/16（当選者にメール）、入金 10/22 13:00まで",
+   "url": "https://docs.google.com/forms/d/e/1FAIpQLScZfQ9HdwSJRHhSsOeLB6s7Kd_qXvG-NIRMupIERWPPcCsnsg/viewform",
+   "note": "会員No.が必要・Googleフォームで1家族1応募・銀行振込のみ",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-11T08:55:00+09:00"
+  },
+  {
+   "id": "pk-fullcomp-set",
+   "game": "pokemon",
+   "product": "30th CELEBRATION カードセット各種",
+   "shop": "フルコンプ 一部店舗",
+   "method": "online",
+   "start": "2026-10-10T09:00:00+09:00",
+   "end": "2026-10-12T23:59:00+09:00",
+   "result": "10/13〜10/14",
+   "url": "https://livepocket.jp/e/birt9",
+   "note": "LivePocketで応募・店頭受取",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-11T08:55:00+09:00"
+  },
+  {
+   "id": "op-yellowsub",
+   "game": "onepiece",
+   "product": "ブースターパック OP-17",
+   "shop": "イエローサブマリン 各店",
+   "method": "store",
+   "start": "2026-10-11T10:00:00+09:00",
+   "end": "2026-10-14T20:00:00+09:00",
+   "result": "10/17予定",
+   "note": "店頭ポスターのQRからLivePocketで応募",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-11T08:55:00+09:00"
   }
  ]
 }
