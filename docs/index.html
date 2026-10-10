@@ -28,14 +28,31 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15p
 a{color:inherit}
 .wrap{max-width:820px;margin:0 auto;padding-inline:16px;padding-block:40px 72px;display:flex;flex-direction:column;gap:32px}
 
-/* header */
+/* header: dark hero card with foil edge + live counters */
+.hero{position:relative;background:#10131c;color:#f2f4f8;border-radius:20px;padding:26px 20px 20px;overflow:hidden;border:1px solid #232836}
+.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:var(--foil)}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:var(--foil);opacity:.13;filter:blur(30px)}
+.hero .eyebrow{color:#9aa3b5}
+.hero .pledge{color:#fff}
+.hero .updated{color:#8a92a3;display:flex;align-items:center;gap:8px}
+.live{width:8px;height:8px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 0 #3ddc8488;animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px #3ddc8400}100%{box-shadow:0 0 0 0 #3ddc8400}}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:18px;position:relative;z-index:1}
+.stat{all:unset;box-sizing:border-box;cursor:pointer;background:#1b2030;border:1px solid #2a3042;border-radius:12px;padding:10px 6px 9px;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:0;transition:transform .12s,border-color .12s}
+.stat:hover{border-color:#5a6380;transform:translateY(-1px)}
+.stat:focus-visible{outline:2px solid #93a2ff;outline-offset:2px}
+.stat b{font-family:var(--mono);font-size:26px;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{font-size:11px;color:#a8b0c2;white-space:nowrap}
+.stat.hot{background:#3a1512;border-color:#6b2620}.stat.hot b{color:#ff8a7e}
+.stat.fr{background:linear-gradient(#1b2030,#1b2030) padding-box,var(--foil) border-box;border-color:transparent}
+/* header text */
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
-h1{font-weight:900;font-size:clamp(34px,8vw,56px);line-height:1.05;letter-spacing:-.01em;margin:6px 0 0;text-wrap:balance}
+h1{font-weight:900;font-size:clamp(32px,8vw,52px);line-height:1.05;letter-spacing:-.01em;margin:6px 0 0;text-wrap:balance}
 .foil{height:4px;width:96px;border-radius:2px;background:var(--foil);margin-top:16px}
 .lede{margin:14px 0 0;color:var(--muted);font-size:15px;max-width:52ch}
 .lede b{color:var(--ink);font-weight:700;font-family:var(--mono);font-variant-numeric:tabular-nums}
 .lede b.hot{color:var(--hot)}
-.updated{font-family:var(--mono);font-size:12px;color:var(--faint);margin-top:8px}
+.updated{font-family:var(--mono);font-size:12px;color:var(--faint);margin-top:14px}
 
 /* week strip */
 .week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow:hidden}
@@ -54,8 +71,22 @@ h1{font-weight:900;font-size:clamp(34px,8vw,56px);line-height:1.05;letter-spacin
 .week-cap{font-size:12px;color:var(--muted);margin-top:8px;display:flex;gap:14px;flex-wrap:wrap}
 .week-cap i{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:1px}
 
-/* controls */
-.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+/* controls: sticky so filters stay at hand while scrolling */
+.controls{position:sticky;top:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between;margin-inline:-16px;padding:10px 16px;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid transparent}
+.controls.stuck{border-bottom-color:var(--line)}
+/* new arrivals rail */
+.fresh{display:flex;flex-direction:column;gap:10px}
+.rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:16px;margin-inline:-16px;padding:2px 16px 8px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.fcard{all:unset;box-sizing:border-box;cursor:pointer;scroll-snap-align:start;flex:0 0 220px;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.fcard:hover{border-color:var(--ink);border-top-color:var(--c)}
+.fcard:focus-visible{outline:2px solid var(--accent)}
+.fcard .fp{font-weight:700;font-size:14px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fcard .fs{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fcard .fe{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:auto}
+.fcard .fe.hot{color:var(--hot);font-weight:600}
+.flash{animation:flash 1.6s ease-out}
+@keyframes flash{0%{box-shadow:0 0 0 3px var(--accent)}100%{box-shadow:0 0 0 3px transparent}}
 .seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;flex-wrap:wrap}
 .seg button{all:unset;cursor:pointer;font-size:13px;font-weight:700;padding:6px 14px;border-radius:999px;color:var(--muted)}
 .seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
@@ -68,16 +99,17 @@ h1{font-weight:900;font-size:clamp(34px,8vw,56px);line-height:1.05;letter-spacin
 /* board */
 .board{display:flex;flex-direction:column;gap:28px}
 .group{display:flex;flex-direction:column}
-.gh{display:flex;align-items:baseline;gap:10px;padding-bottom:8px;border-bottom:2px solid var(--ink)}
+.gh{display:flex;align-items:baseline;gap:10px;padding-bottom:6px;border-bottom:2px solid var(--ink)}
 .gh h2{margin:0;font-size:17px;font-weight:900;letter-spacing:.02em}
 .gh .sub{font-family:var(--mono);font-size:12px;color:var(--muted)}
 .gh .n{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--muted)}
 .gh.hot{border-color:var(--hot)} .gh.hot h2{color:var(--hot)}
-.row{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
-.t{font-family:var(--mono);font-variant-numeric:tabular-nums;display:flex;flex-direction:column;gap:2px}
-.t b{font-size:17px;font-weight:600;line-height:1.2}
-.t span{font-size:11px;color:var(--faint)}
-.t span.hot{color:var(--hot);font-weight:600}
+.row{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:4px 14px;padding:14px 14px 14px 12px;margin-top:10px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c,var(--faint));border-radius:12px;align-items:start;scroll-margin-top:80px}
+.row.urgent{background:linear-gradient(90deg,var(--hot-soft),var(--surface) 55%)}
+.t{font-family:var(--mono);font-variant-numeric:tabular-nums;display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.t b{font-size:18px;font-weight:600;line-height:1.2}
+.t span{font-size:11px;color:var(--muted);background:color-mix(in srgb,var(--ink) 6%,transparent);border-radius:999px;padding:1px 7px;white-space:nowrap}
+.t span.hot{color:#fff;background:var(--hot);font-weight:600}
 .body{min-width:0;display:flex;flex-direction:column;gap:3px}
 .line1{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .g{font-size:11px;font-weight:700;letter-spacing:.04em;display:inline-flex;align-items:center;gap:5px;color:var(--muted)}
@@ -86,20 +118,27 @@ h1{font-weight:900;font-size:clamp(34px,8vw,56px);line-height:1.05;letter-spacin
 .new{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;padding:1px 6px;border-radius:4px;background:var(--foil);color:#10131c}
 .prod{font-weight:700;font-size:15.5px;line-height:1.45;overflow-wrap:anywhere}
 .shop{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
-.note{font-size:12px;color:var(--faint)}
+.note{font-size:12px;color:var(--faint);line-height:1.55}
 .perk{font-size:12px;margin-top:4px;display:inline-flex;gap:6px;align-items:baseline;color:var(--muted)}
 .perk a{color:var(--accent);font-weight:700;text-decoration:none}
 .perk a:hover{text-decoration:underline}
 .pr{font-family:var(--mono);font-size:9px;letter-spacing:.08em;border:1px solid var(--faint);color:var(--faint);border-radius:3px;padding:0 3px}
-.go{align-self:center;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;transition:border-color .15s,background .15s}
-.go:hover{border-color:var(--ink)}
+.go{align-self:center;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;border:1.5px solid var(--ink);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 16px;transition:opacity .15s,transform .12s}
+.row.urgent .go:not(.none){background:var(--ink);color:var(--bg)}
+.go:hover{opacity:.85}
+.go:active{transform:scale(.97)}
 .go:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.go.none{color:var(--faint);border-style:dashed;cursor:default}
+.go.none{color:var(--faint);background:transparent;border:1px dashed var(--line);cursor:default}
+.more{all:unset;box-sizing:border-box;cursor:pointer;margin-top:10px;text-align:center;font-size:13px;font-weight:700;color:var(--accent);border:1px dashed var(--line);border-radius:12px;padding:11px}
+.more:hover{border-color:var(--accent)}
 @media (max-width:520px){
-  .row{grid-template-columns:64px minmax(0,1fr)}
-  .go{grid-column:2;justify-self:start;margin-top:6px}
+  .row{grid-template-columns:62px minmax(0,1fr);gap:4px 12px}
+  .go{grid-column:1 / -1;justify-self:stretch;text-align:center;margin-top:8px;padding:10px 16px}
+  .go.none{grid-column:2;justify-self:start;margin-top:4px;padding:3px 10px;font-size:12px}
+  .wrap{padding-block:16px 56px;gap:28px}
+  .stat b{font-size:22px}
 }
-.empty{padding:18px 0;color:var(--muted);font-size:14px;border-bottom:1px solid var(--line)}
+.empty{padding:18px 4px;color:var(--muted);font-size:14px}
 
 /* partners */
 .partners{display:flex;flex-direction:column;gap:12px}
@@ -114,8 +153,18 @@ h1{font-weight:900;font-size:clamp(34px,8vw,56px);line-height:1.05;letter-spacin
 
 details.past summary{cursor:pointer;font-size:13px;font-weight:700;color:var(--muted);padding:6px 0}
 details.past .row{opacity:.55}
+/* follow / share */
+.follow{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.follow h2{margin:0;font-size:17px;font-weight:900}
+.follow p{margin:0;font-size:13px;color:var(--muted)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;font-size:13px;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:8px 14px;display:inline-flex;align-items:center;gap:6px;background:var(--bg)}
+.btn:hover{border-color:var(--ink)}
+.btn:focus-visible{outline:2px solid var(--accent)}
+.btn.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.line{background:#06c755;color:#fff;border-color:#06c755}
 footer a{color:var(--muted)}
-.pledge{margin:14px 0 0;font-weight:700;font-size:clamp(17px,3.6vw,21px);line-height:1.5;letter-spacing:.02em}
+.pledge{margin:10px 0 0;font-weight:700;font-size:clamp(17px,3.6vw,21px);line-height:1.5;letter-spacing:.02em}
 .rules{display:flex;flex-direction:column;gap:12px}
 .rules .gh{border-color:var(--line);border-bottom-width:1px}
 .rgrid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;counter-reset:r}
@@ -130,13 +179,13 @@ footer{border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:va
 
 </head><body style="margin:0">
 <div class="wrap">
-  <header>
+  <header class="hero">
     <div class="eyebrow">Fair Toreca · ポケカ / ワンピカ / ドラゴンボールの抽選まとめ</div>
     <h1>フェアトレカ</h1>
     <p class="pledge">公式から、定価で。<br>ほしい人みんなに、買えるチャンスを。</p>
-    <div class="foil" aria-hidden="true"></div>
-    <p class="lede" id="lede">トレカの抽選を締切の早い順に並べています。</p>
-    <div class="updated" id="updated"></div>
+    <div class="stats" id="stats"></div>
+    <p class="lede" id="lede" hidden></p>
+    <div class="updated"><i class="live" aria-hidden="true"></i><span id="updated"></span></div>
   </header>
 
   <div>
@@ -144,7 +193,12 @@ footer{border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:va
     <div class="week-cap"><span><i style="background:var(--pk)"></i>ポケカ</span><span><i style="background:var(--op)"></i>ワンピカ</span><span><i style="background:var(--db)"></i>ドラゴンボール</span><span>点の数＝その日に締切る抽選</span></div>
   </div>
 
-  <div class="controls">
+  <section class="fresh" id="fresh" hidden>
+    <div class="gh"><h2>新着の抽選</h2><span class="sub">24時間以内に追加</span><span class="n" id="freshn"></span></div>
+    <div class="rail" id="rail"></div>
+  </section>
+
+  <div class="controls" id="controls">
     <div class="seg" role="group" aria-label="タイトル">
       <button id="g-all" data-g="all" aria-pressed="true">すべて</button>
       <button id="g-pk" data-g="pokemon" aria-pressed="false">ポケカ</button>
@@ -156,6 +210,22 @@ footer{border-top:1px solid var(--line);padding-top:18px;font-size:12px;color:va
   <div class="daynote" id="daynote" hidden></div>
 
   <div class="board" id="board"></div>
+
+  <section class="follow" aria-labelledby="follow-h">
+    <h2 id="follow-h">毎朝の新着を受け取る</h2>
+    <p>新しい抽選と今夜の締切を、毎日XとThreadsでお知らせしています。締切はカレンダーにも入れられます。</p>
+    <div class="btns">
+      <a class="btn dark" href="https://x.com/popoTCG" target="_blank" rel="noopener">𝕏 フォロー</a>
+      <a class="btn" href="https://www.threads.net/@popo.hreads" target="_blank" rel="noopener">Threads フォロー</a>
+      <a class="btn" href="https://calendar.google.com/calendar/r?cid=webcal://fairtoreca.com/calendar.ics" target="_blank" rel="noopener">📅 締切をカレンダーに</a>
+    </div>
+    <p>友だちにも教えてあげよう。みんなが公式から応募すれば、転売に流れる分が減っていきます。</p>
+    <div class="btns">
+      <a class="btn" id="share-x" target="_blank" rel="noopener">𝕏 でシェア</a>
+      <a class="btn line" id="share-line" target="_blank" rel="noopener">LINEで送る</a>
+      <button class="btn" id="share-copy" type="button">リンクをコピー</button>
+    </div>
+  </section>
 
   <section class="rules" aria-labelledby="rules-h">
     <div class="gh"><h2 id="rules-h">応募の約束</h2><span class="sub">転売のない抽選を、みんなで</span></div>
@@ -193,6 +263,8 @@ const ONLINE = new Set(["online","app","sns","invite","order"]);
 const DOW = "日月火水木金土";
 const H = 3600e3, DAY = 24*H;
 let game = "all", onlineOnly = false, pickDay = null;
+const opened = new Set(); // groups expanded past the first few rows
+const FOLD = 5;
 try { const s = JSON.parse(localStorage.getItem("toreka-filter")||"{}"); if (GAME[s.game]) game = s.game; onlineOnly = !!s.onlineOnly; } catch(e) {}
 const $ = id => document.getElementById(id);
 
@@ -217,14 +289,16 @@ const visible = r => (game === "all" || r.game === game) && (!onlineOnly || ONLI
 function rowHTML(r, now, mode){
   const e = r.end ? Date.parse(r.end) : null, s = r.start ? Date.parse(r.start) : null;
   const isNew = r.addedAt && now - Date.parse(r.addedAt) < DAY;
+  const urgent = mode === "open" && e && e - now < 6*H;
   let t;
-  if (mode === "soon") t = `<b>${s ? hm(s) : "—"}</b><span>${s ? md(s)+"("+dow(s)+") 開始" : "開始日未定"}</span>`;
+  if (mode === "soon") t = `<b>${s ? hm(s) : "—"}</b><span>${s ? md(s)+" 開始" : "日程未定"}</span>`;
   else if (mode === "done") t = `<b>${e ? hm(e) : "—"}</b><span>${e ? md(e)+" 終了" : ""}</span>`;
   else t = e ? `<b>${hm(e)}</b><span class="${e-now < DAY ? "hot":""}">${left(e-now)}</span>` : `<b>—</b><span>締切未定</span>`;
   const url = safeUrl(r.url);
   const perkUrl = r.perk && safeUrl(r.perk.url);
-  const period = `${full(r.start)} 〜 ${full(r.end)}${r.result ? "　発表 "+esc(r.result) : ""}`;
-  return `<article class="row">
+  const result = r.result ? String(r.result).replace(/^発表\s*/, "") : "";
+  const period = `${full(r.start)} 〜 ${full(r.end)}${result ? "　発表 "+esc(result) : ""}`;
+  return `<article class="row${urgent ? " urgent" : ""}" id="r-${esc(r.id)}" style="--c:${GVAR[r.game]||"var(--faint)"}">
     <div class="t">${t}</div>
     <div class="body">
       <div class="line1"><span class="g" style="--c:${GVAR[r.game]||"var(--faint)"}">${esc(GAME[r.game]||r.game)}</span><span class="meth">${esc(METHOD[r.method]||r.method||"")}</span>${isNew ? '<span class="new">NEW</span>' : ""}</div>
@@ -233,7 +307,7 @@ function rowHTML(r, now, mode){
       <div class="note">${period}${r.note ? "　/　"+esc(r.note) : ""}</div>
       ${perkUrl ? `<div class="perk"><span class="pr">PR</span>${esc(r.perk.text||"")} <a href="${esc(perkUrl)}" target="_blank" rel="noopener sponsored">${esc(r.perk.label||"詳しく")} ↗</a></div>` : ""}
     </div>
-    ${url ? `<a class="go" href="${esc(url)}" target="_blank" rel="noopener">応募ページ ↗</a>` : `<span class="go none">店頭・SNSで</span>`}
+    ${url ? `<a class="go" href="${esc(url)}" target="_blank" rel="noopener">公式で応募 ↗</a>` : `<span class="go none">店頭・SNSで</span>`}
   </article>`;
 }
 
@@ -247,6 +321,33 @@ function render(){
   // lede
   const todayN = open.filter(r => r.end && dayKey(Date.parse(r.end)) === today).length;
   const newN = vis.filter(r => r.addedAt && now - Date.parse(r.addedAt) < DAY && status(r,now) !== "done").length;
+  const tomorrow = dayKey(now + DAY);
+  const tomN = open.filter(r => r.end && dayKey(Date.parse(r.end)) === tomorrow).length;
+  const fresh = vis.filter(r => r.addedAt && now - Date.parse(r.addedAt) < DAY && status(r,now) !== "done")
+    .sort((a,b)=>(a.end?Date.parse(a.end):9e15)-(b.end?Date.parse(b.end):9e15));
+  $("stats").innerHTML = `<button class="stat hot" data-s="today"><b>${todayN}</b><span>今日締切</span></button>
+    <button class="stat" data-s="tom"><b>${tomN}</b><span>明日締切</span></button>
+    <button class="stat fr" data-s="new"><b>${fresh.length}</b><span>新着</span></button>
+    <button class="stat" data-s="all"><b>${open.length}</b><span>受付中</span></button>`;
+  $("stats").querySelectorAll(".stat").forEach(b => b.onclick = () => {
+    const s = b.dataset.s;
+    if (s === "new"){ $("fresh").hidden ? null : $("fresh").scrollIntoView({behavior:"smooth"}); return; }
+    pickDay = s === "today" ? today : s === "tom" ? tomorrow : null; render();
+    $("controls").scrollIntoView({behavior:"smooth"});
+  });
+  $("fresh").hidden = !fresh.length;
+  $("freshn").textContent = `${fresh.length}件`;
+  $("rail").innerHTML = fresh.map(r => { const e = r.end ? Date.parse(r.end) : null; const st = status(r, now);
+    return `<button class="fcard" data-id="${esc(r.id)}" style="--c:${GVAR[r.game]||"var(--faint)"}">
+      <span class="g" style="--c:${GVAR[r.game]}">${esc(GAME[r.game]||r.game)}</span>
+      <span class="fp">${esc(r.product)}</span><span class="fs">${esc(r.shop)}</span>
+      <span class="fe ${e && e-now < DAY ? "hot" : ""}">${st === "soon" ? (r.start ? full(r.start)+" 開始" : "開始日未定") : e ? "締切 "+full(r.end) : "締切未定"}</span></button>`; }).join("");
+  $("rail").querySelectorAll(".fcard").forEach(b => b.onclick = () => {
+    pickDay = null; render();
+    const el = $("r-"+b.dataset.id); if (!el) return;
+    const sec = el.closest(".group"); if (sec && sec.dataset.k && !opened.has(sec.dataset.k)){ opened.add(sec.dataset.k); render(); }
+    const el2 = $("r-"+b.dataset.id); el2.scrollIntoView({behavior:"smooth", block:"center"}); el2.classList.remove("flash"); void el2.offsetWidth; el2.classList.add("flash");
+  });
   $("lede").innerHTML = `今日締切 <b class="hot">${todayN}</b> 件、受付中 <b>${open.length}</b> 件、これから開始 <b>${soon.length}</b> 件${newN ? `、新着 <b>${newN}</b> 件` : ""}。締切の早い順に並べています。`;
   $("updated").textContent = DATA.updatedAt ? `最終更新 ${full(DATA.updatedAt)}` : "";
 
@@ -284,7 +385,9 @@ function render(){
       sub = diff <= 1 ? `${md(t)}(${dow(t)})` : "";
       hot = diff === 0;
     }
-    html += `<section class="group"><div class="gh ${hot?"hot":""}"><h2>${title}</h2><span class="sub">${sub}</span><span class="n">${list.length}件</span></div>${list.map(r=>rowHTML(r,now,"open")).join("")}</section>`;
+    const fold = !pickDay && !opened.has(String(k)) && list.length > FOLD + 1;
+    const shown = fold ? list.slice(0, FOLD) : list;
+    html += `<section class="group" data-k="${k}"><div class="gh ${hot?"hot":""}"><h2>${title}</h2><span class="sub">${sub}</span><span class="n">${list.length}件</span></div>${shown.map(r=>rowHTML(r,now,"open")).join("")}${fold ? `<button class="more" data-k="${k}">残り ${list.length - FOLD} 件を表示</button>` : ""}</section>`;
   }
   if (!pickDay){
     const ss = soon.slice().sort((a,b)=>(a.start?Date.parse(a.start):9e15)-(b.start?Date.parse(b.start):9e15));
@@ -292,6 +395,7 @@ function render(){
   }
   if (!html) html = `<div class="empty">この条件に合う抽選はありません。</div>`;
   $("board").innerHTML = html;
+  $("board").querySelectorAll(".more").forEach(b => b.onclick = () => { opened.add(b.dataset.k); render(); });
 
   const dn = $("daynote");
   if (pickDay){ dn.hidden = false; dn.innerHTML = `${String(pickDay%10000).replace(/^(\d+)(\d\d)$/,(m,a,b)=>+a+"/"+ +b)} に締切る抽選だけ表示中 <button id="clearday">すべて表示</button>`; $("clearday").onclick = () => { pickDay = null; render(); }; }
@@ -318,6 +422,15 @@ $("amznote").hidden = !DATA.amazon;
 document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => { game = b.dataset.g; save(); render(); }));
 $("online-only").addEventListener("change", e => { onlineOnly = e.target.checked; save(); render(); });
 function save(){ try { localStorage.setItem("toreka-filter", JSON.stringify({game, onlineOnly})); } catch(e) {} }
+// share
+const SITE = "https://fairtoreca.com/";
+const shareText = "ポケカ・ワンピカ・ドラゴンボールの抽選を締切順にまとめてるサイト。公式から定価で応募しよう #フェアトレカ";
+$("share-x").href = "https://x.com/intent/post?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(SITE);
+$("share-line").href = "https://social-plugins.line.me/lineit/share?url=" + encodeURIComponent(SITE);
+$("share-copy").onclick = async () => { try { await navigator.clipboard.writeText(SITE); $("share-copy").textContent = "コピーしました"; } catch(e) { $("share-copy").textContent = SITE; } setTimeout(() => $("share-copy").textContent = "リンクをコピー", 2000); };
+// sticky bar gets a hairline once it is stuck
+try { new IntersectionObserver(([e]) => $("controls").classList.toggle("stuck", e.intersectionRatio < 1 && e.boundingClientRect.top < 1), {threshold:[1], rootMargin:"-1px 0px 0px 0px"}).observe($("controls")); } catch(e) {}
+
 render();
 setInterval(render, 60e3);
 </script>
