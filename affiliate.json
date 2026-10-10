@@ -1,8 +1,51 @@
 {
  "_note": "アフィリエイト設定。partners はサイトの「抽選に強くなる準備」枠、perks は抽選ID→その行に出すPRリンク。リンクが空のものは表示されない。",
- "ads": false,
+ "ads": true,
  "amazon": false,
- "partners": [],
+ "partners": [
+  {
+   "name": "カーナベル（トレカ通販）",
+   "why": "6万種類以上のシングルから1枚単位で探せる。抽選に外れたカードを必要な分だけそろえたいときに。",
+   "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+AGVFH6+49YI+C0QPE",
+   "cta": "カーナベルで探す"
+  },
+  {
+   "name": "トレトク（トレカ通販）",
+   "why": "ポケカ・ワンピカのシングルやサプライを通販で。",
+   "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+AJULI2+2QOI+1BN3TU",
+   "cta": "トレトクで探す"
+  },
+  {
+   "name": "Bee本舗通販店",
+   "why": "トレカとサプライの通販。抽選の告知もよく出しているお店。",
+   "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+8350D6+5NJ8+5YJRM",
+   "cta": "Bee本舗通販店を見る"
+  },
+  {
+   "name": "もえたく！（宅配買取）",
+   "why": "遊ばなくなったカードを1点から宅配で買取。ダブったカードの整理に。",
+   "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+8TC2ZE+1SOW+2HFQHU",
+   "cta": "もえたく！を見る"
+  },
+  {
+   "name": "ふるいち トレカ買取",
+   "why": "スリーブに入れたまま送れる宅配買取。上場企業の運営。",
+   "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+81CPJU+5W1M+BWVTE",
+   "cta": "ふるいちを見る"
+  },
+  {
+   "name": "トレトク（宅配買取）",
+   "why": "使わないカードをまとめて宅配で買取。",
+   "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+8ZAF16+2QOI+NTJWY",
+   "cta": "トレトク買取を見る"
+  },
+  {
+   "name": "カーナベル（買取）",
+   "why": "トレカ専門店の買取サービス。",
+   "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+AI2AOQ+49YI+5YJRM",
+   "cta": "カーナベル買取を見る"
+  }
+ ],
  "perks": {
   "pk-rakuten": {
    "text": "楽天ブックスの対象商品ページ（応募は楽天ブックス公式から）",
@@ -18,6 +61,11 @@
    "text": "楽天ブックスの対象商品ページ（応募は楽天ブックス公式から）",
    "label": "楽天で見る",
    "url": "https://hb.afl.rakuten.co.jp/ichiba/58588721.c41e33b2.58588722.02a243f1/?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F18578905%2F"
+  },
+  "pk-beehonpo": {
+   "text": "Bee本舗の通販店（抽選の応募は公式フォームから）",
+   "label": "通販店を見る",
+   "url": "https://px.a8.net/svt/ejp?a8mat=4BECH4+8350D6+5NJ8+5YJRM"
   }
  }
 }
