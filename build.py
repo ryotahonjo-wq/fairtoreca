@@ -26,14 +26,14 @@ html = ('<!doctype html>\n<html lang="ja"><head><meta charset="utf-8"><meta name
         .replace("<!--SITE_LINKS-->", '<span class="links"><a href="about.html">運営者情報・プライバシーポリシー</a><a href="https://calendar.google.com/calendar/r?cid=webcal://fairtoreca.com/calendar.ics" target="_blank" rel="noopener">締切をGoogleカレンダーに追加</a><a href="calendar.ics">カレンダー（iPhoneなど）</a><a href="oripa.html">オリパについて（18歳以上）</a></span>') + "\n</body></html>\n")
 os.makedirs(P("docs"), exist_ok=True)
 open(P("docs", "index.html"), "w").write(html)
-for page in ("about.html", "oripa.html"):
+for page in ("about.html", "oripa.html", "links.html"):
     open(P("docs", page), "w").write(open(P(page)).read().replace('<meta charset="utf-8">', '<meta charset="utf-8">' + ICONS, 1))
 # ファビコン（assets/ の原本を docs/ 直下へ）
 for f in os.listdir(P("assets")):
     shutil.copy(P("assets", f), P("docs", f))
 open(P("docs", "robots.txt"), "w").write("User-agent: *\nAllow: /\n" + (f"Sitemap: https://{site_url}/sitemap.xml\n" if site_url else ""))
 if site_url:
-    open(P("docs", "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://{site_url}/</loc><lastmod>{data.get("updatedAt","")[:10]}</lastmod></url><url><loc>https://{site_url}/about.html</loc></url><url><loc>https://{site_url}/oripa.html</loc></url></urlset>\n')
+    open(P("docs", "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://{site_url}/</loc><lastmod>{data.get("updatedAt","")[:10]}</lastmod></url><url><loc>https://{site_url}/about.html</loc></url><url><loc>https://{site_url}/oripa.html</loc></url><url><loc>https://{site_url}/links.html</loc></url></urlset>\n')
 print("built", len(data["lotteries"]), "lotteries;", "site:", site_url or "(no domain yet)")
 
 # docs/calendar.ics : 締切の購読用カレンダー（Googleカレンダー等で「URLで追加」）
