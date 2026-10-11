@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<meta name="description" content="カードの写真を入れるだけで、AIがセンタリングを測ってPSA10の期待度を判定。ポケカ・ワンピカードの鑑定前チェックに。">
+<meta property="og:title" content="AI PSA10判定ラボ"><meta property="og:description" content="写真を入れるだけでAIがセンタリングを測定。PSAに出す前のチェックに。">
+<meta property="og:image" content="ogp.png"><meta name="twitter:card" content="summary_large_image">
+<style>*{box-sizing:border-box}body{margin:0}</style>
+<title>AI PSA10判定ラボ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: 作業台 — 上に表裏2枚の測定カード、下に目視チェックと判定画像。スマホでは1列に積む */
+:root{
+  --bg:#f3f1ee; --panel:#ffffff; --ink:#1c1b1f; --muted:#6b6670; --line:#dedad5;
+  --slab:#c8102e; --slab-ink:#ffffff; --gold:#b8892b;
+  --good:#1f8a4c; --warn:#b7791f; --bad:#c0392b;
+  --display:"Dela Gothic One","Hiragino Sans","Yu Gothic",sans-serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141317; --panel:#1e1c22; --ink:#f1eef3; --muted:#a29daa; --line:#34313a;
+  --slab:#e2334f; --slab-ink:#ffffff; --gold:#d8aa4c; --good:#4cc47f; --warn:#e0a640; --bad:#ef6b5b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141317; --panel:#1e1c22; --ink:#f1eef3; --muted:#a29daa; --line:#34313a;
+  --slab:#e2334f; --slab-ink:#ffffff; --gold:#d8aa4c; --good:#4cc47f; --warn:#e0a640; --bad:#ef6b5b; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.6}
+.wrap{max-width:980px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:grid;gap:20px}
+header{display:grid;gap:6px}
+.slabtag{display:inline-flex;align-items:center;gap:10px;background:var(--slab);color:var(--slab-ink);padding:6px 12px;border-radius:4px;font-family:var(--mono);font-size:12px;letter-spacing:.12em;width:max-content}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(26px,6vw,40px);line-height:1.2;margin:0;text-wrap:balance}
+.lead{color:var(--muted);margin:0;max-width:62ch}
+.sample{font-size:13px;color:var(--warn);font-weight:700}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+.side{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:12px;min-width:0}
+.side h2{margin:0;font-size:16px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.upload{display:inline-flex;align-items:center;gap:8px;border:1.5px dashed var(--muted);border-radius:8px;padding:8px 12px;cursor:pointer;font-weight:700;font-size:14px}
+.upload:hover,.upload:focus-within{border-color:var(--slab);color:var(--slab)}
+.upload input{position:absolute;opacity:0;width:1px;height:1px}
+canvas.card{width:100%;max-width:100%;height:auto;border-radius:6px;background:#000;display:block}
+.nums{display:grid;grid-template-columns:auto 1fr auto;gap:4px 12px;align-items:baseline;font-variant-numeric:tabular-nums}
+.nums dt{color:var(--muted);font-size:13px}
+.nums dd{margin:0;font-family:var(--mono);font-size:20px;font-weight:700}
+.chip{font-weight:700;font-size:13px;padding:3px 10px;border-radius:999px;border:1.5px solid currentColor;white-space:nowrap}
+.good{color:var(--good)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+.err{color:var(--bad);font-size:14px;margin:0}
+.status{color:var(--muted);font-size:13px;margin:0}
+.checks{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:14px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px}
+label.f{display:grid;gap:4px;font-size:13px;color:var(--muted)}
+input[type=text],select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--slab);outline-offset:2px}
+.verdict{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:14px}
+.verdict strong{font-family:var(--display);font-weight:400;font-size:26px}
+button{font:inherit;font-weight:700;background:var(--slab);color:var(--slab-ink);border:0;border-radius:8px;padding:10px 18px;cursor:pointer}
+.out{display:grid;gap:8px;justify-items:center}
+.out img{width:min(100%,360px);border-radius:8px;border:1px solid var(--line)}
+.foot{font-size:12.5px;color:var(--muted);display:grid;gap:6px;border-top:1px solid var(--line);padding-top:16px}.foot p{margin:0}.foot a{color:var(--slab)}
+.note{font-size:12.5px;color:var(--muted);margin:0;max-width:70ch}
+</style>
+
+</head><body>
+<div class="wrap">
+<header>
+  <span class="slabtag">AI CENTERING CHECK</span>
+  <h1>AI PSA10判定ラボ</h1>
+  <p class="lead">表と裏の写真を入れると、カードの外枠と内枠を自動で見つけて、センタリングを比率で測ります。角と表面は目で見て選ぶと、SNSにそのまま使える判定画像を作れます。</p>
+  <p class="sample" id="sampleNote">いまはサンプル（メガルカリオex SAR）を表示中。写真を入れると置き換わります。</p>
+  <p class="note">写真はあなたのスマホ・パソコンの中だけで処理されます。サーバーには送信・保存されません。</p>
+</header>
+<div class="grid2">
+  <section class="side" id="side-front">
+    <h2>表 <label class="upload">写真を選ぶ<input type="file" accept="image/*" id="file-front"></label></h2>
+    <canvas class="card" width="630" height="880"></canvas>
+    <p class="status"></p>
+    <dl class="nums"></dl>
+  </section>
+  <section class="side" id="side-back">
+    <h2>裏 <label class="upload">写真を選ぶ<input type="file" accept="image/*" id="file-back"></label></h2>
+    <canvas class="card" width="630" height="880"></canvas>
+    <p class="status"></p>
+    <dl class="nums"></dl>
+  </section>
+</div>
+<section class="checks">
+  <div class="row">
+    <label class="f">カード名<input type="text" id="cardName" value="" placeholder="例：メガルカリオex SAR 088/063"></label>
+    <label class="f">表面（傷・凹み・印刷線）
+      <select id="surface"><option value="◎">◎ 見当たらない</option><option value="○" selected>○ 写真では傷見えず</option><option value="△">△ 気になる所あり</option><option value="×">× はっきり傷あり</option></select></label>
+    <label class="f">角・縁（白欠け）
+      <select id="corners"><option value="◎">◎ 4隅ともきれい</option><option value="○" selected>○ ほぼきれい</option><option value="△">△ 要確認の所あり</option><option value="×">× 白欠けあり</option></select></label>
+    <label class="f">角・縁のメモ<input type="text" id="cornerNote" value="" placeholder="例：右下の縁に白い線"></label>
+  </div>
+  <div class="verdict">
+    <div><div class="status">PSA10期待度</div><strong id="expect">-</strong></div>
+    <button type="button" id="make">判定画像を作る</button>
+  </div>
+  <div class="out" id="out" hidden>
+    <img id="outImg" alt="リール用の判定画像">
+    <p class="note">画像を長押し（パソコンは右クリック）で保存できます。1080×1920のリール用サイズです。</p>
+  </div>
+  <p class="note">測り方：写真の四隅の色を背景として、カードの4辺に直線を当てはめて真上から見た形に補正し、外周から内側の枠の色が変わる位置までの幅を測ります。PSA10の目安は表が55/45〜60/40以内、裏が75/25以内。写真の解像度しだいで±2〜3%の誤差があります。黒いマットの上で、スリーブとステッカーを外し、真上から撮ると精度が上がります。</p>
+</section>
+<footer class="foot">
+  <p>作った人：<a href="https://www.instagram.com/honjoryota/" rel="noopener">@honjoryota</a>（AIとPSAでポケカ・ワンピカードをガチる社会人）。判定画像をSNSに載せるときにメンションしてくれたら見に行きます。</p>
+  <p>※ 目安を出すツールです。実際のPSAの評価を保証するものではありません。PSAはCollectors Universe社の商標で、本ツールは同社と関係ありません。</p>
+</footer>
+</div>
+<script src="core.js"></script>
+<script>
+const state = { front: null, back: null };
+const surface = document.getElementById("surface"), corners = document.getElementById("corners");
+function rate(side, worst) {
+  if (side === "front") return worst <= 55 ? ["◎", "PSA10圏内", "good"] : worst <= 60 ? ["○", "ギリギリ", "warn"] : ["×", "PSA10は厳しい", "bad"];
+  return worst <= 75 ? ["◎", "PSA10圏内", "good"] : ["×", "PSA10は厳しい", "bad"];
+}
+const fmt = v => `${Math.round(v)}/${100 - Math.round(v)}`;
+function loadImage(src) { return new Promise((ok, ng) => { const i = new Image(); i.onload = () => ok(i); i.onerror = ng; i.src = src; }); }
+function pixels(img, max) {
+  const s = Math.min(1, max / Math.max(img.naturalWidth, img.naturalHeight));
+  const w = Math.round(img.naturalWidth * s), h = Math.round(img.naturalHeight * s);
+  const c = document.createElement("canvas"); c.width = w; c.height = h;
+  const x = c.getContext("2d", { willReadFrequently: true }); x.drawImage(img, 0, 0, w, h);
+  return { data: x.getImageData(0, 0, w, h).data, w, h };
+}
+async function analyze(side, src) {
+  const root = document.getElementById("side-" + side), st = root.querySelector(".status"), dl = root.querySelector(".nums");
+  const cv = root.querySelector("canvas"), ctx = cv.getContext("2d");
+  st.textContent = "測定中…"; st.className = "status"; dl.innerHTML = "";
+  await new Promise(r => setTimeout(r, 30));
+  try {
+    const img = await loadImage(src);
+    const p = pixels(img, 1400);
+    const r = measure(p.data, p.w, p.h);
+    if (r.card) ctx.putImageData(new ImageData(r.card, CW, CH), 0, 0); else { ctx.fillStyle = "#000"; ctx.fillRect(0, 0, CW, CH); ctx.drawImage(img, 0, 0, CW, CH); }
+    if (r.error) { st.textContent = r.error; st.className = "err"; state[side] = null; updateExpect(); return; }
+    ctx.strokeStyle = "#e2334f"; ctx.lineWidth = 3; ctx.setLineDash([10, 6]);
+    const b = r.b;
+    [[b.left, 0, b.left, CH], [CW - b.right, 0, CW - b.right, CH], [0, b.top, CW, b.top], [0, CH - b.bottom, CW, CH - b.bottom]].forEach(([a, c, d, e]) => { ctx.beginPath(); ctx.moveTo(a, c); ctx.lineTo(d, e); ctx.stroke(); });
+    const [mark, label, cls] = rate(side, r.worst);
+    state[side] = { lr: r.lr, tb: r.tb, worst: r.worst, mark, label, card: cv.toDataURL("image/jpeg", 0.9) };
+    st.textContent = "赤い点線が内枠の位置。ずれていたら撮り直してください。";
+    dl.innerHTML = `<dt>左右</dt><dd>${fmt(r.lr)}</dd><span></span><dt>上下</dt><dd>${fmt(r.tb)}</dd><span class="chip ${cls}">${mark} ${label}</span>`;
+  } catch (e) { st.textContent = "画像を読み込めませんでした。JPEGかPNGの写真を選んでください。"; st.className = "err"; state[side] = null; }
+  updateExpect();
+}
+function expectation() {
+  const marks = [state.front?.mark, state.back?.mark, surface.value, corners.value];
+  if (!state.front) return "表の写真を入れてね";
+  if (marks.includes("×")) return "低め";
+  if (marks.includes("△")) return "高め（要確認）";
+  if (marks.includes("○")) return "高め";
+  return "かなり高め";
+}
+function updateExpect() { document.getElementById("expect").textContent = expectation(); }
+["surface", "corners"].forEach(id => document.getElementById(id).addEventListener("change", updateExpect));
+["front", "back"].forEach(side => document.getElementById("file-" + side).addEventListener("change", e => {
+  const f = e.target.files[0]; if (!f) return;
+  document.getElementById("sampleNote").hidden = true;
+  analyze(side, URL.createObjectURL(f));
+}));
+async function makeImage() {
+  await document.fonts.ready;
+  const W = 1080, H = 1920, c = document.createElement("canvas"); c.width = W; c.height = H;
+  const x = c.getContext("2d");
+  x.fillStyle = "#141317"; x.fillRect(0, 0, W, H);
+  const T = (t, y, size, color = "#fff", font = "Zen Kaku Gothic New", weight = 700) => {
+    do { x.font = `${weight} ${size}px "${font}", sans-serif`; size -= 2; } while (x.measureText(t).width > W - 80 && size > 20);
+    x.fillStyle = color; x.textAlign = "center"; x.fillText(t, W / 2, y);
+  };
+  const markShape = (m, cx, cy, col) => {
+    x.strokeStyle = col; x.lineWidth = 9; x.beginPath();
+    if (m === "◎" || m === "○") { x.arc(cx, cy, 36, 0, Math.PI * 2); x.stroke(); if (m === "◎") { x.beginPath(); x.arc(cx, cy, 18, 0, Math.PI * 2); x.stroke(); } }
+    else if (m === "△") { x.moveTo(cx, cy - 36); x.lineTo(cx + 38, cy + 30); x.lineTo(cx - 38, cy + 30); x.closePath(); x.stroke(); }
+    else { x.moveTo(cx - 32, cy - 32); x.lineTo(cx + 32, cy + 32); x.moveTo(cx + 32, cy - 32); x.lineTo(cx - 32, cy + 32); x.stroke(); }
+  };
+  T("AIにPSA10判定させてみた", 120, 64, "#ffd640", "Dela Gothic One", 400);
+  T(document.getElementById("cardName").value || "カード名", 200, 46);
+  const cards = [["front", 60, "表"], ["back", 560, "裏"]];
+  for (const [s, cx, lab] of cards) {
+    if (!state[s]) continue;
+    const im = await loadImage(state[s].card); x.drawImage(im, cx, 260, 460, 643);
+    x.font = `700 38px "Zen Kaku Gothic New", sans-serif`; x.fillStyle = "#fff"; x.textAlign = "center"; x.fillText(lab, cx + 230, 955);
+  }
+  const rows = [];
+  if (state.front) rows.push(["表 センタリング", `左右 ${fmt(state.front.lr)}・上下 ${fmt(state.front.tb)}`, state.front.mark]);
+  if (state.back) rows.push(["裏 センタリング", `左右 ${fmt(state.back.lr)}・上下 ${fmt(state.back.tb)}`, state.back.mark]);
+  rows.push(["表面", surface.selectedOptions[0].text.slice(2), surface.value]);
+  rows.push(["角・縁", document.getElementById("cornerNote").value || corners.selectedOptions[0].text.slice(2), corners.value]);
+  let y = 1050;
+  for (const [a, b, m] of rows) {
+    x.textAlign = "left"; x.font = `700 44px "Zen Kaku Gothic New", sans-serif`; x.fillStyle = "#ffd640"; x.fillText(a, 70, y);
+    x.font = `400 40px "Zen Kaku Gothic New", sans-serif`; x.fillStyle = "#fff"; x.fillText(b, 70, y + 58);
+    markShape(m, 975, y + 14, m === "◎" || m === "○" ? "#4cc47f" : "#ef6b5b");
+    y += 150;
+  }
+  T("PSA10期待度：" + expectation(), 1720, 72, "#ffd640", "Dela Gothic One", 400);
+  T("あなたの予想は？ 10 or 9 コメントで", 1810, 44);
+  x.globalAlpha = .55; T("AI PSA10判定ラボ", 1890, 28); x.globalAlpha = 1;
+  const img = document.getElementById("outImg"); img.src = c.toDataURL("image/png");
+  document.getElementById("out").hidden = false; img.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+document.getElementById("make").addEventListener("click", makeImage);
+analyze("front", "sample_front.jpg"); analyze("back", "sample_back.jpg");
+
+</script>
+</body></html>
