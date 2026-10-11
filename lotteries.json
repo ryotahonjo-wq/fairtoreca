@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-11T08:55:00+09:00",
+ "updatedAt": "2026-10-12T08:55:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -567,6 +567,39 @@
    "note": "店頭ポスターのQRからLivePocketで応募",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-11T08:55:00+09:00"
+  },
+  {
+   "id": "db-batoloco-maebashi",
+   "game": "dragonball",
+   "product": "フュージョンワールド STORY BOOSTER 01",
+   "shop": "バトロコミニ 前橋荒牧店",
+   "method": "store",
+   "note": "店頭抽選。締切は店舗のXで確認",
+   "url": "https://x.com/BatolocoA/status/2086259973533958203",
+   "source": "https://www.cardchusen.com/dragonball",
+   "addedAt": "2026-10-12T08:55:00+09:00"
+  },
+  {
+   "id": "db-toreca-ace-katsuta",
+   "game": "dragonball",
+   "product": "フュージョンワールド BRIGHTNESS OF HOPE",
+   "shop": "トレカエース 勝田東石川店",
+   "method": "store",
+   "note": "店頭抽選。締切は店舗のXで確認",
+   "url": "https://x.com/higasiisikawa/status/2093504153620234446",
+   "source": "https://www.cardchusen.com/dragonball",
+   "addedAt": "2026-10-12T08:55:00+09:00"
+  },
+  {
+   "id": "db-tsutaya-kinshicho",
+   "game": "dragonball",
+   "product": "フュージョンワールド BRIGHTNESS OF HOPE",
+   "shop": "TSUTAYA 錦糸町店",
+   "method": "store",
+   "note": "店頭抽選。締切は店舗のXで確認",
+   "url": "https://x.com/t_kinshi71624/status/2093510693723177287",
+   "source": "https://www.cardchusen.com/dragonball",
+   "addedAt": "2026-10-12T08:55:00+09:00"
   }
  ]
 }
