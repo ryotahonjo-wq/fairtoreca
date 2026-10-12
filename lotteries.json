@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-12T08:55:00+09:00",
+ "updatedAt": "2026-10-12T10:20:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -600,6 +600,102 @@
    "url": "https://x.com/t_kinshi71624/status/2093510693723177287",
    "source": "https://www.cardchusen.com/dragonball",
    "addedAt": "2026-10-12T08:55:00+09:00"
+  },
+  {
+   "id": "op-tsutaya-hiratsuka",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2",
+   "shop": "TSUTAYA 平塚",
+   "method": "online",
+   "end": "2026-10-12T21:00:00+09:00",
+   "url": "https://livepocket.jp/e/ruq6l",
+   "note": "LivePocketで応募（会員）。今日締切、時刻は店舗ごとに違うので応募ページで確認",
+   "source": "りょうた共有（X）＋ https://cardchusen.com/onepiece/eb05-heroines-v2",
+   "addedAt": "2026-10-12T10:20:00+09:00"
+  },
+  {
+   "id": "op-tsutaya-kitasenju",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2",
+   "shop": "TSUTAYA Trading Card 北千住",
+   "method": "online",
+   "end": "2026-10-12T21:00:00+09:00",
+   "url": "https://livepocket.jp/e/u62m7",
+   "note": "LivePocketで応募（会員）。今日締切、時刻は店舗ごとに違うので応募ページで確認",
+   "source": "りょうた共有（X）＋ https://cardchusen.com/onepiece/eb05-heroines-v2",
+   "addedAt": "2026-10-12T10:20:00+09:00"
+  },
+  {
+   "id": "op-tsutaya-fuchu",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2",
+   "shop": "TSUTAYA 府中",
+   "method": "online",
+   "end": "2026-10-12T21:00:00+09:00",
+   "url": "https://livepocket.jp/e/zy0lo",
+   "note": "LivePocketで応募（会員）。今日締切、時刻は店舗ごとに違うので応募ページで確認",
+   "source": "りょうた共有（X）＋ https://cardchusen.com/onepiece/eb05-heroines-v2",
+   "addedAt": "2026-10-12T10:20:00+09:00"
+  },
+  {
+   "id": "op-tsutaya-kitaurawa",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2",
+   "shop": "TSUTAYA 17号北浦和店",
+   "method": "online",
+   "end": "2026-10-12T21:00:00+09:00",
+   "url": "https://livepocket.jp/e/4a-uj",
+   "note": "LivePocketで応募（会員）。今日締切、時刻は店舗ごとに違うので応募ページで確認",
+   "source": "りょうた共有（X）＋ https://cardchusen.com/onepiece/eb05-heroines-v2",
+   "addedAt": "2026-10-12T10:20:00+09:00"
+  },
+  {
+   "id": "op-tsutaya-kawasaki",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2",
+   "shop": "TSUTAYA 川崎",
+   "method": "online",
+   "end": "2026-10-12T21:00:00+09:00",
+   "url": "https://livepocket.jp/e/q8of5",
+   "note": "LivePocketで応募（会員）。今日締切、時刻は店舗ごとに違うので応募ページで確認",
+   "source": "りょうた共有（X）＋ https://cardchusen.com/onepiece/eb05-heroines-v2",
+   "addedAt": "2026-10-12T10:20:00+09:00"
+  },
+  {
+   "id": "op-tsutaya-machidakiso",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2",
+   "shop": "TSUTAYA 町田木曽店",
+   "method": "online",
+   "end": "2026-10-12T21:00:00+09:00",
+   "url": "https://livepocket.jp/e/5xb-s",
+   "note": "LivePocketで応募（会員）。今日締切、時刻は店舗ごとに違うので応募ページで確認",
+   "source": "りょうた共有（X）＋ https://cardchusen.com/onepiece/eb05-heroines-v2",
+   "addedAt": "2026-10-12T10:20:00+09:00"
+  },
+  {
+   "id": "op-tsutaya-kinshicho",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2",
+   "shop": "TSUTAYA Trading Card 錦糸町",
+   "method": "online",
+   "end": "2026-10-12T21:00:00+09:00",
+   "url": "https://livepocket.jp/e/rxcg5",
+   "note": "LivePocketで応募（会員）。今日締切、時刻は店舗ごとに違うので応募ページで確認",
+   "source": "りょうた共有（X）＋ https://cardchusen.com/onepiece/eb05-heroines-v2",
+   "addedAt": "2026-10-12T10:20:00+09:00"
+  },
+  {
+   "id": "op-tsutaya-kamagaya",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2",
+   "shop": "TSUTAYA 鎌ケ谷店",
+   "method": "store",
+   "end": "2026-10-25T21:45:00+09:00",
+   "url": "https://livepocket.jp/e/3ftqq",
+   "note": "店頭抽選（会員）。LivePocketで応募",
+   "source": "りょうた共有（X）＋ https://cardchusen.com/onepiece/eb05-heroines-v2",
+   "addedAt": "2026-10-12T10:20:00+09:00"
   }
  ]
 }
