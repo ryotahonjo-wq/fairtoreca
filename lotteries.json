@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-13T08:55:00+09:00",
+ "updatedAt": "2026-10-14T08:56:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -327,13 +327,13 @@
    "end": "2026-10-18T23:59:00+09:00",
    "game": "pokemon",
    "method": "online",
-   "note": "クレカ払いのみ・1人1個",
-   "product": "30th CELEBRATION・メガドリーム・ストームエメラルダほか（ワンピカも対象）",
+   "note": "当選は1商品のみ・1世帯1名・クレカ払いのみ",
+   "product": "30th CELEBRATION BOX・プレミアムデッキセット・カードセット9種・ストームエメラルダほか",
    "result": "当選者購入 10/29〜11/3",
    "shop": "楽天ブックス",
    "source": "楽天ブックス商品ページ",
    "start": "2026-10-14T10:00:00+09:00",
-   "url": "https://books.rakuten.co.jp/rb/18537075/"
+   "url": "https://books.rakuten.co.jp/rb/18595282/"
   },
   {
    "id": "pk-ryunoshippo",
@@ -524,7 +524,6 @@
    "url": "https://books.rakuten.co.jp/rb/18578905/",
    "note": "締切は受付開始後に確認",
    "source": "https://www.cardchusen.com/dragonball",
-   "upcoming": true,
    "addedAt": "2026-10-10T08:55:00+09:00"
   },
   {
@@ -738,6 +737,20 @@
    "shop": "トレカプラザ55 通販",
    "source": "https://nyuka-now.com/archives/97393",
    "url": "https://docs.google.com/forms/d/e/1FAIpQLSf_V_BuLBgOzWZlfMXABkWKnPagns8RKJdiFQjSTgoH6uEesQ/viewform"
+  },
+  {
+   "id": "op-yamada",
+   "addedAt": "2026-10-14T08:56:00+09:00",
+   "start": "2026-10-12T23:00:00+09:00",
+   "end": "2026-10-14T23:59:00+09:00",
+   "game": "onepiece",
+   "method": "app",
+   "note": "ヤマダデジタル会員限定・アプリ抽選・店頭受取",
+   "product": "OP-18 神の支配",
+   "result": "11/18 12時頃",
+   "shop": "ヤマダデンキ",
+   "source": "https://nyuka-now.com/archives/97393",
+   "url": "https://www.yamada-denki.jp/service/pointservice/digital-kaiin.html"
   }
  ]
 }
