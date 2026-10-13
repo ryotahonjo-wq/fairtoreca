@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """SNSまとめ投稿用の画像（1080x1350）を lotteries.json から作る。
 使い方: python3 tools/post_image.py [YYYY-MM-DD] [出力.png]
-  日付（JST、省略時は今日）の「今日締切」「明日締切」と、その日に追加された新着を載せる。
+  日付（JST、省略時は今日）の「今日締切」「明日締切」、その日に追加された新着、今日受付開始を載せる。
   対象がゼロなら何も作らず終了コード 2。標準出力に載せた抽選を JSON で出す（投稿文づくり用）。
 """
 import html, json, os, subprocess, sys, tempfile
@@ -21,13 +21,14 @@ perks = json.load(open(os.path.join(ROOT, "affiliate.json"))).get("perks", {})
 
 def dt(s): return datetime.fromisoformat(s).astimezone(JST) if s else None
 
-groups = {"今日締切": [], "明日締切": [], "新着": []}
+groups = {"今日締切": [], "明日締切": [], "新着": [], "今日開始": []}
 for l in data["lotteries"]:
     end, added = dt(l.get("end")), dt(l.get("addedAt"))
     if end and end.date() == day: groups["今日締切"].append(l)
     elif end and end.date() == day + timedelta(days=1): groups["明日締切"].append(l)
     elif added and added.date() == day and not (end and end.date() < day): groups["新着"].append(l)
-for g in groups.values(): g.sort(key=lambda l: l.get("end") or "9")
+    elif dt(l.get("start")) and dt(l.get("start")).date() == day: groups["今日開始"].append(l)
+for k, g in groups.items(): g.sort(key=lambda l: (l.get("start") if k == "今日開始" else l.get("end")) or "9")
 picked = [(k, l) for k, v in groups.items() for l in v]
 if not picked:
     print("[]"); sys.exit(2)
@@ -42,6 +43,7 @@ for k, v in groups.items():
         g, c = GAME.get(l["game"], ("", "#aaa"))
         end = dt(l.get("end"))
         t = end.strftime("%-m/%-d %H:%M") if end and k == "新着" else (end.strftime("%H:%M") if end else "未定")
+        if k == "今日開始": t = dt(l["start"]).strftime("%H:%M") + "〜"
         rows.append(f'<div class="r"><b class="t">{t}</b><i style="background:{c}">{g}</i>'
                     f'<div class="s"><div class="shop">{html.escape(l["shop"])}<em>{METHOD.get(l["method"], "")}</em></div>'
                     f'<div class="p">{html.escape(l["product"])}</div></div></div>')
