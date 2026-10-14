@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-14T08:56:00+09:00",
+ "updatedAt": "2026-10-15T08:56:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -172,12 +172,14 @@
    "addedAt": "2026-10-09T01:55:00+09:00",
    "game": "onepiece",
    "method": "online",
-   "note": "締切は商品ページで確認",
+   "note": "おひとり様1個まで",
    "product": "4th Anniversary Set（2次抽選）",
    "shop": "プレミアムバンダイ",
    "source": "https://nyuka-now.com/archives/97393",
    "start": "2026-10-14T12:00:00+09:00",
-   "url": "https://p-bandai.jp/item/item-1000255670/"
+   "url": "https://p-bandai.jp/item/item-1000259604/",
+   "end": "2026-10-20T23:00:00+09:00",
+   "result": "10月下旬"
   },
   {
    "id": "op-pb-onepieceday",
@@ -522,9 +524,10 @@
    "start": "2026-10-14T10:00:00+09:00",
    "result": "",
    "url": "https://books.rakuten.co.jp/rb/18578905/",
-   "note": "締切は受付開始後に確認",
+   "note": "当選は1商品のみ・クレカ払いのみ",
    "source": "https://www.cardchusen.com/dragonball",
-   "addedAt": "2026-10-10T08:55:00+09:00"
+   "addedAt": "2026-10-10T08:55:00+09:00",
+   "end": "2026-10-18T23:59:00+09:00"
   },
   {
    "id": "pk-yamashiroya-os",
@@ -751,6 +754,62 @@
    "shop": "ヤマダデンキ",
    "source": "https://nyuka-now.com/archives/97393",
    "url": "https://www.yamada-denki.jp/service/pointservice/digital-kaiin.html"
+  },
+  {
+   "id": "op-pb-op17",
+   "addedAt": "2026-10-15T08:56:00+09:00",
+   "start": "2026-10-14T12:00:00+09:00",
+   "end": "2026-10-20T23:00:00+09:00",
+   "game": "onepiece",
+   "method": "online",
+   "note": "3次受付・おひとり様1個まで",
+   "product": "ブースターパック OP-17（3次）",
+   "result": "10月下旬",
+   "shop": "プレミアムバンダイ",
+   "source": "https://nyuka-now.com/archives/97393",
+   "url": "https://p-bandai.jp/item/item-1000260015/"
+  },
+  {
+   "id": "op-yamashiroya",
+   "addedAt": "2026-10-15T08:56:00+09:00",
+   "start": "2026-10-14T21:30:00+09:00",
+   "end": "2026-10-16T21:30:00+09:00",
+   "game": "onepiece",
+   "method": "online",
+   "note": "Googleフォームで応募",
+   "product": "OP-17・EB-03",
+   "result": "10/22",
+   "shop": "ヤマシロヤ オンラインショップ",
+   "source": "https://nyuka-now.com/archives/97393",
+   "url": "https://docs.google.com/forms/d/e/1FAIpQLSfHE4Q5n8CCGwOXRt85BS0zvk_Aa9iiNmmoWD4nYObooD-G_w/viewform"
+  },
+  {
+   "id": "pk-dorasuta",
+   "addedAt": "2026-10-15T08:56:00+09:00",
+   "start": "2026-10-14T22:00:00+09:00",
+   "end": "2026-10-16T23:59:00+09:00",
+   "game": "pokemon",
+   "method": "online",
+   "note": "Web抽選・通販",
+   "product": "ストームエメラルダ",
+   "result": "10/19予定",
+   "shop": "ドラゴンスター 通販",
+   "source": "https://nyuka-now.com/archives/2459",
+   "url": "https://dorasuta.membercard.jp/lottery"
+  },
+  {
+   "id": "pk-plaza55-30th",
+   "addedAt": "2026-10-15T08:56:00+09:00",
+   "start": "2026-10-14T17:30:00+09:00",
+   "end": "2026-10-20T23:59:00+09:00",
+   "game": "pokemon",
+   "method": "online",
+   "note": "会員登録必須・Googleフォーム・1人1回",
+   "product": "30th CELEBRATION BOX・プレミアムデッキセット・ストームエメラルダほか",
+   "result": "10/21〜10/23",
+   "shop": "トレカプラザ55 通販",
+   "source": "https://nyuka-now.com/archives/2459",
+   "url": "https://docs.google.com/forms/d/e/1FAIpQLSePKfIfAzVnfBIaMb9zqMCJLsbD7qxnViMgAbAYzy-6dBzjAA/viewform"
   }
  ]
 }
