@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-15T08:56:00+09:00",
+ "updatedAt": "2026-10-16T08:58:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -810,6 +810,32 @@
    "shop": "トレカプラザ55 通販",
    "source": "https://nyuka-now.com/archives/2459",
    "url": "https://docs.google.com/forms/d/e/1FAIpQLSePKfIfAzVnfBIaMb9zqMCJLsbD7qxnViMgAbAYzy-6dBzjAA/viewform"
+  },
+  {
+   "id": "op-mugiwara-2",
+   "game": "onepiece",
+   "product": "ブースターパック OP-17 世界最強の戦士",
+   "shop": "麦わらストア 各店",
+   "method": "online",
+   "start": "2026-10-16T00:00:00+09:00",
+   "end": "2026-10-18T23:59:00+09:00",
+   "result": "10/16〜10/18中に順次",
+   "url": "https://www.mugiwara-store.com/news/2983/",
+   "note": "LivePocket会員登録必須・店舗ごとに1人1回・1BOX 5,760円・店頭販売10/24〜10/30（本人確認あり）",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-16T08:58:00+09:00"
+  },
+  {
+   "id": "db-katsuki-ono",
+   "game": "dragonball",
+   "product": "フュージョンワールド STORY BOOSTER 01",
+   "shop": "勝木書店 大野店",
+   "method": "online",
+   "end": "2026-10-18T23:00:00+09:00",
+   "url": "https://shoplottery.e-starbox.com/lottery/entry?code=6hyvpwEzje",
+   "note": "本人確認あり・店頭受け取り",
+   "source": "https://www.cardchusen.com/dragonball",
+   "addedAt": "2026-10-16T08:58:00+09:00"
   }
  ]
 }
