@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-17T08:57:00+09:00",
+ "updatedAt": "2026-10-18T08:56:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -138,20 +138,6 @@
    "source": "https://nyuka-now.com/archives/97393",
    "start": "2026-09-18T13:00:00+09:00",
    "url": "https://jumpcs.shueisha.co.jp/shop/g/g4530430588220/"
-  },
-  {
-   "id": "op-mugiwara",
-   "addedAt": "2026-10-09T01:55:00+09:00",
-   "end": "2026-10-10T23:59:00+09:00",
-   "game": "onepiece",
-   "method": "online",
-   "note": "Web抽選・店頭受取",
-   "product": "OP-17・EB-03",
-   "result": "10/11〜10/13予定",
-   "shop": "ONE PIECE 麦わらストア 各店",
-   "source": "https://nyuka-now.com/archives/97393",
-   "start": "2026-10-08T00:00:00+09:00",
-   "url": "https://www.mugiwara-store.com/news/2981/"
   },
   {
    "id": "op-pb-4th",
@@ -323,34 +309,6 @@
    "start": "2026-10-05T10:00:00+09:00"
   },
   {
-   "id": "pk-fullcomp",
-   "game": "pokemon",
-   "product": "30th CELEBRATION BOX・ストームエメラルダ",
-   "shop": "フルコンプ 一部店舗",
-   "method": "online",
-   "start": "2026-10-09T17:15:00+09:00",
-   "end": "2026-10-10T23:59:00+09:00",
-   "result": "発表 10/11〜10/12、購入 10/14〜10/18（店頭）",
-   "url": "https://livepocket.jp/e/p6y6i",
-   "note": "LivePocketで応募",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-10T08:55:00+09:00"
-  },
-  {
-   "id": "pk-beehonpo",
-   "game": "pokemon",
-   "product": "30th CELEBRATION カードセット各種",
-   "shop": "Bee本舗",
-   "method": "online",
-   "start": "2026-10-08T00:00:00+09:00",
-   "end": "2026-10-10T20:00:00+09:00",
-   "result": "発表 10/16、購入 10/16〜10/18",
-   "url": "https://docs.google.com/forms/d/e/1FAIpQLScTG5OQWrK2kz-l-dvDnN0uSkM1TWSck69blrZLRMcemWAoOg/viewform",
-   "note": "会員限定・Googleフォーム",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-10T08:55:00+09:00"
-  },
-  {
    "id": "pk-seagull",
    "game": "pokemon",
    "product": "30th CELEBRATION カードセット各種",
@@ -418,33 +376,6 @@
    "note": "当選は1商品のみ・1世帯1名・クレカ払いのみ",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-10T08:55:00+09:00"
-  },
-  {
-   "id": "db-bookoff-soka",
-   "game": "dragonball",
-   "product": "フュージョンワールド BRIGHTNESS OF HOPE",
-   "shop": "ブックオフ 草加セーモンプラザ店",
-   "method": "sns",
-   "end": "2026-10-10T23:59:00+09:00",
-   "result": "",
-   "url": "https://x.com/BO_50548/status/2108142126202859716",
-   "note": "X抽選",
-   "source": "https://www.cardchusen.com/dragonball",
-   "addedAt": "2026-10-10T08:55:00+09:00"
-  },
-  {
-   "id": "db-tsutaya-tosa",
-   "game": "dragonball",
-   "product": "フュージョンワールド STORY BOOSTER 01・DUAL EVOLUTION・CROSS FORCE",
-   "shop": "TSUTAYA 土佐道路店",
-   "method": "online",
-   "start": "2026-10-09T09:00:00+09:00",
-   "result": "",
-   "url": "https://x.com/T_TOSA_TCG/status/2108347963185791253",
-   "note": "会員限定・締切は告知を確認",
-   "source": "https://www.cardchusen.com/dragonball",
-   "addedAt": "2026-10-10T08:55:00+09:00",
-   "end": "2026-10-10T23:59:00+09:00"
   },
   {
    "id": "db-rakuten",
@@ -837,6 +768,103 @@
    "note": "Web抽選・当選者は通販で郵送",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-17T08:57:00+09:00"
+  },
+  {
+   "id": "pk-seagull-2",
+   "game": "pokemon",
+   "product": "30th CELEBRATION BOX・ストームエメラルダ",
+   "shop": "シーガル 各店",
+   "method": "online",
+   "start": "2026-10-17T10:00:00+09:00",
+   "end": "2026-10-19T20:00:00+09:00",
+   "result": "10/20",
+   "url": "https://seagullonline.jp/gullmoba/",
+   "note": "シーガルモバイル会員限定・各店1BOXまで・店頭購入10/24〜10/26（本人確認書類）",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-18T08:56:00+09:00"
+  },
+  {
+   "id": "pk-ryuseinopao",
+   "game": "pokemon",
+   "product": "30th CELEBRATION BOX",
+   "shop": "竜星のPAO 各店",
+   "method": "online",
+   "start": "2026-10-17T11:50:00+09:00",
+   "end": "2026-10-18T23:59:00+09:00",
+   "result": "10/22",
+   "url": "https://livepocket.jp/e/0opt9",
+   "note": "LivePocket会員・1店舗1応募・店頭購入10/29〜10/31（身分証）",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-18T08:56:00+09:00"
+  },
+  {
+   "id": "pk-wondergoo",
+   "game": "pokemon",
+   "product": "30th CELEBRATION BOX",
+   "shop": "WonderGOO・新星堂・Ganryu 各店",
+   "method": "store",
+   "start": "2026-10-17T10:00:00+09:00",
+   "end": "2026-10-19T20:59:00+09:00",
+   "result": "10/20 12:00以降",
+   "note": "店頭の二次元コードから応募・1人1回1BOX・受取10/24〜10/25・WG奥州水沢/瑞江/下瀬谷/名古屋大須は対象外",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-18T08:56:00+09:00"
+  },
+  {
+   "id": "pk-murasaki",
+   "game": "pokemon",
+   "product": "Pokemon TCG × Santa Cruz 30th Anniversary Limited Skateboard Deck（Blind Bag）",
+   "shop": "ムラサキスポーツ",
+   "method": "online",
+   "start": "2026-10-17T22:00:00+09:00",
+   "end": "2026-10-20T17:00:00+09:00",
+   "result": "10/22 12:00",
+   "url": "https://www.murasaki.jp/campaign/pokemon_santacruz_26skate_1.aspx",
+   "note": "税込30,800円・1人1回・当選者にメールで購入案内",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-18T08:56:00+09:00"
+  },
+  {
+   "id": "pk-aeonstyle-mega",
+   "game": "pokemon",
+   "product": "MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+   "shop": "イオンスタイルオンライン",
+   "method": "online",
+   "start": "2026-10-19T11:00:00+09:00",
+   "end": "2026-10-20T23:59:00+09:00",
+   "result": "10/26 12:00頃",
+   "url": "https://aeonretail.com/Page/k-lottery_cardgame.aspx",
+   "note": "1人1点・受付1回限り・購入10/26 12:00〜10/27 23:59",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-18T08:56:00+09:00"
+  },
+  {
+   "id": "op-mugiwara-abeno",
+   "game": "onepiece",
+   "product": "OP-15 神の島の冒険・OP-14 蒼海の七傑",
+   "shop": "麦わらストア あべの店",
+   "method": "online",
+   "start": "2026-10-16T00:00:00+09:00",
+   "end": "2026-10-18T23:59:00+09:00",
+   "result": "10/19〜10/21",
+   "url": "https://livepocket.jp/e/otaa7",
+   "note": "LivePocketで1人1応募・各1BOX 5,280円・一部外箱に傷あり・店頭購入10/24〜10/30（身分証）",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-18T08:56:00+09:00"
+  },
+  {
+   "id": "op-joshin",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2",
+   "shop": "ジョーシン（アプリ）",
+   "method": "app",
+   "start": "2026-10-23T10:00:00+09:00",
+   "end": "2026-10-28T20:00:00+09:00",
+   "result": "10/29 12:00頃",
+   "url": "https://shop.joshin.co.jp/app/",
+   "note": "ジョーシンアプリのマイページから応募・店頭購入10/31〜11/6",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-18T08:56:00+09:00"
   }
  ]
 }
