@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-18T08:56:00+09:00",
+ "updatedAt": "2026-10-19T08:56:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -45,32 +45,6 @@
    "shop": "CARD CREW 通販",
    "source": "https://www.cardchusen.com/dragonball",
    "url": "https://x.com/CARDCREW_tuhan/status/2097152924564795604"
-  },
-  {
-   "id": "op-aeon-kyushu",
-   "addedAt": "2026-10-09T01:55:00+09:00",
-   "end": "2026-10-11T23:59:00+09:00",
-   "game": "onepiece",
-   "method": "app",
-   "note": "iAEONアプリ・店頭受取",
-   "product": "EB-05",
-   "result": "10/30 12時以降",
-   "shop": "イオン九州",
-   "source": "https://nyuka-now.com/archives/97393",
-   "start": "2026-10-03T00:00:00+09:00",
-   "url": "https://www.aeon-kyushu.info/customer/information/archives/135"
-  },
-  {
-   "id": "op-ario",
-   "addedAt": "2026-10-09T01:55:00+09:00",
-   "end": "2026-10-11T21:00:00+09:00",
-   "game": "onepiece",
-   "method": "store",
-   "note": "店頭QRからLivePocketで応募。締切は閉店まで",
-   "product": "EB-05",
-   "shop": "イトーヨーカドー アリオ 一部店舗",
-   "source": "https://nyuka-now.com/archives/97393",
-   "start": "2026-10-09T10:00:00+09:00"
   },
   {
    "id": "op-dexta",
@@ -193,18 +167,6 @@
    "url": "https://livepocket.jp/e/da7vx"
   },
   {
-   "id": "pk-hobbyzone",
-   "addedAt": "2026-10-09T01:55:00+09:00",
-   "end": "2026-10-11T21:00:00+09:00",
-   "game": "pokemon",
-   "method": "store",
-   "note": "店頭POPのQRから応募。締切は店舗により異なる",
-   "product": "30th CELEBRATION カードセット各種",
-   "shop": "ホビーゾーン 各店",
-   "source": "https://nyuka-now.com/archives/2459",
-   "start": "2026-10-09T10:00:00+09:00"
-  },
-  {
    "id": "pk-joshin",
    "addedAt": "2026-10-09T01:55:00+09:00",
    "end": "2026-10-13T20:00:00+09:00",
@@ -231,32 +193,6 @@
    "url": "https://contents.online.nojima.co.jp/secret202609/"
   },
   {
-   "id": "pk-otakara-box",
-   "addedAt": "2026-10-09T01:55:00+09:00",
-   "end": "2026-10-11T23:45:00+09:00",
-   "game": "pokemon",
-   "method": "app",
-   "product": "30th CELEBRATION BOX／プレミアムデッキセット",
-   "result": "10/14頃",
-   "shop": "お宝創庫・プレイズ",
-   "source": "https://nyuka-now.com/archives/2459",
-   "start": "2026-10-08T12:00:00+09:00",
-   "url": "https://www.otakarasouko.com/information/103177275/"
-  },
-  {
-   "id": "pk-otakara-set",
-   "addedAt": "2026-10-09T01:55:00+09:00",
-   "end": "2026-10-11T23:45:00+09:00",
-   "game": "pokemon",
-   "method": "app",
-   "product": "30th CELEBRATION カードセット各種",
-   "result": "10/14頃",
-   "shop": "お宝創庫・プレイズ",
-   "source": "https://nyuka-now.com/archives/2459",
-   "start": "2026-10-08T12:00:00+09:00",
-   "url": "https://www.otakarasouko.com/information/103171570/"
-  },
-  {
    "id": "pk-pokecen-extra",
    "addedAt": "2026-10-09T01:55:00+09:00",
    "game": "pokemon",
@@ -281,87 +217,6 @@
    "source": "楽天ブックス商品ページ",
    "start": "2026-10-14T10:00:00+09:00",
    "url": "https://books.rakuten.co.jp/rb/18595282/"
-  },
-  {
-   "id": "pk-torechamp",
-   "addedAt": "2026-10-09T01:55:00+09:00",
-   "end": "2026-10-11T23:59:00+09:00",
-   "game": "pokemon",
-   "method": "sns",
-   "note": "各店のXアカウントへDM",
-   "product": "30th CELEBRATION カードセット6種",
-   "result": "10/14（当選者のみDM）",
-   "shop": "トレカチャンピオン 各店",
-   "source": "https://nyuka-now.com/archives/2459",
-   "start": "2026-10-05T00:00:00+09:00"
-  },
-  {
-   "id": "pk-torekastation",
-   "addedAt": "2026-10-09T01:55:00+09:00",
-   "end": "2026-10-11T23:59:00+09:00",
-   "game": "pokemon",
-   "method": "store",
-   "note": "店頭のQRコードから応募",
-   "product": "30th CELEBRATION カードセット各種",
-   "result": "10/12",
-   "shop": "トレカステーション 各店",
-   "source": "https://nyuka-now.com/archives/2459",
-   "start": "2026-10-05T10:00:00+09:00"
-  },
-  {
-   "id": "pk-seagull",
-   "game": "pokemon",
-   "product": "30th CELEBRATION カードセット各種",
-   "shop": "シーガル 各店",
-   "method": "online",
-   "start": "2026-10-09T10:00:00+09:00",
-   "end": "2026-10-11T20:00:00+09:00",
-   "result": "発表 10/14、販売 10/16〜10/18",
-   "url": "https://seagullonline.jp/gullmoba/",
-   "note": "会員限定",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-10T08:55:00+09:00"
-  },
-  {
-   "id": "pk-bigextra",
-   "game": "pokemon",
-   "product": "30th CELEBRATION カードセット各種",
-   "shop": "ザ・ビッグエクストラ 一部店舗",
-   "method": "app",
-   "start": "2026-10-09T00:00:00+09:00",
-   "end": "2026-10-11T23:59:00+09:00",
-   "result": "発表 10/15 12:00頃、購入 10/16〜10/19",
-   "note": "iAEONアプリで応募",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-10T08:55:00+09:00"
-  },
-  {
-   "id": "pk-jiraful",
-   "game": "pokemon",
-   "product": "30th CELEBRATION カードセット各種",
-   "shop": "ジラフル 各店",
-   "method": "online",
-   "start": "2026-10-09T12:00:00+09:00",
-   "end": "2026-10-11T23:59:00+09:00",
-   "result": "発表 10/14予定",
-   "url": "https://livepocket.jp/p/puf0p",
-   "note": "9種のうち1種のみ応募可",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-10T08:55:00+09:00"
-  },
-  {
-   "id": "pk-lounge-shibuya",
-   "game": "pokemon",
-   "product": "メガブレイブ・メガシンフォニア",
-   "shop": "ポケモンカードラウンジ渋谷店",
-   "method": "online",
-   "start": "2026-10-09T10:00:00+09:00",
-   "end": "2026-10-11T23:59:00+09:00",
-   "result": "発表 10/21 18時以降、受取 10/26〜10/30（店頭）",
-   "url": "https://cloud-pass.jp/pr/0c5631cdf5e7fe4cb93de915cbb110c59536fc7881b99ed0e2f5225d190817b5",
-   "note": "",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-10T08:55:00+09:00"
   },
   {
    "id": "op-rakuten",
@@ -865,6 +720,72 @@
    "note": "ジョーシンアプリのマイページから応募・店頭購入10/31〜11/6",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-18T08:56:00+09:00"
+  },
+  {
+   "id": "op-dorasuta-2",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2",
+   "shop": "ドラゴンスター 通販",
+   "method": "online",
+   "start": "2026-10-18T22:00:00+09:00",
+   "end": "2026-10-20T23:59:00+09:00",
+   "result": "10/21",
+   "url": "https://dorasuta.membercard.jp/lottery",
+   "note": "1BOX 5,760円・事前入金10/21〜10/27",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-19T08:56:00+09:00"
+  },
+  {
+   "id": "op-ryunoshippo-2",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2・HEROINES PRECIOUS BOX",
+   "shop": "竜のしっぽ 各店",
+   "method": "online",
+   "start": "2026-10-18T22:00:00+09:00",
+   "end": "2026-10-23T23:59:00+09:00",
+   "result": "10/28 17〜18時頃",
+   "url": "https://ryuunoshippo.membercard.jp/",
+   "note": "竜のしっぽモバイル会員限定・店舗/商品ごとに申込可・EB-05 5,760円/PRECIOUS BOX 8,470円・店頭購入10/31〜11/2（顔写真付き身分証）",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-19T08:56:00+09:00"
+  },
+  {
+   "id": "op-yellowsub-2",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2",
+   "shop": "イエローサブマリン 各店",
+   "method": "store",
+   "start": "2026-10-19T10:00:00+09:00",
+   "end": "2026-10-23T20:00:00+09:00",
+   "result": "10/30予定",
+   "url": "https://x.com/YS_INFO/",
+   "note": "店頭ポスターのQRからLivePocketで応募・10/19〜10/23の300円以上のレシートが必要・購入10/31〜11/2（マイナンバーカードで本人確認）",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-19T08:56:00+09:00"
+  },
+  {
+   "id": "db-kiddyland-kichijoji",
+   "game": "dragonball",
+   "product": "フュージョンワールド STORY BOOSTER 01",
+   "shop": "キデイランド 吉祥寺店",
+   "method": "online",
+   "start": "2026-10-19T10:00:00+09:00",
+   "url": "https://livepocket.jp/e/rbitd",
+   "note": "LivePocket・本人確認あり・締切はリンク先で確認",
+   "source": "https://www.cardchusen.com/dragonball",
+   "addedAt": "2026-10-19T08:56:00+09:00"
+  },
+  {
+   "id": "db-furuichi-tomakomai",
+   "game": "dragonball",
+   "product": "フュージョンワールド STORY BOOSTER 01",
+   "shop": "ふるいち 苫小牧桜木店",
+   "method": "store",
+   "start": "2026-10-30T00:00:00+09:00",
+   "url": "https://www.furu1.net/news/news_campaign/news_opensale_tomakomai",
+   "note": "本人確認あり・詳細はリンク先で確認",
+   "source": "https://www.cardchusen.com/dragonball",
+   "addedAt": "2026-10-19T08:56:00+09:00"
   }
  ]
 }
