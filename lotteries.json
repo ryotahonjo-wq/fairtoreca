@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-21T08:54:00+09:00",
+ "updatedAt": "2026-10-22T08:53:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -86,19 +86,6 @@
    "url": "https://p-bandai.jp/item/item-1000259109/"
   },
   {
-   "id": "pk-aeon-30th",
-   "addedAt": "2026-10-09T01:55:00+09:00",
-   "end": "2026-10-14T23:59:00+09:00",
-   "game": "pokemon",
-   "method": "online",
-   "product": "30th CELEBRATION BOX（20パック）",
-   "result": "当選者のみメール",
-   "shop": "イオンスタイルオンライン",
-   "source": "https://nyuka-now.com/archives/2459",
-   "start": "2026-10-07T11:00:00+09:00",
-   "url": "https://aeonretail.com/Page/k-lottery_cardgame.aspx"
-  },
-  {
    "id": "pk-nojima",
    "addedAt": "2026-10-09T01:55:00+09:00",
    "game": "pokemon",
@@ -164,19 +151,6 @@
    "source": "https://www.cardchusen.com/dragonball",
    "addedAt": "2026-10-10T08:55:00+09:00",
    "end": "2026-10-18T23:59:00+09:00"
-  },
-  {
-   "id": "op-yellowsub",
-   "game": "onepiece",
-   "product": "ブースターパック OP-17",
-   "shop": "イエローサブマリン 各店",
-   "method": "store",
-   "start": "2026-10-11T10:00:00+09:00",
-   "end": "2026-10-14T20:00:00+09:00",
-   "result": "10/17予定",
-   "note": "店頭ポスターのQRからLivePocketで応募",
-   "source": "https://nyuka-now.com/archives/97393",
-   "addedAt": "2026-10-11T08:55:00+09:00"
   },
   {
    "id": "db-batoloco-maebashi",
@@ -264,20 +238,6 @@
    "shop": "トレカプラザ55 通販",
    "source": "https://nyuka-now.com/archives/97393",
    "url": "https://docs.google.com/forms/d/e/1FAIpQLSf_V_BuLBgOzWZlfMXABkWKnPagns8RKJdiFQjSTgoH6uEesQ/viewform"
-  },
-  {
-   "id": "op-yamada",
-   "addedAt": "2026-10-14T08:56:00+09:00",
-   "start": "2026-10-12T23:00:00+09:00",
-   "end": "2026-10-14T23:59:00+09:00",
-   "game": "onepiece",
-   "method": "app",
-   "note": "ヤマダデジタル会員限定・アプリ抽選・店頭受取",
-   "product": "OP-18 神の支配",
-   "result": "11/18 12時頃",
-   "shop": "ヤマダデンキ",
-   "source": "https://nyuka-now.com/archives/97393",
-   "url": "https://www.yamada-denki.jp/service/pointservice/digital-kaiin.html"
   },
   {
    "id": "op-pb-op17",
@@ -707,6 +667,20 @@
    "note": "Googleフォームで応募・通販",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-21T08:54:00+09:00"
+  },
+  {
+   "id": "pk-ryuseinopao-mega",
+   "game": "pokemon",
+   "product": "MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
+   "shop": "竜星のPAO 各店",
+   "method": "online",
+   "start": "2026-10-23T11:50:00+09:00",
+   "end": "2026-10-25T23:59:00+09:00",
+   "result": "11/5以降随時",
+   "url": "https://livepocket.jp/e/3v6ni",
+   "note": "LivePocket・1店舗1応募のみ・5,500円・店頭販売",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-22T08:53:00+09:00"
   }
  ]
 }
