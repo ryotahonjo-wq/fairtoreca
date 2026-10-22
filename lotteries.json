@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-22T08:53:00+09:00",
+ "updatedAt": "2026-10-23T08:53:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -681,6 +681,57 @@
    "note": "LivePocket・1店舗1応募のみ・5,500円・店頭販売",
    "source": "https://nyuka-now.com/archives/2459",
    "addedAt": "2026-10-22T08:53:00+09:00"
+  },
+  {
+   "id": "op-mugiwara-eb05",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2",
+   "shop": "麦わらストア 各店",
+   "method": "online",
+   "start": "2026-10-23T00:00:00+09:00",
+   "end": "2026-10-25T23:59:00+09:00",
+   "result": "公式ページで確認",
+   "url": "https://www.mugiwara-store.com/news/3012/",
+   "note": "Web抽選・当選者は店頭販売",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-23T08:53:00+09:00"
+  },
+  {
+   "id": "op-otakarasouko",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2・HEROINES PRECIOUS BOX",
+   "shop": "お宝創庫・プレイズ（一部店舗）",
+   "method": "app",
+   "start": "2026-10-22T12:00:00+09:00",
+   "end": "2026-10-25T23:45:00+09:00",
+   "url": "https://www.otakarasouko.com/information/105017357/",
+   "note": "アプリ抽選・当選者は店頭販売・PRECIOUS BOXは https://www.otakarasouko.com/information/105017354/",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-23T08:53:00+09:00"
+  },
+  {
+   "id": "pk-itoyokado",
+   "game": "pokemon",
+   "product": "MEGA スペシャルデッキセットMEGA・ストームエメラルダ",
+   "shop": "イトーヨーカドー・アリオ（一部店舗）",
+   "method": "store",
+   "start": "2026-10-23T10:00:00+09:00",
+   "end": "2026-10-25T23:59:00+09:00",
+   "note": "店頭抽選・対象は一部店舗のみ（店頭で確認）",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-23T08:53:00+09:00"
+  },
+  {
+   "id": "pk-pelican",
+   "game": "pokemon",
+   "product": "MEGA スペシャルデッキセットMEGA",
+   "shop": "おもちゃのペリカン 各店",
+   "method": "store",
+   "start": "2026-10-24T10:00:00+09:00",
+   "url": "https://pelican-toy.co.jp/shop/",
+   "note": "店頭抽選・10/27閉店まで・各店舗の案内に従う",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-23T08:53:00+09:00"
   }
  ]
 }
