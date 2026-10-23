@@ -23,7 +23,7 @@ ICONS = '<link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href=
 og = f'<meta property="og:title" content="フェアトレカ"><meta property="og:description" content="ポケカ・ワンピースカード・ドラゴンボールの抽選を締切順にまとめて毎朝更新。"><meta property="og:type" content="website">' + (f'<meta property="og:url" content="https://{site_url}/"><link rel="canonical" href="https://{site_url}/">' if site_url else "")
 html = ('<!doctype html>\n<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
         + ICONS + og + head + '</head><body style="margin:0">\n<div class="wrap">' + body
-        .replace("<!--SITE_LINKS-->", '<span class="links"><a href="about.html">運営者情報・プライバシーポリシー</a><a href="https://calendar.google.com/calendar/r?cid=webcal://fairtoreca.com/calendar.ics" target="_blank" rel="noopener">締切をGoogleカレンダーに追加</a><a href="calendar.ics">カレンダー（iPhoneなど）</a><a href="oripa.html">オリパについて（18歳以上）</a></span>') + "\n</body></html>\n")
+        .replace("<!--SITE_LINKS-->", '<span class="links"><a href="about.html">運営者情報・プライバシーポリシー</a><a href="https://calendar.google.com/calendar/r?cid=webcal://fairtoreca.com/calendar.ics" target="_blank" rel="noopener">締切をGoogleカレンダーに追加</a><a href="calendar.ics">カレンダー（iPhoneなど）</a><a href="oripa.html">オリパについて（18歳以上）</a><a href="https://note.com/clear_toucan6080" target="_blank" rel="noopener">このサイトの仕組み（note）</a></span>') + "\n</body></html>\n")
 os.makedirs(P("docs"), exist_ok=True)
 open(P("docs", "index.html"), "w").write(html)
 for page in ("about.html", "oripa.html", "links.html"):
