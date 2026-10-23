@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-23T08:53:00+09:00",
+ "updatedAt": "2026-10-24T08:55:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -198,34 +198,6 @@
    "addedAt": "2026-10-12T10:20:00+09:00"
   },
   {
-   "id": "pk-ryunoshippo-box",
-   "addedAt": "2026-10-13T08:55:00+09:00",
-   "start": "2026-10-12T22:00:00+09:00",
-   "end": "2026-10-16T23:59:00+09:00",
-   "game": "pokemon",
-   "method": "online",
-   "note": "竜のしっぽモバイル会員限定・Web抽選・店頭受取",
-   "product": "30th CELEBRATION BOX・ストームエメラルダ",
-   "result": "10/21 17〜18時頃",
-   "shop": "竜のしっぽ 各店",
-   "source": "https://nyuka-now.com/archives/2459",
-   "url": "https://ryuunoshippo.membercard.jp/"
-  },
-  {
-   "id": "op-ryunoshippo",
-   "addedAt": "2026-10-13T08:55:00+09:00",
-   "start": "2026-10-12T22:00:00+09:00",
-   "end": "2026-10-16T23:59:00+09:00",
-   "game": "onepiece",
-   "method": "online",
-   "note": "竜のしっぽモバイル会員限定・Web抽選・店頭受取",
-   "product": "OP-17",
-   "result": "10/21 17〜18時頃",
-   "shop": "竜のしっぽ 各店",
-   "source": "https://nyuka-now.com/archives/97393",
-   "url": "https://ryuunoshippo.membercard.jp/"
-  },
-  {
    "id": "op-plaza55",
    "addedAt": "2026-10-13T08:55:00+09:00",
    "start": "2026-10-12T20:00:00+09:00",
@@ -252,34 +224,6 @@
    "shop": "プレミアムバンダイ",
    "source": "https://nyuka-now.com/archives/97393",
    "url": "https://p-bandai.jp/item/item-1000260015/"
-  },
-  {
-   "id": "op-yamashiroya",
-   "addedAt": "2026-10-15T08:56:00+09:00",
-   "start": "2026-10-14T21:30:00+09:00",
-   "end": "2026-10-16T21:30:00+09:00",
-   "game": "onepiece",
-   "method": "online",
-   "note": "Googleフォームで応募",
-   "product": "OP-17・EB-03",
-   "result": "10/22",
-   "shop": "ヤマシロヤ オンラインショップ",
-   "source": "https://nyuka-now.com/archives/97393",
-   "url": "https://docs.google.com/forms/d/e/1FAIpQLSfHE4Q5n8CCGwOXRt85BS0zvk_Aa9iiNmmoWD4nYObooD-G_w/viewform"
-  },
-  {
-   "id": "pk-dorasuta",
-   "addedAt": "2026-10-15T08:56:00+09:00",
-   "start": "2026-10-14T22:00:00+09:00",
-   "end": "2026-10-16T23:59:00+09:00",
-   "game": "pokemon",
-   "method": "online",
-   "note": "Web抽選・通販",
-   "product": "ストームエメラルダ",
-   "result": "10/19予定",
-   "shop": "ドラゴンスター 通販",
-   "source": "https://nyuka-now.com/archives/2459",
-   "url": "https://dorasuta.membercard.jp/lottery"
   },
   {
    "id": "pk-plaza55-30th",
@@ -732,6 +676,33 @@
    "note": "店頭抽選・10/27閉店まで・各店舗の案内に従う",
    "source": "https://nyuka-now.com/archives/2459",
    "addedAt": "2026-10-23T08:53:00+09:00"
+  },
+  {
+   "id": "pk-pokecen-hadou",
+   "game": "pokemon",
+   "product": "拡張パック ハドウシーカー",
+   "shop": "ポケモンセンターオンライン",
+   "method": "online",
+   "start": "2026-10-23T16:00:00+09:00",
+   "end": "2026-10-26T16:59:00+09:00",
+   "url": "https://www.pokemoncenter-online.com/lottery/landing-page.html",
+   "note": "ポケモンセンターオンライン会員・Web抽選・当選者はオンライン購入（一部抽選は電話番号認証が必要）",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-24T08:55:00+09:00"
+  },
+  {
+   "id": "pk-hobbystation-storm",
+   "game": "pokemon",
+   "product": "ストームエメラルダ",
+   "shop": "ホビーステーション",
+   "method": "online",
+   "start": "2026-10-23T12:00:00+09:00",
+   "end": "2026-10-25T23:59:00+09:00",
+   "result": "11/6予定",
+   "url": "https://livepocket.jp/e/jrssp",
+   "note": "LivePocketでWeb抽選・当選者は店頭販売",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-24T08:55:00+09:00"
   }
  ]
 }
