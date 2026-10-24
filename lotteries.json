@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-24T08:55:00+09:00",
+ "updatedAt": "2026-10-25T08:55:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -668,14 +668,15 @@
   {
    "id": "pk-pelican",
    "game": "pokemon",
-   "product": "MEGA スペシャルデッキセットMEGA",
+   "product": "ハドウシーカー・MEGA スペシャルデッキセットMEGA",
    "shop": "おもちゃのペリカン 各店",
    "method": "store",
    "start": "2026-10-24T10:00:00+09:00",
    "url": "https://pelican-toy.co.jp/shop/",
    "note": "店頭抽選・10/27閉店まで・各店舗の案内に従う",
    "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-23T08:53:00+09:00"
+   "addedAt": "2026-10-23T08:53:00+09:00",
+   "result": "11/21以降 店頭掲示"
   },
   {
    "id": "pk-pokecen-hadou",
@@ -703,6 +704,34 @@
    "note": "LivePocketでWeb抽選・当選者は店頭販売",
    "source": "https://nyuka-now.com/archives/2459",
    "addedAt": "2026-10-24T08:55:00+09:00"
+  },
+  {
+   "id": "op-aeon-kyushu-op18",
+   "game": "onepiece",
+   "product": "ブースターパック 神の支配【OP-18】",
+   "shop": "イオン九州",
+   "method": "app",
+   "start": "2026-10-24T00:00:00+09:00",
+   "end": "2026-11-01T23:59:00+09:00",
+   "result": "11/20 12:00以降順次",
+   "url": "https://www.aeon-kyushu.info/customer/information/archives/140",
+   "note": "iAEONアプリからのみ応募・当選者は店頭販売",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-25T08:55:00+09:00"
+  },
+  {
+   "id": "op-fullcomp-eb05-2",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2・HEROINES PRECIOUS BOX",
+   "shop": "フルコンプ（一部店舗）",
+   "method": "online",
+   "start": "2026-10-24T16:49:00+09:00",
+   "end": "2026-10-26T23:59:00+09:00",
+   "result": "10/27〜10/28予定",
+   "url": "https://livepocket.jp/e/up9fr",
+   "note": "LivePocketでWeb抽選・当選者は店頭販売",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-25T08:55:00+09:00"
   }
  ]
 }
