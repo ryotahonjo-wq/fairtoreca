@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-25T08:55:00+09:00",
+ "updatedAt": "2026-10-26T08:55:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -45,19 +45,6 @@
    "shop": "CARD CREW 通販",
    "source": "https://www.cardchusen.com/dragonball",
    "url": "https://x.com/CARDCREW_tuhan/status/2097152924564795604"
-  },
-  {
-   "id": "op-jumpcs-nike",
-   "addedAt": "2026-10-09T01:55:00+09:00",
-   "end": "2026-10-18T23:58:00+09:00",
-   "game": "onepiece",
-   "method": "order",
-   "note": "受注販売・WJ定期購読者限定",
-   "product": "プレミアムカードコレクション Nikeコラボ（WJ定期購読限定）",
-   "shop": "ジャンプキャラクターズストア",
-   "source": "https://nyuka-now.com/archives/97393",
-   "start": "2026-09-18T13:00:00+09:00",
-   "url": "https://jumpcs.shueisha.co.jp/shop/g/g4530430588220/"
   },
   {
    "id": "op-pb-4th",
@@ -109,48 +96,6 @@
    "source": "https://nyuka-now.com/archives/2459",
    "upcoming": true,
    "url": "https://www.pokemoncenter-online.com/news/?id=20260929"
-  },
-  {
-   "id": "pk-rakuten",
-   "addedAt": "2026-10-09T01:55:00+09:00",
-   "end": "2026-10-18T23:59:00+09:00",
-   "game": "pokemon",
-   "method": "online",
-   "note": "当選は1商品のみ・1世帯1名・クレカ払いのみ",
-   "product": "30th CELEBRATION BOX・プレミアムデッキセット・カードセット9種・ストームエメラルダほか",
-   "result": "当選者購入 10/29〜11/3",
-   "shop": "楽天ブックス",
-   "source": "楽天ブックス商品ページ",
-   "start": "2026-10-14T10:00:00+09:00",
-   "url": "https://books.rakuten.co.jp/rb/18595282/"
-  },
-  {
-   "id": "op-rakuten",
-   "game": "onepiece",
-   "product": "EB-05 Heroines Edition vol.2・OP-17",
-   "shop": "楽天ブックス",
-   "method": "online",
-   "start": "2026-10-14T10:00:00+09:00",
-   "end": "2026-10-18T23:59:00+09:00",
-   "result": "当選は販売開始日までにメール、購入 10/29〜11/3",
-   "url": "https://books.rakuten.co.jp/rb/18771764/",
-   "note": "当選は1商品のみ・1世帯1名・クレカ払いのみ",
-   "source": "https://nyuka-now.com/archives/97393",
-   "addedAt": "2026-10-10T08:55:00+09:00"
-  },
-  {
-   "id": "db-rakuten",
-   "game": "dragonball",
-   "product": "フュージョンワールド STORY BOOSTER 01・DUAL EVOLUTION・CROSS FORCE",
-   "shop": "楽天ブックス",
-   "method": "online",
-   "start": "2026-10-14T10:00:00+09:00",
-   "result": "",
-   "url": "https://books.rakuten.co.jp/rb/18578905/",
-   "note": "当選は1商品のみ・クレカ払いのみ",
-   "source": "https://www.cardchusen.com/dragonball",
-   "addedAt": "2026-10-10T08:55:00+09:00",
-   "end": "2026-10-18T23:59:00+09:00"
   },
   {
    "id": "db-batoloco-maebashi",
@@ -240,32 +185,6 @@
    "url": "https://docs.google.com/forms/d/e/1FAIpQLSePKfIfAzVnfBIaMb9zqMCJLsbD7qxnViMgAbAYzy-6dBzjAA/viewform"
   },
   {
-   "id": "op-mugiwara-2",
-   "game": "onepiece",
-   "product": "ブースターパック OP-17 世界最強の戦士",
-   "shop": "麦わらストア 各店",
-   "method": "online",
-   "start": "2026-10-16T00:00:00+09:00",
-   "end": "2026-10-18T23:59:00+09:00",
-   "result": "10/16〜10/18中に順次",
-   "url": "https://www.mugiwara-store.com/news/2983/",
-   "note": "LivePocket会員登録必須・店舗ごとに1人1回・1BOX 5,760円・店頭販売10/24〜10/30（本人確認あり）",
-   "source": "https://nyuka-now.com/archives/97393",
-   "addedAt": "2026-10-16T08:58:00+09:00"
-  },
-  {
-   "id": "db-katsuki-ono",
-   "game": "dragonball",
-   "product": "フュージョンワールド STORY BOOSTER 01",
-   "shop": "勝木書店 大野店",
-   "method": "online",
-   "end": "2026-10-18T23:00:00+09:00",
-   "url": "https://shoplottery.e-starbox.com/lottery/entry?code=6hyvpwEzje",
-   "note": "本人確認あり・店頭受け取り",
-   "source": "https://www.cardchusen.com/dragonball",
-   "addedAt": "2026-10-16T08:58:00+09:00"
-  },
-  {
    "id": "pk-pokecen-mega",
    "game": "pokemon",
    "product": "MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
@@ -294,34 +213,6 @@
    "addedAt": "2026-10-17T08:57:00+09:00"
   },
   {
-   "id": "pk-lounge-shibuya-2",
-   "game": "pokemon",
-   "product": "30th CELEBRATION カードセット各種",
-   "shop": "ポケモンカードラウンジ渋谷",
-   "method": "online",
-   "start": "2026-10-16T10:00:00+09:00",
-   "end": "2026-10-18T23:59:00+09:00",
-   "result": "10/28 18:00頃",
-   "url": "https://cloud-pass.jp/pr/df422ed0160e515e2e1a6571b978bd185625ca61e0fec8669e213512422a0661",
-   "note": "Web抽選・当選者は渋谷TSUTAYA 5Fで11/1〜11/4に購入",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-17T08:57:00+09:00"
-  },
-  {
-   "id": "op-hobbystation-kanto",
-   "game": "onepiece",
-   "product": "EB-05 Heroines Edition vol.2",
-   "shop": "ホビーステーション 関東各店",
-   "method": "online",
-   "start": "2026-10-16T12:00:00+09:00",
-   "end": "2026-10-18T23:59:00+09:00",
-   "result": "10/27予定",
-   "url": "https://livepocket.jp/e/s9-lf",
-   "note": "LivePocket会員・関東の対象店舗から1店舗のみ・1BOX 5,760円（当選は2BOXまで）・店頭購入10/31〜11/6（本人確認書類）",
-   "source": "https://nyuka-now.com/archives/97393",
-   "addedAt": "2026-10-17T08:57:00+09:00"
-  },
-  {
    "id": "op-animate",
    "game": "onepiece",
    "product": "EB-05 Heroines Edition vol.2",
@@ -346,20 +237,6 @@
    "result": "10/20",
    "url": "https://seagullonline.jp/gullmoba/",
    "note": "シーガルモバイル会員限定・各店1BOXまで・店頭購入10/24〜10/26（本人確認書類）",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-18T08:56:00+09:00"
-  },
-  {
-   "id": "pk-ryuseinopao",
-   "game": "pokemon",
-   "product": "30th CELEBRATION BOX",
-   "shop": "竜星のPAO 各店",
-   "method": "online",
-   "start": "2026-10-17T11:50:00+09:00",
-   "end": "2026-10-18T23:59:00+09:00",
-   "result": "10/22",
-   "url": "https://livepocket.jp/e/0opt9",
-   "note": "LivePocket会員・1店舗1応募・店頭購入10/29〜10/31（身分証）",
    "source": "https://nyuka-now.com/archives/2459",
    "addedAt": "2026-10-18T08:56:00+09:00"
   },
@@ -402,20 +279,6 @@
    "url": "https://aeonretail.com/Page/k-lottery_cardgame.aspx",
    "note": "1人1点・受付1回限り・購入10/26 12:00〜10/27 23:59",
    "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-18T08:56:00+09:00"
-  },
-  {
-   "id": "op-mugiwara-abeno",
-   "game": "onepiece",
-   "product": "OP-15 神の島の冒険・OP-14 蒼海の七傑",
-   "shop": "麦わらストア あべの店",
-   "method": "online",
-   "start": "2026-10-16T00:00:00+09:00",
-   "end": "2026-10-18T23:59:00+09:00",
-   "result": "10/19〜10/21",
-   "url": "https://livepocket.jp/e/otaa7",
-   "note": "LivePocketで1人1応募・各1BOX 5,280円・一部外箱に傷あり・店頭購入10/24〜10/30（身分証）",
-   "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-18T08:56:00+09:00"
   },
   {
@@ -732,6 +595,34 @@
    "note": "LivePocketでWeb抽選・当選者は店頭販売",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-25T08:55:00+09:00"
+  },
+  {
+   "id": "pk-dorasuta-30th",
+   "game": "pokemon",
+   "product": "30th CELEBRATION BOX",
+   "shop": "ドラゴンスター 各店",
+   "method": "online",
+   "start": "2026-10-25T22:00:00+09:00",
+   "end": "2026-10-27T23:59:00+09:00",
+   "result": "10/30予定",
+   "url": "https://dorasuta.membercard.jp/lottery",
+   "note": "ドラスタ会員・Web抽選・当選者は店頭購入11/1〜11/3",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-26T08:55:00+09:00"
+  },
+  {
+   "id": "pk-yellowsub",
+   "game": "pokemon",
+   "product": "ハドウシーカー・MEGA スペシャルデッキセットMEGA・ストームエメラルダ・30th CELEBRATION BOX（再販）",
+   "shop": "イエローサブマリン 各店",
+   "method": "store",
+   "start": "2026-10-25T10:00:00+09:00",
+   "end": "2026-10-28T20:00:00+09:00",
+   "result": "ハドウシーカー11/26・MEGAデッキ11/12・再販分11/7予定",
+   "url": "https://x.com/YS_INFO/",
+   "note": "店頭抽選・30th CELEBRATION（再販）は前回の購入権抽選で落選した人など対象者限定",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-26T08:55:00+09:00"
   }
  ]
 }
