@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-26T08:55:00+09:00",
+ "updatedAt": "2026-10-27T08:58:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -185,20 +185,6 @@
    "url": "https://docs.google.com/forms/d/e/1FAIpQLSePKfIfAzVnfBIaMb9zqMCJLsbD7qxnViMgAbAYzy-6dBzjAA/viewform"
   },
   {
-   "id": "pk-pokecen-mega",
-   "game": "pokemon",
-   "product": "MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
-   "shop": "ポケモンセンターオンライン",
-   "method": "online",
-   "start": "2026-10-16T16:00:00+09:00",
-   "end": "2026-10-19T16:59:00+09:00",
-   "result": "10/23 15:00〜",
-   "url": "https://www.pokemoncenter-online.com/lottery/landing-page.html",
-   "note": "税込5,500円・プレイヤーズクラブ本人確認済み会員（メール一致）が対象・購入10/23 15:00〜10/26 16:59",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-17T08:57:00+09:00"
-  },
-  {
    "id": "pk-aeon-kyushu-mega",
    "game": "pokemon",
    "product": "MEGA スペシャルデッキセットMEGA",
@@ -225,33 +211,6 @@
    "note": "Web抽選・当選者は通販で郵送",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-17T08:57:00+09:00"
-  },
-  {
-   "id": "pk-seagull-2",
-   "game": "pokemon",
-   "product": "30th CELEBRATION BOX・ストームエメラルダ",
-   "shop": "シーガル 各店",
-   "method": "online",
-   "start": "2026-10-17T10:00:00+09:00",
-   "end": "2026-10-19T20:00:00+09:00",
-   "result": "10/20",
-   "url": "https://seagullonline.jp/gullmoba/",
-   "note": "シーガルモバイル会員限定・各店1BOXまで・店頭購入10/24〜10/26（本人確認書類）",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-18T08:56:00+09:00"
-  },
-  {
-   "id": "pk-wondergoo",
-   "game": "pokemon",
-   "product": "30th CELEBRATION BOX",
-   "shop": "WonderGOO・新星堂・Ganryu 各店",
-   "method": "store",
-   "start": "2026-10-17T10:00:00+09:00",
-   "end": "2026-10-19T20:59:00+09:00",
-   "result": "10/20 12:00以降",
-   "note": "店頭の二次元コードから応募・1人1回1BOX・受取10/24〜10/25・WG奥州水沢/瑞江/下瀬谷/名古屋大須は対象外",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-18T08:56:00+09:00"
   },
   {
    "id": "pk-murasaki",
@@ -623,6 +582,99 @@
    "note": "店頭抽選・30th CELEBRATION（再販）は前回の購入権抽選で落選した人など対象者限定",
    "source": "https://nyuka-now.com/archives/2459",
    "addedAt": "2026-10-26T08:55:00+09:00"
+  },
+  {
+   "id": "pk-yamada-30th",
+   "game": "pokemon",
+   "product": "30th CELEBRATION BOX（再販）",
+   "shop": "ヤマダデンキ（アプリ）",
+   "method": "app",
+   "start": "2026-10-26T23:00:00+09:00",
+   "end": "2026-10-28T23:59:00+09:00",
+   "result": "11/10中",
+   "url": "https://www.yamada-denki.jp/service/pointservice/digital-kaiin.html",
+   "note": "ヤマダデジタル会員アプリの「店頭セール」→「抽選販売受付」から応募・当選者は店頭販売",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-27T08:58:00+09:00"
+  },
+  {
+   "id": "pk-amazon-hadou",
+   "game": "pokemon",
+   "product": "拡張パック ハドウシーカー BOX",
+   "shop": "Amazon（招待リクエスト）",
+   "method": "invite",
+   "start": "2026-10-26T14:00:00+09:00",
+   "url": "https://www.amazon.co.jp/dp/B0H4PQ6LR5",
+   "note": "商品ページの「招待をリクエストする」から・在庫に応じて招待メール・販売元Amazon.co.jp",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-27T08:58:00+09:00"
+  },
+  {
+   "id": "pk-torecastation",
+   "game": "pokemon",
+   "product": "ストームエメラルダ・30th CELEBRATION カードセット9種",
+   "shop": "トレカステーション 各店",
+   "method": "store",
+   "start": "2026-10-26T10:00:00+09:00",
+   "end": "2026-11-01T23:59:00+09:00",
+   "result": "11/3",
+   "note": "店頭抽選・購入期間11/6〜11/8",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-27T08:58:00+09:00"
+  },
+  {
+   "id": "pk-hobbystation-hadou",
+   "game": "pokemon",
+   "product": "ハドウシーカー（1BOX 6,000円・最大2BOX）",
+   "shop": "ホビーステーション 全国",
+   "method": "online",
+   "start": "2026-10-26T12:00:00+09:00",
+   "end": "2026-10-28T23:59:00+09:00",
+   "result": "11/5予定",
+   "url": "https://livepocket.jp/e/075sp",
+   "note": "LivePocket会員・1店舗のみ応募可・11/6〜11/24に現金で事前支払い・購入11/27〜12/13（本人確認書類）",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-27T08:58:00+09:00"
+  },
+  {
+   "id": "pk-aeonstyle-hadou",
+   "game": "pokemon",
+   "product": "ハドウシーカー（30パックセット 5,973円）",
+   "shop": "イオンスタイルオンライン",
+   "method": "online",
+   "start": "2026-10-27T11:00:00+09:00",
+   "end": "2026-10-28T23:59:00+09:00",
+   "result": "11/9 12:00頃",
+   "url": "https://aeonretail.com/Page/k-lottery_pokemon_com.aspx",
+   "note": "イオンマーク付きクレジットカード払いのみ・1人1点・購入11/9〜11/10・11/27以降発送（店舗受取不可）",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-27T08:58:00+09:00"
+  },
+  {
+   "id": "op-aeonstyle-op18",
+   "game": "onepiece",
+   "product": "ブースターパック 神の支配【OP-18】（24パック 5,755円）",
+   "shop": "イオンスタイルオンライン",
+   "method": "online",
+   "start": "2026-10-27T11:00:00+09:00",
+   "end": "2026-10-28T23:59:00+09:00",
+   "result": "11/9 12:00頃",
+   "url": "https://aeonretail.com/Page/k-lottery_sale_02.aspx",
+   "note": "イオンカード決済のみ・1人1点・購入11/9〜11/10・11/27以降発送（店舗受取不可）",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-27T08:58:00+09:00"
+  },
+  {
+   "id": "pk-biccamera-hadou",
+   "game": "pokemon",
+   "product": "ハドウシーカー",
+   "shop": "ビックカメラ（一部店舗）",
+   "method": "store",
+   "end": "2026-11-01T20:00:00+09:00",
+   "result": "11/26",
+   "note": "店頭抽選・一部店舗のみ・11/1閉店まで（締切時刻は店舗により異なる）・2024/10/25〜2026/10/25に購入履歴が必要・購入11/27〜11/29",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-27T08:58:00+09:00"
   }
  ]
 }
