@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-27T08:58:00+09:00",
+ "updatedAt": "2026-10-28T08:54:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -45,20 +45,6 @@
    "shop": "CARD CREW 通販",
    "source": "https://www.cardchusen.com/dragonball",
    "url": "https://x.com/CARDCREW_tuhan/status/2097152924564795604"
-  },
-  {
-   "id": "op-pb-4th",
-   "addedAt": "2026-10-09T01:55:00+09:00",
-   "game": "onepiece",
-   "method": "online",
-   "note": "おひとり様1個まで",
-   "product": "4th Anniversary Set（2次抽選）",
-   "shop": "プレミアムバンダイ",
-   "source": "https://nyuka-now.com/archives/97393",
-   "start": "2026-10-14T12:00:00+09:00",
-   "url": "https://p-bandai.jp/item/item-1000259604/",
-   "end": "2026-10-20T23:00:00+09:00",
-   "result": "10月下旬"
   },
   {
    "id": "op-pb-onepieceday",
@@ -143,48 +129,6 @@
    "addedAt": "2026-10-12T10:20:00+09:00"
   },
   {
-   "id": "op-plaza55",
-   "addedAt": "2026-10-13T08:55:00+09:00",
-   "start": "2026-10-12T20:00:00+09:00",
-   "end": "2026-10-20T23:59:00+09:00",
-   "game": "onepiece",
-   "method": "online",
-   "note": "Googleフォームで応募",
-   "product": "EB-05 Heroines Edition vol.2",
-   "result": "10/21〜10/23",
-   "shop": "トレカプラザ55 通販",
-   "source": "https://nyuka-now.com/archives/97393",
-   "url": "https://docs.google.com/forms/d/e/1FAIpQLSf_V_BuLBgOzWZlfMXABkWKnPagns8RKJdiFQjSTgoH6uEesQ/viewform"
-  },
-  {
-   "id": "op-pb-op17",
-   "addedAt": "2026-10-15T08:56:00+09:00",
-   "start": "2026-10-14T12:00:00+09:00",
-   "end": "2026-10-20T23:00:00+09:00",
-   "game": "onepiece",
-   "method": "online",
-   "note": "3次受付・おひとり様1個まで",
-   "product": "ブースターパック OP-17（3次）",
-   "result": "10月下旬",
-   "shop": "プレミアムバンダイ",
-   "source": "https://nyuka-now.com/archives/97393",
-   "url": "https://p-bandai.jp/item/item-1000260015/"
-  },
-  {
-   "id": "pk-plaza55-30th",
-   "addedAt": "2026-10-15T08:56:00+09:00",
-   "start": "2026-10-14T17:30:00+09:00",
-   "end": "2026-10-20T23:59:00+09:00",
-   "game": "pokemon",
-   "method": "online",
-   "note": "会員登録必須・Googleフォーム・1人1回",
-   "product": "30th CELEBRATION BOX・プレミアムデッキセット・ストームエメラルダほか",
-   "result": "10/21〜10/23",
-   "shop": "トレカプラザ55 通販",
-   "source": "https://nyuka-now.com/archives/2459",
-   "url": "https://docs.google.com/forms/d/e/1FAIpQLSePKfIfAzVnfBIaMb9zqMCJLsbD7qxnViMgAbAYzy-6dBzjAA/viewform"
-  },
-  {
    "id": "pk-aeon-kyushu-mega",
    "game": "pokemon",
    "product": "MEGA スペシャルデッキセットMEGA",
@@ -213,34 +157,6 @@
    "addedAt": "2026-10-17T08:57:00+09:00"
   },
   {
-   "id": "pk-murasaki",
-   "game": "pokemon",
-   "product": "Pokemon TCG × Santa Cruz 30th Anniversary Limited Skateboard Deck（Blind Bag）",
-   "shop": "ムラサキスポーツ",
-   "method": "online",
-   "start": "2026-10-17T22:00:00+09:00",
-   "end": "2026-10-20T17:00:00+09:00",
-   "result": "10/22 12:00",
-   "url": "https://www.murasaki.jp/campaign/pokemon_santacruz_26skate_1.aspx",
-   "note": "税込30,800円・1人1回・当選者にメールで購入案内",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-18T08:56:00+09:00"
-  },
-  {
-   "id": "pk-aeonstyle-mega",
-   "game": "pokemon",
-   "product": "MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
-   "shop": "イオンスタイルオンライン",
-   "method": "online",
-   "start": "2026-10-19T11:00:00+09:00",
-   "end": "2026-10-20T23:59:00+09:00",
-   "result": "10/26 12:00頃",
-   "url": "https://aeonretail.com/Page/k-lottery_cardgame.aspx",
-   "note": "1人1点・受付1回限り・購入10/26 12:00〜10/27 23:59",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-18T08:56:00+09:00"
-  },
-  {
    "id": "op-joshin",
    "game": "onepiece",
    "product": "EB-05 Heroines Edition vol.2",
@@ -253,20 +169,6 @@
    "note": "ジョーシンアプリのマイページから応募・店頭購入10/31〜11/6",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-18T08:56:00+09:00"
-  },
-  {
-   "id": "op-dorasuta-2",
-   "game": "onepiece",
-   "product": "EB-05 Heroines Edition vol.2",
-   "shop": "ドラゴンスター 通販",
-   "method": "online",
-   "start": "2026-10-18T22:00:00+09:00",
-   "end": "2026-10-20T23:59:00+09:00",
-   "result": "10/21",
-   "url": "https://dorasuta.membercard.jp/lottery",
-   "note": "1BOX 5,760円・事前入金10/21〜10/27",
-   "source": "https://nyuka-now.com/archives/97393",
-   "addedAt": "2026-10-19T08:56:00+09:00"
   },
   {
    "id": "op-ryunoshippo-2",
@@ -375,20 +277,6 @@
    "result": "10/29 21時前後（自分で確認）",
    "url": "https://shoplottery.e-starbox.com/lottery/entry?code=Hphm7w4at3",
    "note": "10/18までに発行された同店の会員カードが必要・現金のみ・1BOX購入権",
-   "source": "https://x.com/pica1100",
-   "addedAt": "2026-10-20T08:56:00+09:00"
-  },
-  {
-   "id": "pk-furuichi-takaoka",
-   "game": "pokemon",
-   "product": "30th CELEBRATION カードセット9種フルセット",
-   "shop": "ふるいち イオンモール高岡店（富山）",
-   "method": "online",
-   "start": "2026-10-19T00:00:00+09:00",
-   "end": "2026-10-20T23:59:00+09:00",
-   "result": "10/21〜10/23",
-   "url": "https://livepocket.jp/e/xbyep",
-   "note": "LivePocket抽選・税込10,800円・購入10/26〜10/30（ふるいちアプリ＋顔写真付き身分証）",
    "source": "https://x.com/pica1100",
    "addedAt": "2026-10-20T08:56:00+09:00"
   },
@@ -674,6 +562,72 @@
    "note": "店頭抽選・一部店舗のみ・11/1閉店まで・2024/10/25〜2026/10/25に購入履歴が必要・購入11/27〜11/29",
    "source": "https://nyuka-now.com/archives/2459",
    "addedAt": "2026-10-27T08:58:00+09:00"
+  },
+  {
+   "id": "op-amiami-op18",
+   "game": "onepiece",
+   "product": "神の支配【OP-18】・EB-03 Heroines Edition（再販）",
+   "shop": "あみあみ",
+   "method": "online",
+   "start": "2026-10-27T10:00:00+09:00",
+   "end": "2026-10-29T13:59:00+09:00",
+   "result": "10/30（当選者のみメール）",
+   "url": "https://form.amiami.jp/draw20261027",
+   "note": "amiami.jpアカウントが必要・同一住所1個まで・メルマガ購読と過去1年の購入履歴がある人を優先",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-28T08:54:00+09:00"
+  },
+  {
+   "id": "op-shimamura",
+   "game": "onepiece",
+   "product": "OP-13〜OP-16・EB-03・EB-05・プレミアムブースター THE BEST vol.2・ST-30",
+   "shop": "しまむら（しまむらパーク）",
+   "method": "app",
+   "start": "2026-10-27T13:00:00+09:00",
+   "end": "2026-11-01T23:00:00+09:00",
+   "result": "11/2予定",
+   "url": "https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1",
+   "note": "しまむらアプリ会員限定",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-28T08:54:00+09:00"
+  },
+  {
+   "id": "db-shimamura",
+   "game": "dragonball",
+   "product": "フュージョンワールド STORY BOOSTER 01・DUAL EVOLUTION・BRIGHTNESS OF HOPE",
+   "shop": "しまむら（しまむらパーク）",
+   "method": "app",
+   "end": "2026-11-01T23:00:00+09:00",
+   "url": "https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1",
+   "note": "しまむらアプリ会員限定",
+   "source": "https://www.cardchusen.com/dragonball",
+   "addedAt": "2026-10-28T08:54:00+09:00"
+  },
+  {
+   "id": "pk-heiwado",
+   "game": "pokemon",
+   "product": "MEGA スペシャルデッキセットMEGA・30th CELEBRATION BOX（再販）",
+   "shop": "平和堂（HOPアプリ）",
+   "method": "app",
+   "start": "2026-10-31T09:00:00+09:00",
+   "end": "2026-11-01T23:59:00+09:00",
+   "result": "11/12午前中予定",
+   "url": "https://www.heiwado.jp/service/hopapp",
+   "note": "開始は9:00頃・HOPアプリで応募",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-28T08:54:00+09:00"
+  },
+  {
+   "id": "op-amazon-op18",
+   "game": "onepiece",
+   "product": "ブースターパック 神の支配【OP-18】",
+   "shop": "Amazon（招待リクエスト）",
+   "method": "invite",
+   "start": "2026-09-10T19:00:00+09:00",
+   "url": "https://www.amazon.co.jp/dp/B0HFVPJF4Q",
+   "note": "商品ページの「招待をリクエスト」から。在庫に応じて招待メール",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-28T08:54:00+09:00"
   }
  ]
 }
