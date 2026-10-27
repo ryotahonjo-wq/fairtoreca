@@ -12,8 +12,27 @@ data["amazon"] = aff.get("amazon", False)
 perks = aff.get("perks", {})
 for r in data["lotteries"]:
     if r.get("id") in perks: r["perk"] = perks[r["id"]]
+
+# 商品ごとのまとめ（series.json）と「外れたらシングルで」リンク
+from urllib.parse import quote
+RAKUTEN_ID = "58588721.c41e33b2.58588722.02a243f1"
+def rakuten_search(kw):
+    return f"https://hb.afl.rakuten.co.jp/ichiba/{RAKUTEN_ID}/?pc=" + quote(f"https://search.rakuten.co.jp/search/mall/{quote(kw)}/", safe="")
+SERIES = json.load(open(P("series.json")))["series"] if os.path.exists(P("series.json")) else []
+for sr in SERIES:
+    sr["rows"] = [r for r in data["lotteries"] if r.get("game") == sr["game"] and any(m in r.get("product", "") for m in sr["match"])]
+    sr["single_url"] = rakuten_search(sr["single"])
+for r in data["lotteries"]:
+    sr = next((sr for sr in SERIES if r in sr["rows"]), None)
+    if sr:
+        r["single"] = {"name": sr["name"], "url": sr["single_url"], "page": f"https://fairtoreca.com/s/{sr['key']}.html"}
 payload = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
 tpl = open(P("template.html")).read().replace("__DATA__", payload)
+NAV = [sr for sr in SERIES if sr["rows"]]
+if NAV:
+    nav = '<nav class="series" aria-labelledby="series-h"><div class="gh"><h2 id="series-h">商品別の抽選まとめ</h2><span class="sub">同じ商品の抽選をショップ横断で</span></div><div class="slist">' + "".join(
+        f'<a href="https://fairtoreca.com/s/{sr["key"]}.html" style="--c:var(--{ {"pokemon":"pk","onepiece":"op","dragonball":"db"}[sr["game"]] })"><b>{sr["name"]}</b><span>{len(sr["rows"])}件</span></a>' for sr in NAV) + '</div></nav>\n\n  '
+    tpl = tpl.replace('<section class="follow"', nav + '<section class="follow"', 1)
 
 open(P("toreka-chusen.html"), "w").write(tpl.replace("<!--SITE_LINKS-->", ""))
 
@@ -33,8 +52,11 @@ for f in os.listdir(P("assets")):
     shutil.copy(P("assets", f), P("docs", f))
 open(P("docs", "robots.txt"), "w").write("User-agent: *\nAllow: /\n" + (f"Sitemap: https://{site_url}/sitemap.xml\n" if site_url else ""))
 if site_url:
-    open(P("docs", "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://{site_url}/</loc><lastmod>{data.get("updatedAt","")[:10]}</lastmod></url><url><loc>https://{site_url}/about.html</loc></url><url><loc>https://{site_url}/oripa.html</loc></url><url><loc>https://{site_url}/links.html</loc></url></urlset>\n')
-print("built", len(data["lotteries"]), "lotteries;", "site:", site_url or "(no domain yet)")
+    smap = "".join(f'<url><loc>https://{site_url}/s/{sr["key"]}.html</loc><lastmod>{data.get("updatedAt","")[:10]}</lastmod></url>' for sr in SERIES)
+    open(P("docs", "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://{site_url}/</loc><lastmod>{data.get("updatedAt","")[:10]}</lastmod></url>{smap}<url><loc>https://{site_url}/about.html</loc></url><url><loc>https://{site_url}/oripa.html</loc></url><url><loc>https://{site_url}/links.html</loc></url></urlset>\n')
+import series_page
+series_page.write_all(SERIES, data, aff.get("partners", []), P("docs", "s"), ICONS)
+print("built", len(data["lotteries"]), "lotteries;", len(SERIES), "series pages;", "site:", site_url or "(no domain yet)")
 
 # docs/calendar.ics : 締切の購読用カレンダー（Googleカレンダー等で「URLで追加」）
 from datetime import datetime, timedelta, timezone

@@ -1,0 +1,13 @@
+{
+ "_note": "商品ごとのまとめページ（docs/s/<key>.html）と「外れたらシングルで」リンクの設定。match のどれかが product に含まれる抽選がそのページに入る。single は楽天の検索キーワード（楽天アフィリエイト経由）。",
+ "series": [
+  {"key": "hadou-seeker", "game": "pokemon", "name": "ハドウシーカー", "full": "ポケカ 拡張パック「ハドウシーカー」", "match": ["ハドウシーカー"], "single": "ハドウシーカー シングル"},
+  {"key": "storm-emeralda", "game": "pokemon", "name": "ストームエメラルダ", "full": "ポケカ「ストームエメラルダ」", "match": ["ストームエメラルダ"], "single": "ストームエメラルダ シングル"},
+  {"key": "mega-deck", "game": "pokemon", "name": "スペシャルデッキセットMEGA", "full": "ポケカ「MEGA スペシャルデッキセットMEGA」", "match": ["スペシャルデッキセットMEGA"], "single": "メガオーダイル メガカイリュー メガゲンガー ポケカ"},
+  {"key": "pokemon-30th", "game": "pokemon", "name": "ポケカ30周年（30th CELEBRATION）", "full": "ポケカ30周年「30th CELEBRATION」シリーズ", "match": ["30th CELEBRATION"], "single": "30th CELEBRATION ポケカ シングル"},
+  {"key": "op-eb05", "game": "onepiece", "name": "EB-05 Heroines Edition vol.2", "full": "ワンピースカード「EB-05 Heroines Edition vol.2」", "match": ["EB-05"], "single": "EB-05 ワンピースカード シングル"},
+  {"key": "op-op18", "game": "onepiece", "name": "OP-18 神の支配", "full": "ワンピースカード ブースターパック「神の支配【OP-18】」", "match": ["OP-18"], "single": "OP-18 神の支配 シングル"},
+  {"key": "db-fb11", "game": "dragonball", "name": "BRIGHTNESS OF HOPE【FB11】", "full": "ドラゴンボール フュージョンワールド「BRIGHTNESS OF HOPE」", "match": ["BRIGHTNESS OF HOPE"], "single": "フュージョンワールド BRIGHTNESS OF HOPE シングル"},
+  {"key": "db-story01", "game": "dragonball", "name": "STORY BOOSTER 01", "full": "ドラゴンボール フュージョンワールド「STORY BOOSTER 01」", "match": ["STORY BOOSTER 01"], "single": "フュージョンワールド STORY BOOSTER 01"}
+ ]
+}
