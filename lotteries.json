@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-28T08:54:00+09:00",
+ "updatedAt": "2026-10-29T08:54:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -199,20 +199,6 @@
    "addedAt": "2026-10-19T08:56:00+09:00"
   },
   {
-   "id": "db-kiddyland-kichijoji",
-   "game": "dragonball",
-   "product": "フュージョンワールド CROSS FORCE（再販）",
-   "shop": "キデイランド 吉祥寺店",
-   "method": "online",
-   "start": "2026-10-19T10:00:00+09:00",
-   "url": "https://livepocket.jp/e/rbitd",
-   "note": "LivePocket抽選・1パック220円・整理券1枚で1BOXまで・購入10/31〜11/1（本人・身分証）",
-   "source": "https://www.cardchusen.com/dragonball",
-   "addedAt": "2026-10-19T08:56:00+09:00",
-   "end": "2026-10-21T23:59:00+09:00",
-   "result": "10/22"
-  },
-  {
    "id": "db-furuichi-tomakomai",
    "game": "dragonball",
    "product": "フュージョンワールド STORY BOOSTER 01",
@@ -223,20 +209,6 @@
    "note": "本人確認あり・詳細はリンク先で確認",
    "source": "https://www.cardchusen.com/dragonball",
    "addedAt": "2026-10-19T08:56:00+09:00"
-  },
-  {
-   "id": "pk-yamada-mega",
-   "game": "pokemon",
-   "product": "MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
-   "shop": "ヤマダデンキ",
-   "method": "app",
-   "start": "2026-10-19T23:00:00+09:00",
-   "end": "2026-10-21T23:59:00+09:00",
-   "result": "11/11 12:00頃",
-   "url": "https://www.yamada-denki.jp/service/pointservice/digital-kaiin.html",
-   "note": "ヤマダデジタル会員アプリから・1人1点・税込5,500円・おもちゃ取扱店で受取11/13〜11/19",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-20T08:56:00+09:00"
   },
   {
    "id": "op-dorasuta-store",
@@ -628,6 +600,34 @@
    "note": "商品ページの「招待をリクエスト」から。在庫に応じて招待メール",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-28T08:54:00+09:00"
+  },
+  {
+   "id": "pk-tcg193",
+   "game": "pokemon",
+   "product": "30th CELEBRATION カードセット 9種セット（10,800円・1セットまで）",
+   "shop": "TCGショップ193（秋葉原・浜松・名駅・大須・日本橋・椿）",
+   "method": "online",
+   "start": "2026-10-28T09:50:00+09:00",
+   "end": "2026-11-04T23:59:00+09:00",
+   "result": "当選者のみメール",
+   "url": "https://docs.google.com/forms/d/e/1FAIpQLSckLz6kpt0cOvnKUuW2zK4j8QaRgH-8WE7uGup8a5Fra6OCBQ/viewform",
+   "note": "店頭入会の会員が対象（通販アカウントは不可）・購入は11/7〜11/9に店頭で、会員カードと身分証が必要",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-29T08:54:00+09:00"
+  },
+  {
+   "id": "op-dorasuta-op17",
+   "game": "onepiece",
+   "product": "ブースターパック 世界最強の戦士【OP-17】",
+   "shop": "ドラゴンスター 通販",
+   "method": "online",
+   "start": "2026-10-27T22:00:00+09:00",
+   "end": "2026-10-29T23:59:00+09:00",
+   "result": "11/1",
+   "url": "https://dorasuta.membercard.jp/lottery",
+   "note": "会員登録が必要・当選者はオンライン購入",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-10-29T08:54:00+09:00"
   }
  ]
 }
