@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-29T08:54:00+09:00",
+ "updatedAt": "2026-10-30T15:54:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -211,34 +211,6 @@
    "addedAt": "2026-10-19T08:56:00+09:00"
   },
   {
-   "id": "op-dorasuta-store",
-   "game": "onepiece",
-   "product": "EB-05 Heroines Edition vol.2",
-   "shop": "ドラゴンスター 各店",
-   "method": "online",
-   "start": "2026-10-19T22:00:00+09:00",
-   "end": "2026-10-22T23:59:00+09:00",
-   "result": "10/28予定",
-   "url": "https://dorasuta.membercard.jp/lottery",
-   "note": "会員限定Web抽選・1BOX 5,760円・店頭販売10/31〜11/3（身分証）・PRECIOUS BOXも対象の店舗あり",
-   "source": "https://nyuka-now.com/archives/97393",
-   "addedAt": "2026-10-20T08:56:00+09:00"
-  },
-  {
-   "id": "op-kiddyland-sakai",
-   "game": "onepiece",
-   "product": "EB-05 Heroines Edition vol.2",
-   "shop": "キデイランド 堺鉄砲町店（大阪）",
-   "method": "online",
-   "start": "2026-10-20T10:00:00+09:00",
-   "end": "2026-10-22T23:59:00+09:00",
-   "result": "10/27 18時頃までにメール",
-   "url": "https://livepocket.jp/e/bmr83",
-   "note": "LivePocket抽選・整理券1枚で1BOX・購入10/31〜11/2（本人・身分証）",
-   "source": "https://x.com/pica1100",
-   "addedAt": "2026-10-20T08:56:00+09:00"
-  },
-  {
    "id": "op-tokiwa-shinurayasu",
    "game": "onepiece",
    "product": "EB-05 Heroines Edition vol.2",
@@ -264,34 +236,6 @@
    "url": "https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1",
    "note": "しまむらアプリの会員証から応募・当選者はオンラインで注文（10/26 12:00〜10/31 23:00）",
    "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-21T08:54:00+09:00"
-  },
-  {
-   "id": "pk-hobbystation-kanto",
-   "game": "pokemon",
-   "product": "30th CELEBRATION BOX",
-   "shop": "ホビーステーション 関東各店",
-   "method": "online",
-   "start": "2026-10-20T12:00:00+09:00",
-   "end": "2026-10-22T23:59:00+09:00",
-   "result": "10/30〜10/31予定",
-   "url": "https://livepocket.jp/e/4_jau",
-   "note": "LivePocket・関東の対象店舗から1店舗のみ・7,200円・最大2BOX・店頭販売11/2〜11/8（本人確認書類）",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-21T08:54:00+09:00"
-  },
-  {
-   "id": "op-yamashiroya-2",
-   "game": "onepiece",
-   "product": "EB-05 Heroines Edition vol.2",
-   "shop": "ヤマシロヤ オンラインショップ",
-   "method": "online",
-   "start": "2026-10-20T21:30:00+09:00",
-   "end": "2026-10-22T21:30:00+09:00",
-   "result": "10/27",
-   "url": "https://docs.google.com/forms/d/e/1FAIpQLScPCHP4B-m-3C3uU6-qB3A-gImm7ABi1k4cqAGicSR6-Kpy9Q/viewform",
-   "note": "Googleフォームで応募・通販",
-   "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-21T08:54:00+09:00"
   },
   {
@@ -628,6 +572,20 @@
    "note": "会員登録が必要・当選者はオンライン購入",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-29T08:54:00+09:00"
+  },
+  {
+   "id": "pk-otakarasouko",
+   "game": "pokemon",
+   "product": "ストームエメラルダ・30th CELEBRATION BOX（再販）",
+   "shop": "お宝創庫・おじゃま館・メディオ！・プレイズ（一部店舗）",
+   "method": "app",
+   "start": "2026-10-29T12:00:00+09:00",
+   "end": "2026-11-01T23:45:00+09:00",
+   "result": "11/4頃 アプリ内で通知",
+   "url": "https://www.otakarasouko.com/information/106230535/",
+   "note": "過去1年に会員証を提示して利用したアプリ会員が対象・購入は11/5〜11/8に選んだ店舗で・顔写真付き本人確認書類が必要",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-10-30T15:54:00+09:00"
   }
  ]
 }
