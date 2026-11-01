@@ -1,119 +1,117 @@
 ---
 name: ig-caption
 description: >-
-  Write the Instagram caption - the line that survives the "... more" cut, the
-  body, the single ask, the search terms and the three hashtags - and lint it
-  before it goes out. Use when the user says "write the caption", "caption this",
-  "what do I put in the description", has a reel or a carousel ready and needs
-  the text, or asks about hashtags.
+  インスタのキャプションを書く。「…続きを読む」で切られても残る1行目・本文・
+  お願い1つ・検索される言葉・ハッシュタグ3つ前後まで書き、出す前に検査する。
+  「キャプションを書いて」「この投稿の説明文は？」「概要欄に何を書けばいい？」と
+  言われた時、リールやカルーセルができて文が要る時、ハッシュタグを聞かれた時に使う。
 ---
 
 # ig-caption
 
-One tool lives in this folder and it runs:
+このフォルダには、動く道具が1つある。
 
 ```bash
 python3 caption.py caption.txt
-python3 caption.py caption.txt --keywords "client proposals,agency pricing"
+python3 caption.py caption.txt --keywords "提案書,見積もり"
+python3 caption.py caption.txt --handle 自分のユーザーネーム
 ```
 
-It prints the caption the way the feed prints it: the first 125 characters in a
-box, everything else behind the tap. Read that box before you read anything
-else you wrote.
+Windows で `python3` が無いと言われたら `python` か `py` で動かす。
 
-## First, decide which job this caption has
+フィードでの見え方のまま出す。最初の2行（1行目の頭はユーザーネーム）を箱に入れ、残りは
+「…続きを読む」の後ろ。自分の書いた物の何より先に、この箱を読む。
 
-This is the decision that ruins captions when it is skipped.
+日本語は1文字の幅が英字の約2倍で、行で切られるので、見える文字数は英語版の「125文字」より
+ずっと少ない（初期値の見当で全角30字ほど）。見える量は機種と文字の大きさで変わる。
+1回だけ自分のスマホで確かめて、合わなければ `--width`（1行の幅。全角2・半角1で数える）と
+`--lines`（行数）で合わせる。リールの画面のキャプションは1行ほどなので `--lines 1`。
 
-**Job A: the video already hooked them.** A Reel carries its own hook in the
-first two seconds, spoken and on screen. The caption is not a second hook and
-competing with the video is how you lose both. Its job is the ask, the context
-that makes the ask make sense, and the words people search.
+## まず、このキャプションの役割を決める
 
-**Job B: the caption is the content.** A photo, a single image, a carousel
-cover that opens a loop. Here line one is the hook and it works exactly like a
-Reel hook: concrete, short, and cut off at a cliff rather than mid-clause.
+ここを飛ばすと、キャプションはだめになる。
 
-Ask which one you are writing. If the user has a Reel with a strong hook,
-write A and say why.
+**役割A: 動画がもう掴んでいる。** リールは最初の2秒で、声とテロップの両方でフックを
+持っている。キャプションは2つ目のフックではなく、動画と張り合うと両方負ける。役割は、
+お願いと、そのお願いが分かるための説明と、人が検索する言葉。
 
-## The shape
+**役割B: キャプションが中身そのもの。** 写真1枚、画像、続きが気になる形のカルーセルの
+表紙。ここでは1行目がフックで、リールのフックと同じに働く。具体的に、短く、文の途中では
+なく続きが気になる所で切る。
+
+どちらを書くのか聞く。本人に強いフックのリールがあるなら、Aを書いて理由を言う。
+
+## 形
 
 ```
-Line 1      125 characters of visible space. Job A: the ask, plainly.
-            Job B: the hook.
-            Never a greeting, never a hashtag, never an emoji as the first
-            character.
-Body        short paragraphs, one line of white space between each. Two to six
-            of them. This is where the search terms live.
-The ask     one. Comment a keyword, save it, or DM. One.
-Hashtags    up to five, on their own line at the bottom, or none.
+1行目      見える部分（全角30字ほど）。役割Aならお願いをそのまま。役割Bならフック。
+           あいさつ・ハッシュタグ・絵文字から始めない。
+本文       短い段落を、1行空けて2〜6個。検索される言葉はここに入れる。
+お願い     1つ。合言葉のコメント、保存、DMのどれか。1つ。
+ハッシュタグ 5個まで、最後に1行でまとめて。付けなくてもいい。
 ```
 
-Limit is 2,200 characters and almost nothing needs 2,200. A caption that earns
-the tap and then delivers 600 characters beats one that delivers 1,800.
+上限は2,200字で、2,200字が要る物はほぼない。押してもらえて600字を渡すキャプションは、
+1,800字を渡すキャプションに勝つ。
 
-## Hashtags, honestly
+## ハッシュタグ、正直なところ
 
-Hashtags are not a reach lever any more, and the platform has now said so with
-a product change. **Instagram capped hashtags at five per post on 18 December
-2025**, down from thirty, telling creators that "using fewer (up to 5) more
-targeted hashtags, rather than many generic ones" performs better. Adam Mosseri
-had already said in February 2025 that hashtags do not work to increase reach
-and are a label, not a distribution lever.
+ハッシュタグはもうリーチを伸ばすレバーではない。インスタ自身が仕様で示した。
+**2025年12月18日から、ハッシュタグは1投稿5個まで**（それまでは30個）。インスタは
+「一般的なタグをたくさん付けるより、絞った5個までのほうが、投稿の成績にも見る人の体験にも
+良い」と説明している。インスタの責任者アダム・モセリも、2025年2月の時点で、ハッシュタグは
+リーチを増やす物ではなくラベルだと言っていた。
 
-So: up to five, specific, as topic labels. If the user has a block of twenty
-saved in their notes app, that block is now dead weight and the linter will
-fail it.
+だから: 5個まで、具体的に、テーマのラベルとして。スマホのメモに20個のセットを保存して
+いるなら、そのセットはもう重りで、検査で NG になる。
 
-`#viral`, `#fyp`, `#explorepage`, `#foryou` describe nothing. Cut them.
+`#おすすめ` `#おすすめにのりたい` `#バズりたい` `#fyp` `#いいね返し` は何も表さない。
+消す。**全角の「＃」はハッシュタグにならない**。半角の「#」で書く。
 
-## Search terms matter more than hashtags now
+## 今はハッシュタグより検索される言葉
 
-Instagram search reads the caption text. So the phrase the user wants to be
-found for goes in the caption as a phrase a human would type, in a sentence
-that reads normally. "Client proposals" as words in line three, not
-"#clientproposals" in a block at the bottom.
+インスタの検索はキャプションの文を読む。だから、見つけてほしい言葉は、人が打つままの
+言葉として、ふつうに読める文の中に入れる。下にまとめた「#提案書テンプレ」ではなく、
+3行目の文の中に「提案書のテンプレ」。
 
-Ask for two or three of those terms, then pass them to the linter:
+その言葉を2〜3個もらい、検査に渡す。
 
 ```bash
-python3 caption.py draft.txt --keywords "client proposals,agency pricing"
+python3 caption.py draft.txt --keywords "提案書のテンプレ,見積もりの出し方"
 ```
 
-## Rules
+## 決まり
 
-- **No link in the caption.** Captions are not clickable. A URL in the body is
-  dead text that says "I do not use this platform". Bio or DM.
-- **One ask.** Two asks is the same as none. `caption.py` counts them.
-- **The keyword ask needs a keyword people can type.** One word, no spaces, no
-  emoji, and say it out loud in the video too. `Comment CONTRACT` works.
-  `Comment "the contract guide"` does not.
-- **Write the first comment separately** if there is a link. Say so in the
-  receipt.
-- **Emoji as punctuation, not decoration.** The linter flags anything over
-  4 per 100 characters.
-- **Alt text is worth 20 seconds.** For carousels and photos, write it. It is
-  read by screen readers and by Instagram.
+- **キャプションにリンクを貼らない。** キャプションのリンクは押せない。本文の URL は
+  「このアプリを使っていない」と言っているだけの文字。プロフィールか DM へ。
+- **お願いは1つ。** 2つのお願いは、ないのと同じ。`caption.py` が数える。
+- **合言葉は、誰でも打てる言葉に。** 短く、変換で迷わない言葉。動画の中でも声に出して言う。
+  「契約」は通る。「契約書の完全ガイド」は通らない。
+- **リンクがあるなら、最初のコメントを別に書く。** まとめにそう書く。
+- **絵文字は句読点の代わりで、飾りではない。** 100字に5個を超えると検査が知らせる。
+- **代替テキストに20秒かける。** カルーセルと写真には書く。画面の読み上げも、インスタも読む。
 
-## The loop
+## 進め方
 
-1. Decide Job A or Job B and say which.
-2. Draft it.
-3. Run `/ig-human` on it. Captions are short, so slop is louder here than
-   anywhere else in the pack.
-4. Run `caption.py` with the user's search terms. Fix every FAIL. Decide on
-   every WARN out loud rather than silently.
-5. Print the copy-ready block, then the receipt:
+1. 役割AかBかを決めて、そう言う。
+2. 書く。
+3. `/ig-human` に通す。キャプションは短いので、決まり文句はこのスキル集のどこよりも目立つ。
+   自分の目で見直すだけで済ませない。下書きをファイルにして、このスキルの隣の `ig-human`
+   フォルダの道具を実際に動かす（`python3 <ig-humanのフォルダ>/humanize.py 下書き.txt --report`
+   のあと `detect.py`）。点数はまとめの「AIっぽさ」の行に書く。
+4. 本人の検索される言葉を付けて `caption.py` を通す。NG は全部直す。注意は1つずつ、
+   黙ってではなく口に出して判断する。
+5. そのまま貼れる形で出し、まとめを付ける。
 
 ```
-CAPTION READY
-job:        A - the reel carries the hook
-visible:    118 of 125 characters used before the cut
-ask:        one, comment CONTRACT
-hashtags:   3
-search:     "client proposals" in line 3, "agency pricing" in line 5
-linter:     READY
+キャプション完成
+役割:       A（リールがフックを持っている）
+見える部分: 1行目は見える部分に収まっている（全角32字）
+お願い:     1つ、「契約」とコメント
+ハッシュタグ: 3個
+検索:       「提案書のテンプレ」を3行目、「見積もりの出し方」を5行目に
+AIっぽさ:   人らしさ78点（合格）
+検査:       出せる
 ```
 
-Nothing is posted. The user pastes it.
+投稿はしない。本人が貼る。

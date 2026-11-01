@@ -1,82 +1,55 @@
 ---
 name: ig-profile
 description: >-
-  Score an Instagram profile out of 100 against a 12-part rubric and rewrite
-  the parts that lose points - name field, bio, link, highlights, pinned three,
-  grid. Use when the user says "optimize my profile", "fix my bio", "score my
-  Instagram", "why don't people follow me", or pastes their profile and asks how
-  it reads.
+  Instagramのプロフィールを12項目の採点表で100点満点で採点し、点を落としている所を書き直す。
+  名前の欄、自己紹介文、リンク、ハイライト、ピン留めの3つ、プロフィールの一覧（グリッド）が対象。
+  「プロフィールを最適化して」「自己紹介を直して」「インスタを採点して」「なんでフォローされない？」と言われた時や、
+  プロフィールを貼って「どう見える？」と聞かれた時に使う。
 ---
 
 # ig-profile
 
-Almost everybody optimises the wrong thing here. The profile is not a
-storefront people browse. It is a **decision screen**, arrived at from one
-reel, and it gets about three seconds to answer one question: is there more of
-that here, and is it for me.
+ほとんどの人が、直す場所を間違えている。プロフィールは、人が見て回る店先ではない。**判断の画面**で、1本のリールから来た人が見る。答えを出すまでの時間は3秒ほど。問いは1つ。「これの続きがここにあるか。自分向けか」。
 
-## Input
+## 入力
 
-Ask the user to paste or screenshot: the name field, the handle, the bio, what
-the link points to, the highlight names, what is pinned, and the first nine
-grid covers. A screenshot of the top of the profile plus the first two grid
-rows is enough for a first pass.
+ユーザーに、貼るかスクリーンショットで見せてもらう。名前の欄、ユーザーネーム、自己紹介文、リンクの行き先、ハイライトの名前、ピン留めされている物、プロフィールの一覧の最初の9枚のカバー。最初の見立てなら、プロフィール上部と一覧の最初の2行のスクリーンショットで足りる。
 
-Do not log into Instagram on their behalf.
+ユーザーの代わりにInstagramへログインしない。
 
-## Score it
+## 採点する
 
-Read `rubric.json` in this folder. Twelve items, 100 points, each with what
-full marks looks like and how it usually fails. Score every item, show the
-table, give the total. Be honest. Most profiles land in the 30s and 40s on the
-first pass and a generous score is useless.
+このフォルダの `rubric.json` を読む。12項目、100点。各項目に、満点の姿と、よくある失点が書いてある。全項目を採点し、表を見せ、合計を出す。正直に。最初はほとんどのプロフィールが30点台から40点台になり、甘い点数は役に立たない。
 
 ```
-PROFILE SCORE  38/100
+プロフィールの点数  38/100
 
-  name field       2/12   name only, no words anyone searches
-  bio first line   3/12   three nouns and a coffee emoji
-  pinned three     0/10   nothing pinned
-  highlights       2/8    "Random", "Life", "2023"
-  grid legibility  4/8    six of nine covers are a face mid-sentence
+  名前の欄          2/12   名前だけで、誰も検索しない言葉
+  自己紹介の1行目    3/12   名詞が3つとコーヒーの絵文字
+  ピン留めの3つ      0/10   何もピン留めしていない
+  ハイライト         2/8    「その他」「日常」「2023」
+  一覧の見やすさ     4/8    9枚のうち6枚が、しゃべっている途中の顔
   ...
 ```
 
-## Then rewrite, in this order
+## 次に、この順で書き直す
 
-Fix in descending order of points lost. Do not rewrite everything at once, the
-user has to actually go and change each of these.
+失った点が大きい順に直す。全部を一度に書き直さない。ユーザーは実際に、1つずつ自分で変えに行く。
 
-**1. The name field (30 characters).** The bold line under the photo, not the
-handle. This is the field Instagram search matches against, and most accounts
-put a name in it and nothing else. Format that works:
-`{Name} | {what you do, in searched words}`. Give three options.
+**1. 名前の欄（30字）。** アイコンの下の太字の行。ユーザーネームではない。Instagramの検索が照合する欄なのに、ほとんどのアカウントは名前だけ入れて終わっている。効く形は `{名前}｜{やっていること（検索される言葉で）}`。3案出す。
 
-**2. Bio line one.** Who this is for and what changes. Not a job title, not
-adjectives, not a pipe-separated list of identities. The rest of the 150
-characters carries one piece of proof or one plain offer.
+**2. 自己紹介の1行目。** だれ向けで、何が変わるか。肩書きでも、形容詞でも、縦線で区切った自己紹介の列挙でもない。150字の残りには、実績を1つか、はっきりしたオファーを1つ入れる。
 
-**3. The pinned three.** Three slots, three different jobs: the best proof, the
-clearest explanation of the offer, the best introduction to the person. This is
-the highest-leverage fix on the whole profile and it takes four taps. An
-unpinned grid shows whatever was posted last, which is a coin flip.
+**3. ピン留めの3つ。** 3つの枠に、3つの違う役割。いちばんの実績、オファーのいちばん明快な説明、本人のいちばんいい自己紹介。プロフィール全体でいちばん効く直しで、4タップで終わる。ピン留めがないと、一覧には最後に投稿した物が出る。つまり運任せ。
 
-**4. Highlights.** Four to six, named for the questions a buyer asks: Pricing,
-Results, How it works, About. Not "Random". Delete the rest.
+**4. ハイライト。** 4〜6個。買う人が聞く質問の名前にする。料金、実績、進め方、自己紹介。「その他」は不可。残りは消す。
 
-**5. The link.** One destination that matches what the bio just promised. Five
-are allowed; two is already a menu and a menu converts worse than a door.
+**5. リンク。** 自己紹介文が約束した内容と合う行き先を1つ。5つまで入れられるが、2つでもう品書きで、品書きは入口1つより成約しない。
 
-**6. Grid covers.** The first nine at thumbnail size. Reel covers get chosen,
-not left as whatever frame one was. Four words of text on a cover makes a grid
-readable in one glance.
+**6. 一覧のカバー。** 最初の9枚を、サムネの大きさで確認する。リールのカバーは、どの1コマになったかではなく、選んで決める。カバーに10字前後の文字を入れると、一覧が一目で読める。
 
-## Output
+## 出力
 
-Score table, then the rewrites as copy-ready blocks in fix-first order, each
-run through `/ig-human`. Re-score at the end and show the delta honestly. If
-the rewrite reaches 84 and not 98, say 84, and say what the rest needs, which
-is usually a grid, a story habit and a pinned post that does not exist yet.
-None of that is a rewrite.
+採点表、次に書き直しを、直す順に、コピーしてそのまま使える形のブロックで出す。それぞれ `/ig-human`（AIっぽさ消し）に通す（自分の目で見直すだけで済ませず、このスキルの隣の `ig-human` フォルダの `detect.py` を実際に動かして、点数を書き直しの下に1行で添える）。最後に再採点し、差を正直に見せる。書き直して84点で98点にならないなら、84点と言い、残りに必要なことを言う。たいていは、一覧、ストーリーズの習慣、まだ存在しないピン留めの投稿。どれも書き直しでは解決しない。
 
-Nothing is saved to Instagram by this skill. The user edits each field.
+このスキルはInstagramには何も保存しない。ユーザーが各欄を自分で編集する。

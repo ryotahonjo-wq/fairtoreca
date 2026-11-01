@@ -1,100 +1,81 @@
 ---
 name: ig-plan
 description: >-
-  Build the week on Instagram - what to post, which format, when, and who to
-  engage with. Use when the user says "plan my week", "what should I post",
-  "content calendar", "I have nothing to post about", or wants a posting
-  schedule and an engagement list.
+  Instagramの1週間を組む。何を投稿するか、どの形式か、いつか、誰と交流するか。
+  「今週の計画を立てて」「何を投稿すればいい？」「投稿カレンダー」「投稿ネタがない」
+  「投稿スケジュールと交流リストがほしい」と言われたら使う。
 ---
 
 # ig-plan
 
-The control room. Everything else in this pack executes; this decides what gets
-executed. Run it once a week, on the same day.
+司令塔。このスキル集のほかのスキルは実行する側で、これは何を実行するかを決める。週に1回、毎週同じ曜日に回す。
 
-## Input
+## 入力
 
-If `/mnt/project-files/instagram/voice.md`, `swipe.md` and `log.md` exist, read them.
-The swipe file is the user's own evidence from `/ig-viral` about which formulas
-are landing in their niche right now, and it outranks anything in this file.
-The log stops the plan repeating a theme from the last fortnight.
+`/mnt/project-files/instagram/voice.md`、`swipe.md`、`log.md` があれば読む。伸びた型のメモ（swipe.md）は、`/ig-viral` で集めた、ユーザーのジャンルでいま当たっている型の、ユーザー自身の証拠で、このファイルの中身より優先する。ログは、直近2週間と同じテーマを繰り返さないために使う。
 
-If they do not exist, ask for four things and write them down:
+なければ、次の4つを聞いて、書き留める。
 
-1. What the user sells, and to whom.
-2. The three or four themes they want to be known for.
-3. What actually happened this week: a client call, a number, a mistake, a
-   thing they built, an argument they had. This is where posts come from.
-4. Ten accounts worth being visible to.
+1. ユーザーが何を、だれに売っているか。
+2. 覚えてもらいたい3〜4つのテーマ。
+3. 今週実際に起きたこと。お客さんとの電話、数字、失敗、作った物、した議論。投稿のネタはここから出る。
+4. 見てもらいたい10アカウント。
 
-## What to post
+切り口に入れる数字と出来事は、ユーザーから聞いた物だけ。「40分が10分に」のような例の数字も作らない。聞いていない所は `{{実際の数字}}` で残す。
 
-Four to five posts a week, and at least three of them Reels. Reels are the only
-format on Instagram that reliably reaches people who do not follow the account.
-Carousels go deep with the people who already do. Stories are daily and are
-planned separately.
+## 何を投稿するか
 
-Mix across the week, never two of the same type back to back:
+週に4〜5本。そのうち少なくとも3本はリール。リールは、フォローしていない人に安定して届く、インスタで唯一の形式。カルーセルは、すでにフォローしている人に深く届く。ストーリーズは毎日で、別に計画する。
 
-| type | share | job |
+週の中で組み合わせ、同じ型を連続させない。
+
+| 型 | 割合 | 役割 |
 | --- | --- | --- |
-| **Proof** | 1 per week | something that happened, with a number. Reel. |
-| **Teach** | 1 to 2 per week | one thing the viewer can do today. Reel or carousel. |
-| **Opinion** | 1 per week | a position that could lose you followers. Reel. |
-| **Story** | 1 per fortnight | a scene with a cost. Reel. |
-| **Offer** | 1 per fortnight | what you sell, said plainly, no apology. Carousel or stories. |
+| **実績** | 週1 | 起きたこと。数字つき。リール。 |
+| **教える** | 週1〜2 | 見た人が今日できる1つのこと。リールかカルーセル。 |
+| **意見** | 週1 | フォロワーを失うかもしれない立場。リール。 |
+| **話** | 2週に1 | 痛い目を見た場面。リール。 |
+| **商品** | 2週に1 | 売っている物を、遠慮せず、はっきり言う。カルーセルかストーリーズ。 |
 
-For each slot give: the theme, the specific angle from what actually happened
-this week, the format, and the hook formula number from `ig-reel/hooks.json`.
-Not a topic, an angle. "AI" is not a plan. "The proposal we lost because the
-draft had an em dash in it" is a Reel.
+各枠に、テーマ、今週実際に起きたことから取った具体的な切り口、形式、`ig-reel/hooks.json` のフックの型の番号を書く。話題ではなく切り口を書く。「AI」は計画ではない。「見積もりの桁を1つ間違えて落とした案件」はリール。
 
-## When to post
+## いつ投稿するか
 
-Post when the user's audience is awake and not at work. For most consumer
-audiences that is early evening local time; for a business audience, early
-morning.
+オーディエンスが起きていて、仕事中ではない時間。一般向けのオーディエンスならたいてい夜の早い時間、ビジネス向けなら朝の早い時間。時間は日本時間が前提。
 
-But say this plainly: **the hour matters far less than the first two seconds.**
-Instagram will keep showing a Reel for days if it performs, and will bury a
-well-timed one that does not. If the user is optimising posting times before
-their hooks work, they are polishing the wrong thing, and you should say so.
+ただし、これははっきり言う。**時間より、最初の2秒のほうがずっと大事。** 伸びるリールは何日もInstagramに出し続けられるし、タイミングが良くても伸びないリールは埋もれる。フックが効く前に投稿時間を最適化しているなら、磨く場所が違うので、そう言う。
 
-Anchor times to the audience's timezone, not the user's, if those differ.
+ユーザーとオーディエンスのタイムゾーンが違うなら、時間はオーディエンスの側に合わせる。
 
-## The engagement round, which is not optional
+## 交流の時間は、省略不可
 
-20 minutes a day, before posting, not after. Build a list of 10:
+1日20分。投稿の後ではなく、前に。10件のリストを作る。
 
-- **5 reach** - accounts with an audience the user wants, where a good comment
-  gets seen. Comment early, before the thread is 200 deep.
-- **3 peers** - same size, same field. This is the group that reciprocates.
-- **2 buyers** - people who could actually buy. Comment for weeks before any
-  DM, and never pitch in a comment.
+- **リーチ枠5**: ユーザーが届きたい層のオーディエンスを持つアカウント。いいコメントが見られる所。スレッドが200件に膨らむ前に、早く書く。
+- **仲間3**: 同じ規模、同じ分野。お返しをしてくれるグループ。
+- **買う人2**: 本当に買う可能性のある人。コメント・DM・ストーリーズへの返信など、こちらから見える形で反応してくれた人から選ぶ（だれが保存したかはインスタでは見えない）。DMをするまで何週間もコメントを続け、コメントでは絶対に売り込まない。
 
-Hand the list to `/ig-comment`.
+リストは `/ig-comment` に渡す。
 
-## Output
+## 出力
 
 ```
-WEEK OF SEP 15
+9月15日の週
 
-MON  engage only  (20 min, list below)
-TUE  7:30pm  REEL      PROOF    #5  Time Collapse   - 5hr proposal to 20 min
-WED  stories only + engage
-THU  7:00pm  CAROUSEL  TEACH    Job B caption       - the 4-slide clause breakdown
-FRI  7:30pm  REEL      OPINION  #2  Negative Command - stop doing discovery calls
-SAT  -
-SUN  6:00pm  REEL      STORY    #21 Mid-Sentence    - the refund email
+月  交流のみ  （20分、リストは下）
+火  19:30  リール      実績    #5 時間の短縮   - 5時間の提案書が20分に
+水  ストーリーズのみ + 交流
+木  19:00  カルーセル  教える  役割B のキャプション - 契約書の一文の4枚解説
+金  19:30  リール      意見    #2「やめて」命令 - ヒアリングの電話をやめて
+土  -
+日  18:00  リール      話      #21 話の途中から - 返金のメール
 
-STORIES  every day, 3 to 5 frames, question box on Thursday.
+ストーリーズ  毎日、3〜5枚、木曜は質問ボックス。
 
-ENGAGE  (5 reach / 3 peers / 2 buyers)
+交流  （リーチ枠5 / 仲間3 / 買う人2）
   ...
 
-Say "write Tuesday" and I will draft it.
+「火曜を書いて」と言えば、下書きを作る。
 ```
 
-Write the plan to `/mnt/project-files/instagram/plan.md` so the other skills can read
-it. Nothing is scheduled or posted anywhere. This is a plan and the user runs
-it.
+計画は `/mnt/project-files/instagram/plan.md` に書き出して、ほかのスキルが読めるようにする。どこにも予約も投稿もしない。これは計画で、実行するのはユーザー。

@@ -1,6 +1,6 @@
 {
-  "version": "1.0",
-  "note": "Lexicon used by humanize.py and detect.py. Replacements are plain-English and keep the sentence grammatical. The last block of each list is Instagram-specific: caption and voiceover slop that does not show up on other platforms. Edit freely - it is meant to be yours.",
+  "version": "1.0-ja",
+  "note": "humanize.py と detect.py が読む辞書（日本語版）。置き換えは、文の形を壊さない言い回しの単位で書いた（日本語は活用で形が変わるので、1語だけを置き換えると文が壊れる）。最後のほうの塊はインスタ特有の、キャプションとナレーションに出る決まり文句。自由に直していい。自分がいつも使う言葉が消されるなら、その行を消す。",
   "invisible": [
     {
       "cp": "U+200B",
@@ -15,7 +15,8 @@
     {
       "cp": "U+200D",
       "name": "ZERO WIDTH JOINER",
-      "action": "delete"
+      "action": "delete",
+      "note": "絵文字どうしをつなぐ物（家族の絵文字など）は残す"
     },
     {
       "cp": "U+2060",
@@ -96,930 +97,759 @@
   "typographic": [
     {
       "from": "—",
-      "name": "EM DASH",
-      "to": ", "
+      "name": "全角より長いダッシュ（EM DASH）",
+      "to": "、"
+    },
+    {
+      "from": "―",
+      "name": "ダッシュ（HORIZONTAL BAR）",
+      "to": "、"
     },
     {
       "from": "–",
-      "name": "EN DASH",
-      "to": "-"
+      "name": "短いダッシュ（EN DASH）",
+      "to": "-",
+      "note": "数字の間なら「〜」"
+    },
+    {
+      "from": "“",
+      "name": "英語の左かぎ（“）",
+      "to": "「"
+    },
+    {
+      "from": "”",
+      "name": "英語の右かぎ（”）",
+      "to": "」"
     },
     {
       "from": "‘",
-      "name": "LEFT SINGLE QUOTE",
+      "name": "英語の左引用符（‘）",
       "to": "'"
     },
     {
       "from": "’",
-      "name": "RIGHT SINGLE QUOTE",
+      "name": "英語の右引用符（’）",
       "to": "'"
-    },
-    {
-      "from": "“",
-      "name": "LEFT DOUBLE QUOTE",
-      "to": "\""
-    },
-    {
-      "from": "”",
-      "name": "RIGHT DOUBLE QUOTE",
-      "to": "\""
-    },
-    {
-      "from": "…",
-      "name": "HORIZONTAL ELLIPSIS",
-      "to": "..."
-    },
-    {
-      "from": "′",
-      "name": "PRIME",
-      "to": "'"
-    },
-    {
-      "from": "·",
-      "name": "MIDDLE DOT",
-      "to": "-"
     },
     {
       "from": "•",
-      "name": "BULLET",
-      "to": "-"
+      "name": "黒丸の箇条書き（•）",
+      "to": "・"
     },
     {
-      "from": "→",
-      "name": "RIGHTWARDS ARROW",
-      "to": "->"
+      "from": "·",
+      "name": "中黒の半角版（·）",
+      "to": "・"
+    },
+    {
+      "from": "**",
+      "name": "マークダウンの太字（**）",
+      "to": ""
     }
   ],
   "words": [
     {
-      "find": "delve into",
-      "replace": "look at",
-      "family": "verbs"
+      "find": "することができ",
+      "replace": "でき",
+      "family": "硬い言い回し"
     },
     {
-      "find": "delve",
-      "replace": "look",
-      "family": "verbs"
+      "find": "することが可能です",
+      "replace": "できます",
+      "family": "硬い言い回し"
     },
     {
-      "find": "dive deep into",
-      "replace": "get into",
-      "family": "verbs"
+      "find": "することが可能な",
+      "replace": "できる",
+      "family": "硬い言い回し"
     },
     {
-      "find": "deep dive",
-      "replace": "breakdown",
-      "family": "nouns"
+      "find": "において",
+      "replace": "で",
+      "family": "硬い言い回し"
     },
     {
-      "find": "leverage",
-      "replace": "use",
-      "family": "verbs"
+      "find": "における",
+      "replace": "の",
+      "family": "硬い言い回し"
     },
     {
-      "find": "leveraging",
-      "replace": "using",
-      "family": "verbs"
+      "find": "に関しては",
+      "replace": "については",
+      "family": "硬い言い回し"
     },
     {
-      "find": "utilize",
-      "replace": "use",
-      "family": "verbs"
+      "find": "に関して",
+      "replace": "について",
+      "family": "硬い言い回し"
     },
     {
-      "find": "utilizing",
-      "replace": "using",
-      "family": "verbs"
+      "find": "に関する",
+      "replace": "についての",
+      "family": "硬い言い回し"
     },
     {
-      "find": "harness",
-      "replace": "use",
-      "family": "verbs"
+      "find": "に基づいて",
+      "replace": "をもとに",
+      "family": "硬い言い回し"
     },
     {
-      "find": "embark on",
-      "replace": "start",
-      "family": "verbs"
+      "find": "に基づく",
+      "replace": "をもとにした",
+      "family": "硬い言い回し"
     },
     {
-      "find": "foster",
-      "replace": "build",
-      "family": "verbs"
+      "find": "という観点から",
+      "replace": "の面から",
+      "family": "硬い言い回し"
     },
     {
-      "find": "facilitate",
-      "replace": "help",
-      "family": "verbs"
+      "find": "という点において",
+      "replace": "という点で",
+      "family": "硬い言い回し"
     },
     {
-      "find": "showcase",
-      "replace": "show",
-      "family": "verbs"
+      "find": "であると言えるでしょう",
+      "replace": "です",
+      "family": "硬い言い回し"
     },
     {
-      "find": "unlock",
-      "replace": "get",
-      "family": "verbs"
+      "find": "だと言えるでしょう",
+      "replace": "です",
+      "family": "硬い言い回し"
     },
     {
-      "find": "elevate",
-      "replace": "improve",
-      "family": "verbs"
+      "find": "であると言えます",
+      "replace": "です",
+      "family": "硬い言い回し"
     },
     {
-      "find": "streamline",
-      "replace": "simplify",
-      "family": "verbs"
+      "find": "だと言えます",
+      "replace": "です",
+      "family": "硬い言い回し"
     },
     {
-      "find": "spearhead",
-      "replace": "lead",
-      "family": "verbs"
+      "find": "と考えられます",
+      "replace": "と思います",
+      "family": "硬い言い回し"
     },
     {
-      "find": "underscore",
-      "replace": "show",
-      "family": "verbs"
+      "find": "非常に",
+      "replace": "かなり",
+      "family": "硬い言い回し"
     },
     {
-      "find": "underscores",
-      "replace": "shows",
-      "family": "verbs"
+      "find": "極めて",
+      "replace": "かなり",
+      "family": "硬い言い回し"
     },
     {
-      "find": "cultivate",
-      "replace": "build",
-      "family": "verbs"
+      "find": "重要なのは",
+      "replace": "大事なのは",
+      "family": "硬い言い回し"
     },
     {
-      "find": "amplify",
-      "replace": "boost",
-      "family": "verbs"
+      "find": "重要です",
+      "replace": "大事です",
+      "family": "硬い言い回し"
     },
     {
-      "find": "curate",
-      "replace": "pick",
-      "family": "verbs"
+      "find": "重要な",
+      "replace": "大事な",
+      "family": "硬い言い回し"
     },
     {
-      "find": "curated",
-      "replace": "picked",
-      "family": "verbs"
+      "find": "必要不可欠",
+      "replace": "欠かせない",
+      "family": "硬い言い回し"
     },
     {
-      "find": "empower",
-      "replace": "let",
-      "family": "verbs"
+      "find": "不可欠です",
+      "replace": "欠かせません",
+      "family": "硬い言い回し"
     },
     {
-      "find": "revolutionize",
-      "replace": "change",
-      "family": "verbs"
+      "find": "不可欠な",
+      "replace": "欠かせない",
+      "family": "硬い言い回し"
     },
     {
-      "find": "transformative",
-      "replace": "big",
-      "family": "adjectives"
+      "find": "さまざまな",
+      "replace": "いろんな",
+      "family": "硬い言い回し"
     },
     {
-      "find": "robust",
-      "replace": "solid",
-      "family": "adjectives"
+      "find": "様々な",
+      "replace": "いろんな",
+      "family": "硬い言い回し"
     },
     {
-      "find": "seamless",
-      "replace": "clean",
-      "family": "adjectives"
+      "find": "多岐にわたる",
+      "replace": "幅広い",
+      "family": "硬い言い回し"
     },
     {
-      "find": "seamlessly",
-      "replace": "cleanly",
-      "family": "adjectives"
+      "find": "多種多様な",
+      "replace": "いろんな",
+      "family": "硬い言い回し"
     },
     {
-      "find": "pivotal",
-      "replace": "key",
-      "family": "adjectives"
+      "find": "数多くの",
+      "replace": "たくさんの",
+      "family": "硬い言い回し"
     },
     {
-      "find": "crucial",
-      "replace": "important",
-      "family": "adjectives"
+      "find": "新たな",
+      "replace": "新しい",
+      "family": "硬い言い回し"
     },
     {
-      "find": "vital",
-      "replace": "important",
-      "family": "adjectives"
+      "find": "新たに",
+      "replace": "新しく",
+      "family": "硬い言い回し"
     },
     {
-      "find": "comprehensive",
-      "replace": "complete",
-      "family": "adjectives"
+      "find": "迅速に",
+      "replace": "すぐに",
+      "family": "硬い言い回し"
     },
     {
-      "find": "cutting-edge",
-      "replace": "new",
-      "family": "adjectives"
+      "find": "最大限に",
+      "replace": "目いっぱい",
+      "family": "硬い言い回し"
     },
     {
-      "find": "game-changing",
-      "replace": "big",
-      "family": "adjectives"
+      "find": "最大限の",
+      "replace": "目いっぱいの",
+      "family": "硬い言い回し"
     },
     {
-      "find": "game-changer",
-      "replace": "big deal",
-      "family": "nouns"
+      "find": "を活用することで",
+      "replace": "を使うことで",
+      "family": "定番の動詞"
     },
     {
-      "find": "groundbreaking",
-      "replace": "new",
-      "family": "adjectives"
+      "find": "を活用して",
+      "replace": "を使って",
+      "family": "定番の動詞"
     },
     {
-      "find": "unparalleled",
-      "replace": "unmatched",
-      "family": "adjectives"
+      "find": "を活用し",
+      "replace": "を使い",
+      "family": "定番の動詞"
     },
     {
-      "find": "invaluable",
-      "replace": "useful",
-      "family": "adjectives"
+      "find": "を活用できる",
+      "replace": "を使える",
+      "family": "定番の動詞"
     },
     {
-      "find": "meticulous",
-      "replace": "careful",
-      "family": "adjectives"
+      "find": "を活用する",
+      "replace": "を使う",
+      "family": "定番の動詞"
     },
     {
-      "find": "meticulously",
-      "replace": "carefully",
-      "family": "adjectives"
+      "find": "を活用しましょう",
+      "replace": "を使いましょう",
+      "family": "定番の動詞"
     },
     {
-      "find": "myriad of",
-      "replace": "many",
-      "family": "adjectives"
+      "find": "を利用して",
+      "replace": "を使って",
+      "family": "定番の動詞"
     },
     {
-      "find": "myriad",
-      "replace": "many",
-      "family": "adjectives"
+      "find": "を利用する",
+      "replace": "を使う",
+      "family": "定番の動詞"
     },
     {
-      "find": "multifaceted",
-      "replace": "complicated",
-      "family": "adjectives"
+      "find": "を使用して",
+      "replace": "を使って",
+      "family": "定番の動詞"
     },
     {
-      "find": "holistic",
-      "replace": "whole",
-      "family": "adjectives"
+      "find": "を使用する",
+      "replace": "を使う",
+      "family": "定番の動詞"
     },
     {
-      "find": "bespoke",
-      "replace": "custom",
-      "family": "adjectives"
+      "find": "を促進する",
+      "replace": "を進める",
+      "family": "定番の動詞"
     },
     {
-      "find": "innovative",
-      "replace": "new",
-      "family": "adjectives"
+      "find": "を促進し",
+      "replace": "を進め",
+      "family": "定番の動詞"
     },
     {
-      "find": "profound",
-      "replace": "big",
-      "family": "adjectives"
+      "find": "を向上させる",
+      "replace": "を上げる",
+      "family": "定番の動詞"
     },
     {
-      "find": "remarkable",
-      "replace": "notable",
-      "family": "adjectives"
+      "find": "を向上させ",
+      "replace": "を上げ",
+      "family": "定番の動詞"
     },
     {
-      "find": "compelling",
-      "replace": "convincing",
-      "family": "adjectives"
+      "find": "を構築する",
+      "replace": "を作る",
+      "family": "定番の動詞"
     },
     {
-      "find": "tapestry",
-      "replace": "mix",
-      "family": "nouns"
+      "find": "を構築して",
+      "replace": "を作って",
+      "family": "定番の動詞"
     },
     {
-      "find": "realm",
-      "replace": "world",
-      "family": "nouns"
+      "find": "を構築し",
+      "replace": "を作り",
+      "family": "定番の動詞"
     },
     {
-      "find": "landscape",
-      "replace": "market",
-      "family": "nouns"
+      "find": "に寄与する",
+      "replace": "に役立つ",
+      "family": "定番の動詞"
     },
     {
-      "find": "journey",
-      "replace": "process",
-      "family": "nouns"
+      "find": "に寄与し",
+      "replace": "に役立ち",
+      "family": "定番の動詞"
     },
     {
-      "find": "testament to",
-      "replace": "proof of",
-      "family": "nouns"
+      "find": "を把握する",
+      "replace": "をつかむ",
+      "family": "定番の動詞"
     },
     {
-      "find": "cornerstone",
-      "replace": "base",
-      "family": "nouns"
+      "find": "を把握し",
+      "replace": "をつかみ",
+      "family": "定番の動詞"
     },
     {
-      "find": "beacon",
-      "replace": "signal",
-      "family": "nouns"
+      "find": "を検討する",
+      "replace": "を考える",
+      "family": "定番の動詞"
     },
     {
-      "find": "paradigm",
-      "replace": "model",
-      "family": "nouns"
+      "find": "を検討して",
+      "replace": "を考えて",
+      "family": "定番の動詞"
     },
     {
-      "find": "synergy",
-      "replace": "overlap",
-      "family": "nouns"
+      "find": "重要な役割を果たします",
+      "replace": "大事な役目があります",
+      "family": "定番の動詞"
     },
     {
-      "find": "ecosystem",
-      "replace": "system",
-      "family": "nouns"
+      "find": "重要な役割を果たす",
+      "replace": "大事な役目がある",
+      "family": "定番の動詞"
     },
     {
-      "find": "treasure trove",
-      "replace": "pile",
-      "family": "nouns"
+      "find": "鍵となります",
+      "replace": "決め手です",
+      "family": "定番の動詞"
     },
     {
-      "find": "plethora of",
-      "replace": "lots of",
-      "family": "nouns"
+      "find": "鍵となる",
+      "replace": "決め手になる",
+      "family": "定番の動詞"
     },
     {
-      "find": "plethora",
-      "replace": "lots",
-      "family": "nouns"
+      "find": "鍵を握る",
+      "replace": "決め手になる",
+      "family": "定番の動詞"
     },
     {
-      "find": "arsenal",
-      "replace": "set",
-      "family": "nouns"
+      "find": "可能性を秘めています",
+      "replace": "見込みがあります",
+      "family": "定番の動詞"
     },
     {
-      "find": "north star",
-      "replace": "goal",
-      "family": "nouns"
+      "find": "可能性を秘めた",
+      "replace": "見込みのある",
+      "family": "定番の動詞"
     },
     {
-      "find": "moreover",
-      "replace": "also",
-      "family": "connectives"
+      "find": "シームレスに",
+      "replace": "スムーズに",
+      "family": "カタカナ語"
     },
     {
-      "find": "furthermore",
-      "replace": "also",
-      "family": "connectives"
+      "find": "シームレスな",
+      "replace": "スムーズな",
+      "family": "カタカナ語"
     },
     {
-      "find": "additionally",
-      "replace": "also",
-      "family": "connectives"
+      "find": "ゲームチェンジャー",
+      "replace": "大きな変化",
+      "family": "カタカナ語"
     },
     {
-      "find": "nevertheless",
-      "replace": "still",
-      "family": "connectives"
+      "find": "パラダイムシフト",
+      "replace": "大きな変化",
+      "family": "カタカナ語"
     },
     {
-      "find": "consequently",
-      "replace": "so",
-      "family": "connectives"
+      "find": "シナジー",
+      "replace": "相乗効果",
+      "family": "カタカナ語"
     },
     {
-      "find": "thus",
-      "replace": "so",
-      "family": "connectives"
+      "find": "エコシステム",
+      "replace": "仕組み",
+      "family": "カタカナ語"
     },
     {
-      "find": "hence",
-      "replace": "so",
-      "family": "connectives"
+      "find": "ソリューション",
+      "replace": "解決策",
+      "family": "カタカナ語"
     },
     {
-      "find": "notably",
-      "replace": "",
-      "family": "connectives"
+      "find": "ポテンシャル",
+      "replace": "可能性",
+      "family": "カタカナ語"
     },
     {
-      "find": "importantly",
-      "replace": "",
-      "family": "connectives"
+      "find": "ベストプラクティス",
+      "replace": "うまいやり方",
+      "family": "カタカナ語"
     },
     {
-      "find": "ultimately",
-      "replace": "in the end",
-      "family": "connectives"
+      "find": "なアプローチ",
+      "replace": "なやり方",
+      "family": "カタカナ語"
     },
     {
-      "find": "in essence",
-      "replace": "basically",
-      "family": "connectives"
+      "find": "革新的な",
+      "replace": "新しい",
+      "family": "大げさ"
     },
     {
-      "find": "in conclusion",
-      "replace": "so",
-      "family": "connectives"
+      "find": "画期的な",
+      "replace": "新しい",
+      "family": "大げさ"
     },
     {
-      "find": "when it comes to",
-      "replace": "with",
-      "family": "connectives"
+      "find": "包括的な",
+      "replace": "まとまった",
+      "family": "大げさ"
     },
     {
-      "find": "in order to",
-      "replace": "to",
-      "family": "connectives"
+      "find": "網羅的な",
+      "replace": "まとまった",
+      "family": "大げさ"
     },
     {
-      "find": "a wide range of",
-      "replace": "many",
-      "family": "connectives"
+      "find": "多角的な",
+      "replace": "いろんな面からの",
+      "family": "大げさ"
     },
     {
-      "find": "it is worth noting that",
-      "replace": "note that",
-      "family": "connectives"
+      "find": "完全ガイド",
+      "replace": "ガイド",
+      "family": "大げさ"
     },
     {
-      "find": "supercharge",
-      "replace": "speed up",
-      "family": "verbs"
+      "find": "徹底解説",
+      "replace": "解説",
+      "family": "大げさ"
     },
     {
-      "find": "skyrocket",
-      "replace": "raise",
-      "family": "verbs"
+      "find": "完全解説",
+      "replace": "解説",
+      "family": "大げさ"
     },
     {
-      "find": "unleash",
-      "replace": "release",
-      "family": "verbs"
+      "find": "の秘訣",
+      "replace": "のコツ",
+      "family": "大げさ"
     },
     {
-      "find": "effortlessly",
-      "replace": "easily",
-      "family": "adjectives"
-    },
-    {
-      "find": "captivating",
-      "replace": "interesting",
-      "family": "adjectives"
-    },
-    {
-      "find": "stunning",
-      "replace": "good",
-      "family": "adjectives"
-    },
-    {
-      "find": "breathtaking",
-      "replace": "striking",
-      "family": "adjectives"
-    },
-    {
-      "find": "iconic",
-      "replace": "known",
-      "family": "adjectives"
-    },
-    {
-      "find": "must-have",
-      "replace": "worth having",
-      "family": "adjectives"
-    },
-    {
-      "find": "no-brainer",
-      "replace": "obvious",
-      "family": "nouns"
-    },
-    {
-      "find": "hidden gem",
-      "replace": "good one",
-      "family": "nouns"
-    },
-    {
-      "find": "secret sauce",
-      "replace": "the actual method",
-      "family": "nouns"
-    },
-    {
-      "find": "ultimate guide",
-      "replace": "guide",
-      "family": "nouns"
-    },
-    {
-      "find": "level up",
-      "replace": "improve",
-      "family": "verbs"
-    },
-    {
-      "find": "hack",
-      "replace": "trick",
-      "family": "nouns"
+      "find": "の極意",
+      "replace": "のコツ",
+      "family": "大げさ"
     }
   ],
   "phrases": [
     {
-      "find": "in today's fast-paced world",
-      "replace": "right now",
-      "family": "openers"
-    },
-    {
-      "find": "in today's digital age",
-      "replace": "right now",
-      "family": "openers"
-    },
-    {
-      "find": "in the ever-evolving landscape of",
-      "replace": "in",
-      "family": "openers"
-    },
-    {
-      "find": "in the ever-changing world of",
-      "replace": "in",
-      "family": "openers"
-    },
-    {
-      "find": "let's face it",
+      "find": "急速に変化する現代において、",
       "replace": "",
-      "family": "openers"
+      "family": "前置き"
     },
     {
-      "find": "here's the thing",
+      "find": "目まぐるしく変化する現代において、",
       "replace": "",
-      "family": "openers"
+      "family": "前置き"
     },
     {
-      "find": "picture this",
+      "find": "現代社会において、",
       "replace": "",
-      "family": "openers"
+      "family": "前置き"
     },
     {
-      "find": "imagine a world where",
-      "replace": "imagine if",
-      "family": "openers"
-    },
-    {
-      "find": "it's no secret that",
+      "find": "現代において、",
       "replace": "",
-      "family": "openers"
+      "family": "前置き"
     },
     {
-      "find": "we've all been there",
+      "find": "昨今、",
       "replace": "",
-      "family": "openers"
+      "family": "前置き"
     },
     {
-      "find": "let that sink in",
+      "find": "いかがでしたでしょうか？",
       "replace": "",
-      "family": "closers"
+      "family": "締め"
     },
     {
-      "find": "the choice is yours",
+      "find": "いかがでしたでしょうか",
       "replace": "",
-      "family": "closers"
+      "family": "締め"
     },
     {
-      "find": "food for thought",
+      "find": "いかがでしたか？",
       "replace": "",
-      "family": "closers"
+      "family": "締め"
     },
     {
-      "find": "the future is here",
+      "find": "いかがでしたか",
       "replace": "",
-      "family": "closers"
+      "family": "締め"
     },
     {
-      "find": "what are your thoughts?",
+      "find": "スクロールする手を止めて",
       "replace": "",
-      "family": "closers"
+      "family": "インスタ定番"
     },
     {
-      "find": "drop a comment below",
+      "find": "スクロールしないで",
       "replace": "",
-      "family": "closers"
+      "family": "インスタ定番"
     },
     {
-      "find": "at the end of the day",
+      "find": "この動画では、",
       "replace": "",
-      "family": "closers"
+      "family": "インスタ定番"
     },
     {
-      "find": "needle-moving",
-      "replace": "useful",
-      "family": "closers"
-    },
-    {
-      "find": "move the needle",
-      "replace": "make a difference",
-      "family": "closers"
-    },
-    {
-      "find": "a testament to",
-      "replace": "proof of",
-      "family": "nouns"
-    },
-    {
-      "find": "had the opportunity to",
-      "replace": "got to",
-      "family": "connectives"
-    },
-    {
-      "find": "i am excited to announce",
+      "find": "今日の動画では、",
       "replace": "",
-      "family": "openers"
+      "family": "インスタ定番"
     },
     {
-      "find": "i'm thrilled to share",
+      "find": "今回の動画では、",
       "replace": "",
-      "family": "openers"
+      "family": "インスタ定番"
     },
     {
-      "find": "i am humbled to",
+      "find": "最後まで見逃さないで",
       "replace": "",
-      "family": "openers"
+      "family": "インスタ定番"
     },
     {
-      "find": "without further ado",
+      "find": "最後まで見てね",
       "replace": "",
-      "family": "openers"
+      "family": "インスタ定番"
     },
     {
-      "find": "buckle up",
+      "find": "最後まで見てください",
       "replace": "",
-      "family": "openers"
+      "family": "インスタ定番"
     },
     {
-      "find": "the harsh truth is",
+      "find": "いいねとフォローお願いします",
       "replace": "",
-      "family": "openers"
+      "family": "インスタ定番"
     },
     {
-      "find": "spoiler alert",
+      "find": "いいね・保存お願いします",
       "replace": "",
-      "family": "openers"
+      "family": "インスタ定番"
     },
     {
-      "find": "read that again",
+      "find": "最後まで見てくれてありがとう",
       "replace": "",
-      "family": "closers"
+      "family": "インスタ定番"
     },
     {
-      "find": "you're welcome",
+      "find": "最後まで読んでいただきありがとうございました",
       "replace": "",
-      "family": "closers"
+      "family": "締め"
     },
     {
-      "find": "save this for later",
+      "find": "少しでも参考になれば幸いです",
       "replace": "",
-      "family": "closers"
+      "family": "締め"
     },
     {
-      "find": "who's with me",
+      "find": "参考になれば幸いです",
       "replace": "",
-      "family": "closers"
+      "family": "締め"
     },
     {
-      "find": "stop scrolling",
+      "find": "ぜひ参考にしてみてください",
       "replace": "",
-      "family": "openers"
+      "family": "締め"
     },
     {
-      "find": "don't scroll past this",
+      "find": "ぜひ参考にしてください",
       "replace": "",
-      "family": "openers"
+      "family": "締め"
     },
     {
-      "find": "in this video i'm going to show you",
+      "find": "本記事では、",
       "replace": "",
-      "family": "openers"
+      "family": "前置き"
     },
     {
-      "find": "in today's video",
+      "find": "この記事では、",
       "replace": "",
-      "family": "openers"
+      "family": "前置き"
     },
     {
-      "find": "watch till the end",
-      "replace": "",
-      "family": "openers"
+      "find": "ぜひ試してみてください",
+      "replace": "試してみてください",
+      "family": "締め"
     },
     {
-      "find": "you won't believe",
-      "replace": "",
-      "family": "openers"
+      "find": "ぜひ一度",
+      "replace": "一度",
+      "family": "締め"
     },
     {
-      "find": "nobody is talking about this",
-      "replace": "few people do this",
-      "family": "openers"
+      "find": "ぜひチェックしてみてください",
+      "replace": "チェックしてみてください",
+      "family": "締め"
     },
     {
-      "find": "no one is talking about this",
-      "replace": "few people do this",
-      "family": "openers"
+      "find": "ぜひ活用してみてください",
+      "replace": "使ってみてください",
+      "family": "締め"
     },
     {
-      "find": "this changed everything",
-      "replace": "this worked",
-      "family": "openers"
-    },
-    {
-      "find": "this is your sign to",
-      "replace": "",
-      "family": "openers"
-    },
-    {
-      "find": "little did i know",
-      "replace": "",
-      "family": "connectives"
-    },
-    {
-      "find": "fast forward to today",
-      "replace": "now",
-      "family": "connectives"
-    },
-    {
-      "find": "and just like that",
-      "replace": "",
-      "family": "connectives"
-    },
-    {
-      "find": "the rest is history",
-      "replace": "",
-      "family": "closers"
-    },
-    {
-      "find": "run don't walk",
-      "replace": "",
-      "family": "closers"
-    },
-    {
-      "find": "trust me on this one",
-      "replace": "",
-      "family": "closers"
-    },
-    {
-      "find": "don't sleep on this",
-      "replace": "",
-      "family": "closers"
-    },
-    {
-      "find": "follow for more",
-      "replace": "",
-      "family": "closers"
-    },
-    {
-      "find": "hit follow for more",
-      "replace": "",
-      "family": "closers"
-    },
-    {
-      "find": "double tap if",
-      "replace": "",
-      "family": "closers"
-    },
-    {
-      "find": "tag someone who needs this",
-      "replace": "",
-      "family": "closers"
-    },
-    {
-      "find": "let me know in the comments",
-      "replace": "",
-      "family": "closers"
-    },
-    {
-      "find": "share this with someone who needs it",
-      "replace": "",
-      "family": "closers"
-    },
-    {
-      "find": "the algorithm loves",
-      "replace": "Instagram pushes",
-      "family": "nouns"
-    },
-    {
-      "find": "beat the algorithm",
-      "replace": "get reach",
-      "family": "nouns"
-    },
-    {
-      "find": "go viral overnight",
-      "replace": "get reach",
-      "family": "nouns"
+      "find": "てみてはいかがでしょうか",
+      "replace": "てみてください",
+      "family": "締め"
     }
   ],
   "structures": [
     {
       "id": "not-just",
-      "regex": "(?i)\\bit'?s not (?:just|only) [^.!?\\n]{2,60}[,.] it'?s\\b",
-      "name": "\"It's not just X, it's Y\"",
-      "fix": "Say the one thing you actually mean. Delete the setup half."
-    },
-    {
-      "id": "not-only",
-      "regex": "(?i)\\bnot only\\b[^.!?\\n]{2,80}\\bbut also\\b",
-      "name": "\"Not only X but also Y\"",
-      "fix": "Split into two sentences, or drop the weaker half."
+      "regex": "(?:だけ|のみ)(?:で)?(?:なく|はなく)[、,]?[^。！？\\n]{1,40}(?:も|まで)|単なる[^。！？\\n]{1,30}(?:ではなく|じゃなく)",
+      "name": "「〜だけでなく、〜も」「単なる〜ではなく」",
+      "fix": "本当に言いたい1つを言う。前置きの半分は消す。"
     },
     {
       "id": "isnt-about",
-      "regex": "(?i)\\b(?:this|it) is(?:n'?t| not) about [^.!?\\n]{2,60}[.!] it'?s about\\b",
-      "name": "\"It isn't about X. It's about Y.\"",
-      "fix": "Lead with Y. The reversal is the tell."
+      "regex": "(?:大切|重要|大事|本質)なのは[^。！？\\n]{1,40}(?:ではなく|じゃなく)",
+      "name": "「大切なのは〜ではなく〜」",
+      "fix": "後半から始める。ひっくり返す形そのものがAIのくせ。"
     },
     {
       "id": "the-result",
-      "regex": "(?i)^\\s*(?:the result|the best part|the kicker|the catch)\\?\\s*$",
-      "name": "One-word rhetorical question line",
-      "fix": "Answer it inline instead of staging a reveal."
+      "regex": "(?m)^\\s*(?:その)?(?:結果|答え|理由|結論|正解|ポイント|秘密)は[？?]\\s*$",
+      "name": "1行だけの問いかけ（「その結果は？」）",
+      "fix": "もったいぶらず、その場で答える。"
     },
     {
       "id": "heres-what",
-      "regex": "(?i)\\bhere'?s what (?:i|we) learned\\b",
-      "name": "\"Here's what I learned\"",
-      "fix": "State the lesson. Skip the announcement."
+      "regex": "(?:わかった|学んだ|気づいた)こと(?:を|は)[^。\\n]{0,10}(?:紹介|まとめ|シェア|お伝え)",
+      "name": "「学んだことをシェアします」",
+      "fix": "学んだことを言う。予告はいらない。"
     },
     {
       "id": "triad",
-      "regex": "(?i)\\b\\w+, \\w+, and \\w+\\.",
-      "name": "Rule-of-three triad",
-      "fix": "Two items or four. Three is the model's default rhythm."
+      "regex": "[^、。！？\\n]{1,15}、[^、。！？\\n]{1,15}、そして[^、。！？\\n]{1,15}|(?:ポイント|コツ|理由|方法|メリット)は(?:3|三|３)つ",
+      "name": "3つ並べ（「A、B、そしてC」「ポイントは3つ」）",
+      "fix": "2つか4つにする。3つはAIの初期設定のリズム。"
     },
     {
       "id": "rocket",
-      "regex": "[\\U0001F680\\U0001F525\\U0001F4A1\\u2728\\U0001F3AF]",
-      "name": "Rocket / fire / bulb / sparkle / dart emoji",
-      "fix": "One emoji max, and not one of these five."
+      "regex": "[🚀🔥💡✨🎯]",
+      "name": "🚀🔥💡✨🎯 の絵文字",
+      "fix": "絵文字は1つまで。この5つ以外で。"
     },
     {
       "id": "hashtag-wall",
-      "regex": "(?:#\\w+[ \\t]*){5,}",
-      "name": "Hashtag wall (5+)",
-      "fix": "Three hashtags. LinkedIn stopped rewarding the wall."
+      "regex": "(?:[#＃][^\\s#＃]+[ \\t　]*){5,}",
+      "name": "ハッシュタグの壁（5個以上を連ねる）",
+      "fix": "3個くらいに絞る。上限は5個。"
     },
     {
       "id": "as-an-ai",
-      "regex": "(?i)\\bas an ai\\b|\\bas a language model\\b",
-      "name": "Model self-reference",
-      "fix": "Delete the sentence."
+      "regex": "(?:AI|言語モデル|人工知能)(?:として|なので|である私)",
+      "name": "AIが自分のことを言う",
+      "fix": "その文を消す。"
     },
     {
       "id": "in-summary",
-      "regex": "(?i)^\\s*(?:in summary|to summarize|in conclusion)\\b",
-      "name": "Essay-closer opener",
-      "fix": "A post does not need a conclusion paragraph."
+      "regex": "(?m)^\\s*(?:まとめると|要するに|結論として|総じて|以上のように|いかがでしたか)",
+      "name": "作文の締めの出だし（「まとめると」）",
+      "fix": "投稿に結論の段落はいらない。"
     },
     {
       "id": "engagement-bait",
-      "regex": "(?i)\\b(?:agree\\?|thoughts\\?|who else\\b|am i wrong\\?)\\s*$",
-      "name": "Reflex engagement bait",
-      "fix": "Ask a question only you could ask, about the specific thing above it."
+      "regex": "(?:どう思いますか|皆さんはいかがですか|みなさんはどうですか|共感した人は(?:いいね|コメント))[？?！!]?\\s*$",
+      "name": "反射の問いかけ（「皆さんはどう思いますか？」）",
+      "fix": "上の中身についての、自分にしか聞けない問いにする。"
     },
     {
       "id": "stop-scroll",
-      "regex": "(?im)^\\s*(?:stop scrolling|don'?t scroll|wait[,.]? don'?t scroll)\\b",
-      "name": "\"Stop scrolling\" opener",
-      "fix": "The scroll-stop has to be the claim itself. Asking for attention is the tell that you have not earned it."
+      "regex": "(?m)^\\s*(?:ちょっと待って|待って[！!]|スクロール(?:しないで|を止めて|する手を止めて))",
+      "name": "「ちょっと待って」で始める",
+      "fix": "手を止めさせるのは中身そのもの。注目を頼むのは、まだ掴めていない証拠。"
     },
     {
       "id": "in-this-video",
-      "regex": "(?i)\\b(?:in (?:this|today'?s) (?:video|reel|post)|today i'?m going to show you|i'?m going to (?:show|teach) you how)\\b",
-      "name": "Video preamble (\"in this video I'm going to show you\")",
-      "fix": "Delete it and start at the payoff. The first two seconds decide the whole reel."
+      "regex": "この動画では|今回の動画では|今日の動画では|(?:今日|今回)は[^。！？\\n]{0,25}(?:紹介|解説|お話し)(?:します|していきます)",
+      "name": "動画の前置き（「今日は〜を紹介します」）",
+      "fix": "消して、答えから始める。最初の2秒でリールの全部が決まる。"
     },
     {
       "id": "emoji-bullets",
-      "regex": "(?m)^\\s*[\\U0001F300-\\U0001FAFF✅➡⬅✔✨]\\s*\\S",
-      "name": "Emoji bullet list",
-      "fix": "Use a hyphen or a line break. Emoji bullets are the single most template-looking thing in a caption."
+      "regex": "(?m)^\\s*[🌀-🫿✅➡⬅✔✨☑]\\s*\\S",
+      "name": "絵文字の箇条書き",
+      "fix": "「・」か改行にする。絵文字の箇条書きは、キャプションでいちばんテンプレに見える物。"
     },
     {
       "id": "caps-shout",
       "regex": "\\b[A-Z]{3,}\\b(?:\\s+\\b[A-Z]{3,}\\b){2,}",
-      "name": "Three or more shouted words in a row",
-      "fix": "Caps are a volume knob, not a highlighter. One word, at most."
+      "name": "英字の大文字の連続（叫び）",
+      "fix": "大文字は音量のつまみで、蛍光ペンではない。1語まで。"
     },
     {
       "id": "follow-bait",
-      "regex": "(?i)\\b(?:follow for more|tag someone who|double tap if|share this if|comment below if)\\b",
-      "name": "Reflex follow or tag bait",
-      "fix": "Ask for the one action this post actually earns. The generic ask trains the audience to ignore every ask."
+      "regex": "フォローしてね|フォローお願いします|いいねお願いします|いいねしてね|保存してね|シェアしてね|参考になったら(?:いいね|保存|フォロー)|タグ付けして",
+      "name": "反射のフォロー・保存のお願い",
+      "fix": "この投稿が本当にもらえる1つの行動だけを頼む。決まり文句のお願いは、全部のお願いを無視させる。"
+    },
+    {
+      "id": "deshou-ka",
+      "regex": "ではないでしょうか|のではないでしょうか",
+      "name": "「〜ではないでしょうか」",
+      "fix": "言い切る。やわらげる問いかけはAIの日本語の定番。"
+    },
+    {
+      "id": "cheer",
+      "regex": "(?:しましょう|みましょう|いきましょう)[！!]",
+      "name": "「〜しましょう！」の掛け声",
+      "fix": "1つの投稿に1回まで。続くと教科書の口調になる。"
+    },
+    {
+      "id": "toha-heading",
+      "regex": "(?m)^\\s*[^。！？\\n]{2,20}とは[？?]\\s*$",
+      "name": "「〜とは？」の見出し",
+      "fix": "見出しにせず、1文で言う。"
+    },
+    {
+      "id": "md-heading",
+      "regex": "(?m)^\\s*#{1,6}\\s+\\S",
+      "name": "マークダウンの見出し記号（## など）",
+      "fix": "インスタでは記号のまま出る。消す。"
     }
   ]
 }

@@ -1,147 +1,136 @@
 ---
 name: ig-reel
 description: >-
-  Write an Instagram Reel from a raw idea - hook options off 26 formulas, the
-  spoken script, the on-screen text, and a timed beat sheet - in the user's own
-  voice and scored before they shoot it. Use whenever the user wants a Reel, a
-  short-form video script, a hook, a voiceover, "make a reel about X", "what
-  should I say in this video", or is about to record and does not have the
-  first line yet.
+  ネタ1つから、インスタのリールの台本を作る。フックの型26種類から3案を出して
+  採点し、話す台本・テロップ・秒割り表まで、本人の話し方で書く（撮る前に点数で
+  確かめる）。「リールの台本を作って」「〇〇についてリールにして」「この動画で
+  何を話せばいい？」「フックを考えて」「ナレーションを書いて」と言われた時、
+  撮る直前なのに1行目が決まっていない時に使う。
 ---
 
 # ig-reel
 
-Turns one raw idea into a Reel that somebody finishes.
+ネタ1つを、最後まで見られるリールにする。
 
-Two tools live in this folder and they both actually run. Use them. Do not
-eyeball the hook and do not guess at the length.
+このフォルダには、本当に動く道具が2つある。使うこと。フックを目分量で
+決めない。長さを当て推量しない。
 
 ```bash
-python3 hookscore.py hooks.txt              # rank your hook options
-python3 hookscore.py --hook "one line"      # score a single one
-python3 beats.py script.txt --target 30     # timed beat sheet before you shoot
+python3 hookscore.py hooks.txt              # フックの案に順位をつける
+python3 hookscore.py --hook "1行だけ"       # 1案だけ採点する
+python3 beats.py script.txt --target 30     # 撮る前の秒割り表
 ```
 
-## Before you write
+Windows で `python3` が無いと言われたら `python` か `py` で動かす。
 
-1. Read `/mnt/project-files/instagram/voice.md` if it exists. That is the user's voice
-   profile: how they talk on camera, what they never say, who they are talking
-   to. If it does not exist, ask for **three of their own reels**, transcribe or
-   read them, infer the voice, and write the file. A script in the wrong voice
-   is unusable, because they have to say it out loud.
-2. Read `hooks.json` in this folder. 26 formulas, each with a template, a filled
-   example, the on-screen version, what it is for, and how it gets ruined.
-   Four of them are in there because they kept turning up in real hooks, not
-   because they completed a pattern.
-3. If the idea is thin, do not pad it. Ask one batched question: what happened,
-   to whom, and what did it cost or return. A Reel needs one specific true
-   thing. Get it before writing.
-4. If `/mnt/project-files/instagram/swipe.md` exists, read it. `/ig-viral` writes that
-   file, and it is the user's own evidence about which formulas are working in
-   their niche right now. It beats the defaults in this file.
+## 書く前に
 
-## The shape
+1. `/mnt/project-files/instagram/voice.md` があれば読む。本人の話し方の設定で、カメラの前で
+   どう話すか、絶対に言わない言葉、誰に向けて話すかが書いてある。無ければ、
+   **本人のリールを3本**もらい、文字起こしか読み込みをして話し方をつかみ、この
+   ファイルを書く。話し方の違う台本は使えない。本人が声に出して言うので。
+2. このフォルダの `hooks.json` を読む。26の型それぞれに、ひな形・記入例・テロップの
+   形・向いている場面・よくある失敗が書いてある。
+3. ネタが薄ければ、水増ししない。まとめて1回だけ聞く。何が起きたか、誰に、それで
+   何を失ったか・何を得たか。リールには本当の具体的な事実が1つ要る。書く前にそれを
+   もらう。
+4. `/mnt/project-files/instagram/swipe.md` があれば読む。`/ig-viral` が書くファイルで、本人の
+   ジャンルで今どの型が効いているかの、本人自身の証拠。このファイルの初期値より優先する。
 
-A Reel is decided in the first two seconds and kept by the next five.
+## 形
+
+リールは最初の2秒で決まり、次の5秒で残ってもらえるかが決まる。
 
 ```
-0:00 - 0:02   HOOK        the claim. Spoken line and on-screen line, written
-                          separately. Motion in the first frame, not a static face.
-0:02 - 0:07   THE STAKE   why this matters to the person watching. One line.
-0:07 - ...    THE BODY    one idea per beat, and the frame changes every beat.
-LAST 3s       THE PAYOFF  deliver what the hook promised, then the single ask.
-LAST LINE     THE LOOP    echo one word from the hook so the replay lands clean.
+0:00 - 0:02   フック      言い切り。話す1行とテロップは別々に書く。
+                          最初のコマに動きを。止まった顔だけで始めない。
+0:02 - 0:07   懸かっている物  見ている人にとって、なぜ大事か。1行。
+0:07 - ...    本文        1カットに1つの話。カットごとに画面を変える。
+最後の3秒     答え        フックで約束した物を渡し、お願いを1つだけ。
+最後の1行     ループ      フックの言葉を1つ繰り返して、2回目の再生へきれいにつなぐ。
 ```
 
-Length: 15 to 45 seconds is the working range. Reels run to 3 minutes and
-almost nobody should use it. Under 7 seconds the loop counts inflate and
-nothing else does.
+長さ: 15〜45秒が使える幅。リールは何分もの長さで出せるが、ほとんどの人は使うべきではない。
+7秒未満はループの回数がふくらむだけで、ほかは何も増えない。
 
-## The loop
+## 進め方
 
-**1. Pick three hooks, not one.** Run the idea through `hooks.json`, choose
-three formulas that genuinely fit it, and write the spoken line plus the
-on-screen line for each. Different formulas, not three rewrites of one.
+**1. フックは1つでなく3つ出す。** ネタを `hooks.json` に当て、本当に合う型を3つ選んで、
+それぞれ話す1行とテロップを書く。同じ型の言い換え3つではなく、違う型を3つ。
 
-**2. Score them.** Put the three spoken lines in a file, one per line, and run
-`hookscore.py`. Show the user the ranking. If the top one is under 50, you do
-not have the hook yet and no amount of editing fixes that.
+**2. 採点する。** 話す1行を1行に1案ずつファイルに書き、`hookscore.py` を通す。順位を
+本人に見せる。1位が50点未満なら、まだフックができていない。いくら直しても直らない。
 
-**3. Write the script** on the winning hook. Plain spoken language, the way the
-user actually talks. Contractions. Short lines. No sentence they would have to
-rehearse.
+**3. 勝ったフックで台本を書く。** 本人がふだん話す言葉で。話し言葉の語尾、短い行。
+練習しないと言えない文は入れない。
 
-**4. Time it.** Run `beats.py script.txt --target {length}`. Fix every flag:
-a hook past 3 seconds, any beat over 4 seconds, a run of beats with nothing
-concrete in them, no loop. Re-run until it is clean.
+**4. 秒を測る。** `beats.py script.txt --target {長さ}` を通す。出た注意を全部直す。
+3秒を超えるフック、4秒を超える1カット、具体的な物のない行の連続、ループなし。
+きれいになるまで通し直す。話す速さは voice.md の「話す速さ」があれば `--cps` に入れる
+（分からなければ初期値の1秒に9かなのまま。カット編集後は約10になる）。
 
-**5. Humanize it.** Run the script through `/ig-human` before showing it. A
-written-sounding line is obvious the moment someone says it out loud.
+**5. AIっぽさを消す。** 見せる前に `/ig-human` に通す。書き言葉の1行は、声に出した瞬間に
+ばれる。
 
-**6. Print the block.** The script in a fenced block, the on-screen text as a
-separate list with timings, and then:
+**6. まとめて出す。** 台本はコードブロックに、テロップは秒つきの別の一覧に、それから:
 
 ```
-REEL READY
-hook:       #3 Nobody Tells You, scored 86 STRONG
-length:     28.4s across 9 beats at 165 wpm
-on-screen:  6 cards
-humanizer:  4 artefacts stripped, human score 81 PASS
-caption:    run /ig-caption next
+リール完成
+フック:     #5 時間の短縮、73点（強い）
+長さ:       9カット・約28.4秒（1秒に9かな）
+テロップ:   6枚
+AIっぽさ:   機械の跡を4か所消した、人らしさ81点（合格）
+キャプション: 次は /ig-caption
 
-Reply "yes" to log it, or tell me what to change.
+「OK」で記録します。直す所があれば教えてください。
 ```
 
-**7. Never publish.** This skill produces a script. The user shoots it and
-posts it. On "yes", append to `/mnt/project-files/instagram/log.md` with the date, the
-hook formula used and the first line, so `/ig-audit` has a history later.
+**7. 投稿はしない。** このスキルが作るのは台本。撮るのも投稿するのも本人。「OK」が出たら、
+日付・使ったフックの型・1行目を `/mnt/project-files/instagram/log.md` に足す。あとで `/ig-audit` が
+振り返りに使う。
 
-## On-screen text is a separate script
+## テロップは別の台本
 
-Write it separately, every time. It is read before it is heard.
+毎回、別に書く。聞かれるより先に読まれる。
 
-- **Six words or fewer per card.** It is being read at arm's length by someone
-  who is not listening yet.
-- **The hook card is up at frame 1**, not after a beat of silence.
-- **Keep it inside the safe zone.** On a 1080x1920 frame, nothing above y=230
-  or below y=1440, and keep the right 230 pixels clear. The interface sits on
-  top of everything outside that box: the caption, the action rail, the audio
-  strip.
-- **Never put the hook where the caption sits.** That is the bottom of the
-  frame and it is covered.
-- **Burn in captions for the body.** Most people watch muted first.
+- **1枚15字前後まで。** 腕を伸ばした距離で、まだ音を聞いていない人が読む。
+- **フックのテロップは最初のコマから出す。** 無音の間のあとではなく。
+- **安全な枠の中に置く。** 1080x1920 の画面で、上230px より上・1440px より下には置かない。
+  右の230px も空ける。その外側はインスタの画面（キャプション・右の操作の列・音の帯）が
+  上に重なる。
+- **フックをキャプションの位置に置かない。** 画面の下は隠れる。
+- **本文には字幕を焼き込む。** ほとんどの人は最初、音を消して見る。
 
-## Rules that make the difference
+## 差がつく決まり
 
-- **One idea per Reel.** If the script has two, you have two Reels. Say so.
-- **Numbers over adjectives.** "$4,200" beats "a lot". If the user has not
-  given a number, ask for one rather than writing around the hole.
-- **Cut the intro.** No greeting, no "in this video", no name, no logo sting.
-  The video starts at the sentence you would normally reach at second six.
-- **Change the frame every beat.** A static shot for 8 seconds is where people
-  leave, and `beats.py` will flag it.
-- **One ask at the end.** Comment a keyword, save it, or follow. One.
-- **Never fabricate.** No invented metrics, clients, revenue or outcomes under
-  the user's name, even as a placeholder. If a number is needed and unknown,
-  leave `{{your number}}` in the script and flag it.
-- **Do not write a script around a trending audio the user cannot use.** If the
-  idea needs the user's own voice, say so.
+- **1本に1つの話。** 台本に話が2つあれば、リールが2本ある。そう言う。
+- **形容より数字。** 「20万円」は「けっこうな額」に勝つ。数字をもらっていなければ、
+  穴をよけて書かずに、数字を聞く。
+- **前置きを切る。** あいさつ・「今日は〜を紹介します」・名乗り・ロゴの演出はなし。
+  動画は、ふだんなら6秒目に言う文から始める。
+- **カットごとに画面を変える。** 8秒止まった画面で人は離れる。`beats.py` が知らせる。
+- **最後のお願いは1つ。** 合言葉のコメント、保存、フォローのどれか1つ。
+- **でっちあげない。** 本人の名前で、作った数字・顧客・売上・結果を出さない。仮置きでも。
+  数字が要るのに分からなければ、台本に `{{あなたの数字}}` を残して知らせる。
+- **本人が使えない流行りの音源に合わせて台本を書かない。** 本人の声が要るネタなら、そう言う。
 
-## Example
+## 例
 
 ```
-/ig-reel we cut proposal time from 5 hours to 20 minutes with one template
+/ig-reel テンプレ1つで、提案書づくりが5時間から20分になった
 ```
 
 ```
-HOOKS  (scored)
-  86  STRONG  #5  Time Collapse   "Proposals used to take me five hours. Twenty minutes now."
-                                  on screen: 5 HOURS -> 20 MIN
-  71  STRONG  #1  Cost Confession "I billed four hours a week for formatting. For two years."
-                                  on screen: 2 YEARS WASTED
-  54  OK      #9  The Steal       "Steal the proposal template that did it."
-                                  on screen: STEAL THIS
+フック（採点済み）
+  73  強い     #5  時間の短縮   「提案書に5時間かかっていた。今は20分。」
+                               テロップ: 5時間 → 20分
+  73  強い     #1  損した告白   「書式を整えるだけに、2年で200時間使ってた。」
+                               テロップ: 2年で200時間
+  32  弱い     #9  盗んでいい   「その提案書のひな形、そのまま使っていい。」
+                               テロップ: そのまま使って
 
-Shooting #5: the ratio is believable, it reads in one glance on screen,
-and the number is yours.
+#5 と #1 が同点。#5 で撮ります。比が信じられる範囲で、テロップが一目で読めて、数字が本人の物だから。
+#1 の「2年で200時間」は、本人に確かめていない数字。もらっていなければ `{{あなたの数字}}` で出す。
+#9 は数字がなく、何が手に入るかが1行目で分からない。
+
 ```

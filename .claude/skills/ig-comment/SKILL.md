@@ -1,94 +1,72 @@
 ---
 name: ig-comment
 description: >-
-  Write comments on other people's Instagram posts and reels that read as a
-  person with an opinion, not a bot. Use when the user pastes a post or a reel
-  and wants a comment, says "comment on this", "engage with this", "what do I
-  say here", or wants a batch for their daily engagement round.
+  他の人の投稿やリールに、ボットではなく意見のある人間が書いたと分かるコメントを書く。
+  投稿やリールを貼って「コメントしたい」「これに何て返す？」「交流のコメントを作って」
+  「毎日のコメント回りの分を一括で」と言われたら使う。
 ---
 
 # ig-comment
 
-Commenting is the highest-leverage twenty minutes on Instagram and the easiest
-to do badly. A comment near the top of a reel with 40,000 views is seen by more
-people than most accounts' own posts, and it is the one place where a stranger
-can tap straight through to a profile.
+コメントは、インスタでいちばん効く20分で、いちばん下手にやりやすい。再生4万のリールの上位にあるコメントは、ほとんどのアカウントの自分の投稿より多くの人に見られる。しかも、知らない人がプロフィールへ直接飛べる数少ない場所でもある。
 
-A generic comment is worse than none. It costs a tap that goes nowhere and it
-marks the account as an engagement-pod account to the one person whose opinion
-mattered, which is the creator.
+ありきたりなコメントは、書かないより悪い。タップは行き先を失い、アカウントはエンゲージメントグループ（互いにコメントし合う集まり）の一員だと、いちばん見てほしかった投稿主本人に印象づけてしまう。
 
-## Input
+## 入力
 
-The user pastes the post or reel text, or a screenshot, with the account name.
-If they give a URL you cannot open, ask them to paste it. Do not use a browser
-tool to scrape the feed and do not post anything.
+ユーザーが投稿やリールの文面、またはスクリーンショットを、アカウント名つきで貼る。開けないURLだけが来たら、中身を貼ってもらう。ブラウザのツールでフィードを取りに行かない。何も投稿しない。
 
-## The nine comment types
+## コメントの9つの型
 
-Pick by what the post actually is. Never default to type 1.
+投稿が実際に何かで選ぶ。1番を初期値にしない。
 
-| # | type | when | shape |
+| # | 型 | いつ | 形 |
 | --- | --- | --- | --- |
-| 1 | **Add a datum** | the post makes a claim you can support with a number | "Same for us: 40% of..." |
-| 2 | **Add the missing case** | the post is right but incomplete | "This holds until {condition}." |
-| 3 | **Respectful disagree** | you genuinely think it is wrong | name the agreement first, then the fork |
-| 4 | **Extend one line** | one line in it is the good one | quote it, build on it |
-| 5 | **Ask the real question** | the post skipped the hard part | one question, specific |
-| 6 | **The receipt** | you have done the thing they described | what happened, two sentences |
-| 7 | **The correction** | there is a factual error | be right, be brief, be kind, be sure |
-| 8 | **The reframe** | right facts, wrong frame | "Another way to read this:" |
-| 9 | **The one-liner** | the post needs nothing, you want presence | under 10 words, must be funny or true |
+| 1 | **数字を足す** | 投稿が主張していて、自分が数字で裏づけられる | 「うちも同じで、4割が…」 |
+| 2 | **抜けている場合を足す** | 投稿は正しいが、足りない | 「これは{条件}までは通用します。」 |
+| 3 | **丁寧に反対する** | 本当に違うと思う | 先に同意できる所を言い、そのあと分かれ道を示す |
+| 4 | **1行を伸ばす** | 投稿の中の1行がいい | その行を引いて、続きを積む |
+| 5 | **本当の質問をする** | 投稿が難しい所を飛ばした | 質問は1つ、具体的に |
+| 6 | **実体験** | 投稿の内容を自分もやったことがある | 何が起きたかを2文で |
+| 7 | **訂正** | 事実の誤りがある | 正確に、短く、やさしく、確信がある時だけ |
+| 8 | **見方を変える** | 事実は合っているが、枠組みが違う | 「別の読み方をすると、」 |
+| 9 | **ひとこと** | 足す物はないが、存在は残したい | 15字以内。おもしろいか、本当のことか、どちらかであること |
 
-## Rules
+## 決まり
 
-- **One to three sentences.** Instagram comments are read in a narrow column
-  under a video. A paragraph gets collapsed behind "more" and nobody taps it.
-- **Never open with** "Great post", "Love this", "So true", "This 👏", "Needed
-  this today", or the creator's first name with an exclamation mark. All of
-  them are invisible.
-- **No emoji-only comments** and no emoji as the first character.
-- **Never restate the reel.** Everybody watching just watched it.
-- **One idea.** A comment with two points reads as a hijack.
-- **Say the specific thing.** If the comment could sit under any post on the
-  topic, it is not a comment, it is noise.
-- **No pitching, ever.** Not the offer, not the link, not "check out my page".
-  That is the fastest way to be blocked by exactly the person you were trying
-  to reach.
-- **Early matters more here than anywhere.** A comment in the first hour on a
-  reel that then travels gets carried with it.
+- **1〜3文。** インスタのコメントは、動画の下の細い列で読まれる。段落は「続きを読む」の裏に折りたたまれて、誰もタップしない。
+- **次の書き出しは使わない。** 「素敵な投稿ですね」「いいですね」「わかります」「これ最高」「勉強になります」「今日これが必要でした」、投稿主の名前に「！」をつけただけの呼びかけ。全部、目に入らない。
+- **絵文字だけのコメントは書かない。** 絵文字を1文字目に置かない。
+- **リールの内容をなぞり直さない。** 見ている人はみんな、いま見終わったところ。
+- **考えは1つ。** 2つの主張が入ったコメントは、乗っ取りに見える。
+- **具体的なことを言う。** そのテーマのどの投稿の下にも置けるコメントは、コメントではなく雑音。
+- **宣伝は絶対にしない。** 商品も、リンクも、「プロフィールも見てください」も。いちばん届けたかった相手にブロックされる、最短の道。
+- **ここでは、ほかのどこより早さが大事。** 最初の1時間のコメントは、そのリールが広がれば、一緒に運ばれる。
 
-## Output
+## 出力
 
-Give **two options of different types**, labelled, plus one line on which you
-would post and why. Run both through `/ig-human` first: comments are short, so
-an em dash or a stock phrase is proportionally louder than it is in a caption.
+**型の違う案を2つ**、ラベルをつけて出し、どちらを投稿するかと理由を1行添える。先に両方を `/ig-human`（AIっぽさ消し）に通す。自分の目で見直すだけで済ませず、このスキルの隣の `ig-human` フォルダの `detect.py` を実際に動かし、点数を最後に1行で書く。コメントは短いので、決まり文句や不自然な記号は、キャプションよりずっと目立つ。
+
+「数字を足す」「実体験」の型に入れる数字と体験は、ユーザーからもらった物だけ。もらっていなければ `{{あなたの数字}}` で残すか、その型を使わない。
 
 ```
-COMMENT OPTIONS  (on @acct's reel about pricing)
+コメント案  （@acct のリール「値付け」について）
 
-[6 · Receipt]
-We raised ours 40% last March and lost exactly one client, who was the one
-taking up half the inbox. Took eight months to stop being scared of it.
+[6 · 実体験]
+うちも去年の3月に4割値上げして、離れたのは1社だけ。やりとりの半分を
+占めていた会社でした。怖くなくなるまで8か月かかりました。
 
-[3 · Respectful disagree]
-Agree on the anchoring. The part I would push back on is doing it mid-project.
-We tried that and it cost us a renewal that was otherwise fine.
+[3 · 丁寧に反対する]
+最初に基準を見せるのは同意です。ただ、案件の途中でやるのは違うと思います。
+うちはそれで、本来は問題なかった更新を1件落としました。
 
-Post the first. It concedes something and it has a number in it.
+1つ目を投稿する。何かを認めていて、数字も入っているから。
 ```
 
-## Batch mode
+## 一括モード
 
-For an engagement round, ask for the 5 to 10 posts as pasted text in one
-message, return one comment each in a single block, and keep a running note in
-`/mnt/project-files/instagram/log.md` of who has been commented on this week.
-Commenting on the same three accounts every day is visible and it looks like
-exactly what it is.
+交流の時間用に、5〜10件の投稿を1回のメッセージでテキストとして貼ってもらい、1件につきコメント1つを1つのブロックで返す。今週だれにコメントしたかを、`/mnt/project-files/instagram/log.md` に控えとして残していく。毎日同じ3アカウントにコメントすると、目に見えて分かるし、その通りの動きに見える。
 
-## Never
+## やってはいけないこと
 
-Do not auto-post, do not automate comments, and do not use a browser tool to
-publish on the user's behalf. Automated engagement violates Instagram's Terms
-of Use and gets accounts action-blocked. This skill writes the comment. The
-user posts it.
+自動投稿しない。コメントを自動化しない。ブラウザのツールで、ユーザーの代わりに公開しない。自動化された交流はInstagramの利用規約に反し、アカウントに操作制限がかかる。このスキルが書くのはコメントまで。投稿するのはユーザー。

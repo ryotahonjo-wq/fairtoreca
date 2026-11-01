@@ -1,43 +1,49 @@
 #!/usr/bin/env python3
 """
-humanize.py - strip the machine fingerprint out of a draft.
+humanize.py - 下書きから、機械が書いた跡を消す。日本語版。
 
-Three passes, in this order:
+この順に3回通す。
 
-  1. INVISIBLE   delete or normalise the characters a human keyboard never
-                 produces: zero-width joiners, word joiners, soft hyphens,
-                 BOMs, Unicode tag characters, non-breaking and narrow spaces.
-                 These survive copy-paste and are the most mechanical tell in
-                 any generated text.
-  2. TYPOGRAPHIC em dash -> comma, en dash -> hyphen, curly quotes -> straight,
-                 ellipsis -> three dots, bullet -> hyphen.
-  3. LEXICAL     replace the slop lexicon in slop.json with plain words,
-                 preserving capitalisation and leaving URLs untouched.
+  1. 見えない文字  キーボードでは打てない文字を消すか、ふつうの空白にする。
+                   幅ゼロの空白、つなぎ文字、ソフトハイフン、BOM、タグ文字、
+                   改行しない空白など。コピーしても残り、生成文のいちばん機械的な跡。
+                   全角の空白（U+3000）は日本語でふつうに使うので触らない。
+                   絵文字どうしをつなぐ文字（家族の絵文字など）も残す。
+  2. 記号          長いダッシュ（— ―）→「、」、数字の間の短いダッシュ → 「〜」、
+                   英語のかぎ（“”）→「」、黒丸（•）→「・」、マークダウンの太字（**）
+                   と見出し記号（##）を消す。三点リーダー（…）と矢印（→）は日本語で
+                   ふつうに使うので触らない。
+  3. 言い回し      slop.json の決まり文句を、ふつうの言い方に置き換える。
+                   日本語は活用で形が変わるので、文が壊れない単位（「することができ」
+                   →「でき」など）で置き換える。リンクの中は触らない。
 
-Structural tells (rule-of-three, "not just X, it's Y", hashtag walls) are
-REPORTED, never auto-rewritten - rewriting a sentence's shape needs judgement,
-so that is the model's job, not a regex's.
+文の形の跡（3つ並べ、「〜だけでなく〜も」、文末が同じ形の連続など）は、知らせる
+だけで書き換えない。文の形を変えるには判断が要るので、それは正規表現ではなく
+AI（あなた）の仕事。
 
-Usage
+使い方
   python3 humanize.py draft.txt
   python3 humanize.py draft.txt --report
-  pbpaste | python3 humanize.py - --report
+  python3 humanize.py draft.txt -o clean.txt --report
   python3 humanize.py draft.txt --json
-  python3 humanize.py draft.txt -o clean.txt
 """
 
 import argparse
 import json
 import os
 import re
+import statistics
 import sys
 import unicodedata
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-LEX = os.path.join(HERE, "slop.json")
+sys.path.insert(0, HERE)
+import jp  # noqa: E402
 
+LEX = os.path.join(HERE, "slop.json")
 URL_RE = re.compile(r"https?://\S+|www\.\S+|\S+@\S+\.\S+")
-SENT_RE = re.compile(r"[^.!?\n]+[.!?]*")
+EMOJI_CP = re.compile(r"[\U0001F000-\U0001FAFF☀-➿]")
+ZWJ = "‍"
 
 
 def load_lexicon(path=LEX):
@@ -46,7 +52,7 @@ def load_lexicon(path=LEX):
 
 
 def _cp(spec):
-    """'U+200B' -> '\\u200b';  'U+E0000-U+E007F' -> (start, end)."""
+    """'U+200B' -> 0x200b、'U+E0000-U+E007F' -> (始め, 終わり)"""
     if "-" in spec:
         a, b = spec.split("-")
         return (int(a[2:], 16), int(b[2:], 16))
@@ -54,7 +60,7 @@ def _cp(spec):
 
 
 def protect_urls(text):
-    """Swap URLs for placeholders so no pass rewrites inside a link."""
+    """どの処理もリンクの中を書き換えないように、リンクを目印に置き換えておく。"""
     found = []
 
     def stash(m):
@@ -70,9 +76,25 @@ def restore_urls(text, found):
     return text
 
 
+def _emoji_zwj_mask(text):
+    """絵文字どうしをつなぐ ZWJ の位置。ここは消さない。"""
+    keep = set()
+    for i, c in enumerate(text):
+        if c == ZWJ and 0 < i < len(text) - 1:
+            prev = text[i - 1]
+            if prev == "️" and i > 1:
+                prev = text[i - 2]
+            if EMOJI_CP.match(prev) and EMOJI_CP.match(text[i + 1]):
+                keep.add(i)
+    return keep
+
+
 def pass_invisible(text, lex):
-    """Delete or space-normalise invisible characters. Returns (text, hits)."""
+    """見えない文字を消すか空白にする。(text, 記録) を返す。"""
     hits = []
+    keep = _emoji_zwj_mask(text)
+    if keep:
+        text = "".join("\x00ZWJ\x00" if i in keep else c for i, c in enumerate(text))
     for entry in lex["invisible"]:
         cp = _cp(entry["cp"])
         if isinstance(cp, tuple):
@@ -84,13 +106,12 @@ def pass_invisible(text, lex):
             hits.append({"name": entry["cp"] + " " + entry["name"], "count": n,
                          "action": entry["action"]})
             text = re.sub(pattern, "" if entry["action"] == "delete" else " ", text)
-    # Any remaining Cf (format) character is invisible by definition.
+    # 残った書式文字（Cf）は、名前が分からなくても見えない文字。
     stray = [c for c in text if unicodedata.category(c) == "Cf"]
     if stray:
-        hits.append({"name": "other invisible format chars", "count": len(stray),
-                     "action": "delete"})
+        hits.append({"name": "その他の見えない書式文字", "count": len(stray), "action": "delete"})
         text = "".join(c for c in text if unicodedata.category(c) != "Cf")
-    return text, hits
+    return text.replace("\x00ZWJ\x00", ZWJ), hits
 
 
 def pass_typographic(text, lex):
@@ -100,116 +121,101 @@ def pass_typographic(text, lex):
         n = text.count(ch)
         if not n:
             continue
-        hits.append({"name": f"{ch} {entry['name']}", "count": n, "to": entry["to"].strip() or "(space)"})
-        if ch == "—":
-            # " word — word " and "word—word" both collapse to a comma + space.
-            text = re.sub(r"\s*—\s*", ", ", text)
+        hits.append({"name": f"{ch} {entry['name']}", "count": n, "to": entry["to"] or "（消す）"})
+        if ch in ("—", "―"):
+            # 文の終わりの後のダッシュは「。」、それ以外は「、」。
+            text = re.sub(r"\s*[—―]+\s*", "\x00D\x00", text)
+            text = re.sub(r"(です|ます|でした|ました|ません|だ|った|ない|よ|ね)\x00D\x00", r"\1。", text)
+            text = text.replace("\x00D\x00", "、")
         elif ch == "–":
-            text = re.sub(r"\s*–\s*(?=\d)", "-", text)      # 5–10  -> 5-10
-            text = re.sub(r"\s+–\s+", ", ", text)            # used as em dash
+            text = re.sub(r"(?<=\d)\s*–\s*(?=\d)", "〜", text)     # 5–10 -> 5〜10
             text = text.replace("–", "-")
         else:
             text = text.replace(ch, entry["to"])
-    # A comma inserted before existing punctuation reads wrong.
-    text = re.sub(r",\s*([,.;:!?])", r"\1", text)
-    text = re.sub(r",\s*\n", "\n", text)
+    heads = len(re.findall(r"(?m)^[ \t]*#{1,6}[ \t]+(?=\S)", text))
+    if heads:
+        hits.append({"name": "## マークダウンの見出し記号", "count": heads, "to": "（消す）"})
+        text = re.sub(r"(?m)^[ \t]*#{1,6}[ \t]+(?=\S)", "", text)
+    # ダッシュを「、」にした後の、句読点の重なりを直す。
+    text = re.sub(r"、\s*([、。！？!?」])", r"\1", text)
+    text = re.sub(r"(?m)^、", "", text)
+    text = re.sub(r"、\n", "\n", text)
     return text, hits
-
-
-def _match_case(src, repl):
-    if not repl:
-        return repl
-    if src.isupper() and len(src) > 1:
-        return repl.upper()
-    if src[0].isupper():
-        return repl[0].upper() + repl[1:]
-    return repl
 
 
 def pass_lexical(text, lex):
-    """Replace slop words and phrases. Longest first so phrases win."""
+    """決まり文句を置き換える。長い物から先に（言い回しの単位を優先）。"""
     hits = []
-    entries = sorted(lex["phrases"] + lex["words"],
-                     key=lambda e: len(e["find"]), reverse=True)
+    entries = sorted(lex["phrases"] + lex["words"], key=lambda e: len(e["find"]), reverse=True)
     for entry in entries:
         find = entry["find"]
-        pattern = re.compile(r"\b" + re.escape(find).replace(r"\ ", r"\s+") + r"\b",
-                             re.IGNORECASE)
-        found = pattern.findall(text)
-        if not found:
+        n = text.count(find)
+        if not n:
             continue
-        hits.append({"find": find, "replace": entry["replace"] or "(deleted)",
-                     "count": len(found), "family": entry["family"]})
-        text = pattern.sub(lambda m: _match_case(m.group(0), entry["replace"]), text)
-    # Clean up after deletions. Deleting a whole clause leaves orphaned
-    # punctuation behind ("system. ." or a line that now opens on a comma),
-    # and that reads worse than the slop did.
+        hits.append({"find": find, "replace": entry["replace"] or "（消す）",
+                     "count": n, "family": entry["family"]})
+        text = text.replace(find, entry["replace"])
+    # 消した後の後始末。消えた言い回しの句読点が残ると、元より読みにくい。
     text = re.sub(r"[ \t]{2,}", " ", text)
-    text = re.sub(r"(?m)^[ \t]*(?:[,.;:]+[ \t]*)+", "", text)
-    text = re.sub(r"(?m)^[ \t](?=\S)", "", text)       # one space left by a deletion.
-                                                      # Deeper indents are deliberate.
-    text = re.sub(r"\s+([,.;:!?])", r"\1", text)
-    text = re.sub(r",\s*([,.;:!?])", r"\1", text)      # an em dash became a comma,
-                                                      # then the clause after it went
-    text = text.replace("...", "\x00ELL\x00")          # protect real ellipses
-    text = re.sub(r"\.\s*\.+", ".", text)
-    text = re.sub(r"([!?])\s*\.", r"\1", text)
-    text = text.replace("\x00ELL\x00", "...")
+    text = re.sub(r"(?m)^[ \t]*[、。，．]+[ \t]*", "", text)
+    text = re.sub(r"[、，]\s*([、。！？!?])", r"\1", text)
+    text = re.sub(r"。\s*。+", "。", text)
+    text = re.sub(r"([！？!?])\s*。", r"\1", text)
+    text = re.sub(r"(?m)^[ \t]*[！？!?。、]+[ \t]*$", "", text)   # 消した文の句読点だけが残った行
     text = re.sub(r"(?m)^[ \t]+$", "", text)
     text = re.sub(r"\n{3,}", "\n\n", text)
-    # An em dash that became a comma, followed by a sentence connective, leaves
-    # a splice ("is important, also, it's proof"). Promote it to a full stop.
-    text = re.sub(r",\s*(also|so|still|basically|in the end)\s*,\s*",
-                  lambda m: ". " + m.group(1)[0].upper() + m.group(1)[1:] + ", ", text)
     return text, hits
+
+
+def ending(sentence):
+    """文末の形（句読点の前の2文字）。"""
+    s = re.sub(r"[。．！？!?…」』）)\s]+$", "", sentence)
+    return s[-2:] if len(s) >= 2 else s
 
 
 def scan_structures(text, lex):
     flags = []
     for s in lex["structures"]:
         try:
-            pattern = re.compile(s["regex"], re.MULTILINE)
+            pattern = re.compile(s["regex"])
         except re.error:
             continue
         found = pattern.findall(text)
         if found:
             flags.append({"name": s["name"], "count": len(found), "fix": s["fix"]})
-    # Sentence-length uniformity is structural too.
-    lens = [len(s.split()) for s in SENT_RE.findall(text) if len(s.split()) > 2]
+    sents = jp.sentences(text)
+    # 文末が同じ形で3回以上続く（「〜ます。〜ます。〜ます。」）。
+    run, longest, form = 1, 1, ""
+    ends = [ending(s) for s in sents]
+    for a, b in zip(ends, ends[1:]):
+        run = run + 1 if a == b and a else 1
+        if run > longest:
+            longest, form = run, b
+    if longest >= 3:
+        flags.append({
+            "name": f"文末が{longest}回続けて同じ形（〜{form}）",
+            "count": longest,
+            "fix": "どれか1文の終わりを変える。言い切り・体言止め・問いかけ・「ね」「よ」を混ぜる。",
+        })
+    # 文の長さがそろいすぎている。
+    lens = [len(s) for s in sents]
     if len(lens) >= 4:
-        mean = sum(lens) / len(lens)
-        var = sum((n - mean) ** 2 for n in lens) / len(lens)
-        cv = (var ** 0.5) / mean if mean else 0
-        if cv < 0.35:
+        mean = statistics.mean(lens)
+        cv = statistics.pstdev(lens) / mean if mean else 0
+        if cv < 0.25:
             flags.append({
-                "name": f"Uniform sentence length (variation {cv:.2f})",
+                "name": f"文の長さがそろいすぎ（ばらつき {cv:.2f}）",
                 "count": len(lens),
-                "fix": "Break one sentence in half. Let another run long. Machines write even.",
+                "fix": "1文を半分に切る。別の1文は長くしていい。機械は同じ長さで書く。",
             })
     return flags
 
 
-def restore_capitals(original, text):
-    """Deleting an opener leaves the next word lower case.
-
-    Only fix it for writers who capitalise their sentences in the first place:
-    a deliberately lower-case voice is a style, not an artefact, and shouting
-    over it would be exactly the kind of thing this script exists to stop.
-    """
-    starts = re.findall(r"(?:^|[.!?]\s+|\n)\s*([A-Za-z])", original)
-    if not starts or sum(1 for c in starts if c.isupper()) * 2 < len(starts):
-        return text
-    return re.sub(r"(?:^|(?<=[.!?] )|(?<=[.!?]\n)|(?<=\n))\s*([a-z])",
-                  lambda m: m.group(0)[:-1] + m.group(1).upper(), text)
-
-
 def humanize(text, lex):
-    raw_for_case = text
     text, urls = protect_urls(text)
     text, inv = pass_invisible(text, lex)
     text, typo = pass_typographic(text, lex)
     text, lexi = pass_lexical(text, lex)
-    text = restore_capitals(raw_for_case, text)
     text = restore_urls(text, urls)
     return text.strip() + "\n", {
         "invisible": inv,
@@ -221,45 +227,45 @@ def humanize(text, lex):
 
 def render_report(report, out=sys.stderr):
     def head(title):
-        print(f"\n{title}\n" + "-" * len(title), file=out)
+        print(f"\n{title}\n" + "-" * 40, file=out)
 
     total = sum(h["count"] for h in report["invisible"]) \
         + sum(h["count"] for h in report["typographic"]) \
         + sum(h["count"] for h in report["lexical"])
 
-    head("HUMANIZE REPORT")
-    print(f"{total} machine artefacts removed, "
-          f"{len(report['structures'])} structural tells flagged for rewrite", file=out)
+    head("AIっぽさ消しの記録")
+    print(f"機械の跡を{total}か所消した。文の形の跡は{len(report['structures'])}種類、"
+          "書き直し用に知らせる", file=out)
 
     if report["invisible"]:
-        head("1. INVISIBLE CHARACTERS")
+        head("1. 見えない文字")
         for h in report["invisible"]:
-            print(f"  {h['count']:>3}x  {h['name']}  -> {h['action']}", file=out)
+            print(f"  {h['count']:>3}か所  {h['name']}  -> {h['action']}", file=out)
     if report["typographic"]:
-        head("2. TYPOGRAPHY")
+        head("2. 記号")
         for h in report["typographic"]:
-            print(f"  {h['count']:>3}x  {h['name']}  -> {h['to']}", file=out)
+            print(f"  {h['count']:>3}か所  {h['name']}  -> {h['to']}", file=out)
     if report["lexical"]:
-        head("3. SLOP LEXICON")
+        head("3. 決まり文句")
         for h in report["lexical"]:
-            print(f"  {h['count']:>3}x  {h['find']}  -> {h['replace']}   [{h['family']}]", file=out)
+            print(f"  {h['count']:>3}か所  {h['find']}  -> {h['replace']}   [{h['family']}]", file=out)
     if report["structures"]:
-        head("4. STRUCTURAL TELLS  (not auto-fixed - rewrite these yourself)")
+        head("4. 文の形の跡（自動では直さない。自分で書き直す）")
         for h in report["structures"]:
-            print(f"  {h['count']:>3}x  {h['name']}\n        {h['fix']}", file=out)
+            print(f"  {h['count']:>3}回  {h['name']}\n        {h['fix']}", file=out)
     if not any(report.values()):
-        head("CLEAN")
-        print("  Nothing to strip.", file=out)
+        head("きれい")
+        print("  消す物はなかった。", file=out)
     print("", file=out)
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Strip the machine fingerprint out of a draft.")
-    ap.add_argument("input", nargs="?", default="-", help="file, or - for stdin")
-    ap.add_argument("-o", "--out", help="write cleaned text here instead of stdout")
-    ap.add_argument("--report", action="store_true", help="print what changed, to stderr")
-    ap.add_argument("--json", action="store_true", help="emit {text, report} as JSON")
-    ap.add_argument("--lexicon", default=LEX, help="path to slop.json")
+    ap = argparse.ArgumentParser(description="下書きから機械の跡を消す（日本語版）。")
+    ap.add_argument("input", nargs="?", default="-", help="ファイル。- で標準入力")
+    ap.add_argument("-o", "--out", help="直した文をここに書く（指定しなければ画面に出す）")
+    ap.add_argument("--report", action="store_true", help="何を変えたかを出す")
+    ap.add_argument("--json", action="store_true", help="{text, report} を JSON で出す")
+    ap.add_argument("--lexicon", default=LEX, help="slop.json の場所")
     args = ap.parse_args()
 
     raw = sys.stdin.read() if args.input == "-" else open(args.input, encoding="utf-8").read()
@@ -272,7 +278,7 @@ def main():
     if args.out:
         with open(args.out, "w", encoding="utf-8") as fh:
             fh.write(clean)
-        print(f"wrote {args.out}", file=sys.stderr)
+        print(f"書き出し: {args.out}", file=sys.stderr)
     else:
         sys.stdout.write(clean)
     if args.report:
@@ -280,4 +286,7 @@ def main():
 
 
 if __name__ == "__main__":
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
     main()

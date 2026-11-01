@@ -1,93 +1,132 @@
 #!/usr/bin/env python3
 """
-caption.py - lint an Instagram caption and show exactly what the feed shows
-before the "... more".
+caption.py - インスタのキャプションを検査し、フィードで「…続きを読む」の前に
+何が見えるかをそのまま見せる。日本語版。
 
-Instagram gives a caption about 125 characters in the feed and hides the rest
-behind a tap. Almost every caption that fails, fails there: the hook is in
-sentence three, or the first line is a greeting, or the whole thing opens on a
-hashtag. This prints the visible window as a box so you can read it the way a
-scrolling stranger does, then checks the eight things that are worth checking.
+英語版は「前から約125文字」で切っていた。日本語は1文字の幅が英字の約2倍で、
+しかも行で切られるので、文字数では見積もれない。ここでは画面の幅（全角2・
+半角1）で1行ずつ折り返し、最初の2行（1行目はユーザーネームの分だけ短い）に
+入る所までを「見える部分」とする。改行を入れると、その行はそこで終わる。
 
-The 125-character cut is an approximation. The real number moves with the
-device, the font size and where your line breaks fall, which is exactly why
-you want a margin rather than a caption engineered to end at 125. Change it
-with --truncate if you want to test a tighter one.
+見える行数・1行の幅は機種・文字の大きさ・表示する場所で変わる。初期値は
+iPhone のフィードの見当（1行に全角約23字・2行）。自分のスマホで1回確かめて、
+--width と --lines で合わせる。リールの画面のキャプションはもっと短い（1行ほど）。
 
-Usage
+使い方
   python3 caption.py caption.txt
-  python3 caption.py caption.txt --keywords "proposal software,client contract"
-  pbpaste | python3 caption.py -
+  python3 caption.py caption.txt --keywords "提案書,見積もり"
+  python3 caption.py caption.txt --handle your_name    # 1行目の頭に出るユーザーネーム
+  python3 caption.py caption.txt --lines 1             # リールの画面で見る時
   python3 caption.py caption.txt --json
 """
 
 import argparse
 import json
+import os
 import re
 import sys
-import textwrap
 
-LIMIT = 2200             # Instagram's hard caption limit.
-TRUNCATE = 125           # Roughly where the feed cuts to "... more".
-HASHTAG_LIMIT = 5        # Instagram's cap per post or reel since 18 Dec 2025,
-                         # down from 30. Announced by the @Creators account:
-                         # "using fewer (up to 5) more targeted hashtags,
-                         # rather than many generic ones, can improve both your
-                         # content's performance and people's experience".
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import jp  # noqa: E402
 
-HASHTAG_RE = re.compile(r"(?:^|\s)(#[A-Za-z0-9_]+)")
-MENTION_RE = re.compile(r"(?:^|\s)(@[A-Za-z0-9_.]+)")
-LINK_RE = re.compile(r"https?://\S+|\bwww\.\S+|\b[a-z0-9-]+\.(?:com|co|io|net|org|ai|app)/\S*",
+LIMIT = 2200             # キャプションの上限（文字）。
+LINE_WIDTH = 46          # 1行の幅（半角1・全角2で数える）。全角なら約23字。
+LINES = 2                # 「…続きを読む」の前に見える行数。
+HANDLE_WIDTH = 14        # 1行目の頭のユーザーネームの幅の見当（--handle で正確に）。
+TAIL = "… 続きを読む"
+HASHTAG_LIMIT = 5        # 1投稿のハッシュタグの上限。2025年12月18日から（それまでは30）。
+                         # インスタの @Creators の説明: 一般的なタグをたくさん付けるより、
+                         # 絞った5個までのほうが、投稿の成績にも見る人の体験にも良い。
+
+HASHTAG_RE = re.compile(r"(?:^|(?<=[\s　]))(#[^\s#＃　、。！？!?,，.]+)")
+FULLWIDTH_TAG_RE = re.compile(r"＃[^\s#＃　、。]+")
+MENTION_RE = re.compile(r"(?:^|(?<=[\s　]))(@[A-Za-z0-9_.]+)")
+LINK_RE = re.compile(r"https?://\S+|\bwww\.\S+|\b[a-z0-9-]+\.(?:com|co|io|net|org|ai|app|jp)/\S*",
                      re.IGNORECASE)
-EMOJI_RE = re.compile(r"[\U0001F300-\U0001FAFF☀-➿←-⇿️]")
-CONCRETE_RE = re.compile(r"\$\s?\d|\b\d[\d,.]*\b|(?<!^)\b[A-Z][a-z]{2,}\b", re.MULTILINE)
+EMOJI_RE = re.compile(r"[\U0001F300-\U0001FAFF☀-➿️]")
 
 ASKS = [
-    (re.compile(r"(?i)\bcomment (?:the word |\")?[A-Z0-9]{2,}\b"), "comment a keyword"),
-    (re.compile(r"(?i)\b(?:dm|message) me\b"), "DM me"),
-    (re.compile(r"(?i)\bsave (?:this|it)\b"), "save this"),
-    (re.compile(r"(?i)\bshare (?:this|it)\b"), "share this"),
-    (re.compile(r"(?i)\bfollow (?:me|for)\b"), "follow"),
-    (re.compile(r"(?i)\blink in (?:my )?bio\b"), "link in bio"),
-    (re.compile(r"(?i)\b(?:swipe|tap) (?:through|left|right|for|to)\b"), "swipe or tap"),
-    (re.compile(r"(?i)\btell me\b|\bwhat would you\b|\bwhich one\b"), "answer a question"),
+    (re.compile(r"[「『\"][^」』\"\n]{1,15}[」』\"]\s*(?:と|って)\s*コメント|コメント(?:して|してね|ください|で|欄に)"),
+     "コメント（合言葉）"),
+    (re.compile(r"DM(?:して|ください|で|ちょうだい|お待ち)|メッセージ(?:して|ください)"), "DM"),
+    (re.compile(r"保存(?:して|しておいて|しといて|推奨|必須|がおすすめ)"), "保存"),
+    (re.compile(r"シェア(?:して|してね|ください)|(?:友達|誰か)に(?:送って|教えて)"), "シェア"),
+    (re.compile(r"フォロー(?:して|してね|お願い|ください|すると|はこちら)"), "フォロー"),
+    (re.compile(r"プロフ(?:ィール)?(?:の|から|欄の)(?:リンク|URL|ＵＲＬ)|プロフから"), "プロフィールのリンク"),
+    (re.compile(r"スワイプ(?:して|してね)|(?:右|左)に(?:めくって|スワイプ)"), "スワイプ"),
+    (re.compile(r"教えて(?:ね|ください|下さい)?[！!。]?|どっち派|どれ派|どっちが(?:好き|いい)"), "質問に答える"),
 ]
 
-FILLER_TAGS = {"#viral", "#fyp", "#explore", "#explorepage", "#foryou", "#foryoupage",
-               "#trending", "#instagood", "#love", "#follow", "#like4like", "#reels",
-               "#reelsinstagram", "#viralreels", "#instadaily"}
+FILLER_TAGS = {
+    "#viral", "#fyp", "#explore", "#explorepage", "#foryou", "#foryoupage", "#trending",
+    "#instagood", "#love", "#follow", "#like4like", "#reels", "#reelsinstagram",
+    "#viralreels", "#instadaily", "#followme", "#f4f", "#l4l",
+    "#おすすめ", "#おすすめにのりたい", "#おすすめ載りたい", "#バズれ", "#バズりたい",
+    "#拡散希望", "#いいね返し", "#フォロー返し", "#相互フォロー", "#いいねした人で気になった人フォロー",
+    "#リール", "#インスタ", "#インスタグラム", "#instagram", "#フォロー", "#いいね",
+}
 
 
-def visible_window(text, cut):
-    """What the feed shows. Instagram cuts mid-word, so this does too."""
+def visible_window(text, width=LINE_WIDTH, lines=LINES, handle_w=HANDLE_WIDTH):
+    """フィードで見える部分。1行目はユーザーネームの分だけ短い。切れる時は最後の行に「…続きを読む」が入る。"""
     flat = text.strip()
-    return flat if len(flat) <= cut else flat[:cut]
+    caps = [max(4, width - handle_w - 1)] + [width] * (lines - 1)
+
+    def fit(capacities):
+        out, li, used = [], 0, 0
+        for c in flat:
+            if c == "\n":
+                li, used = li + 1, 0
+                if li >= len(capacities):
+                    return "".join(out), True
+                out.append(c)
+                continue
+            w = jp.width(c)
+            if used + w > capacities[li]:
+                li, used = li + 1, 0
+                if li >= len(capacities):
+                    return "".join(out), True
+            out.append(c)
+            used += w
+        return "".join(out), False
+
+    shown, cut = fit(caps)
+    if cut:                                        # 最後の行は「…続きを読む」の分だけ短い
+        caps[-1] = max(4, caps[-1] - jp.width(TAIL))
+        shown, cut = fit(caps)
+    return shown, cut
 
 
-def render_box(window, truncated, out=sys.stdout, width=52):
-    print("\n  WHAT THE FEED SHOWS", file=out)
+def render_box(window, truncated, out=sys.stdout, width=LINE_WIDTH, handle="ユーザーネーム"):
+    print("\n  フィードで見える部分（1行目の頭はユーザーネーム）", file=out)
     print("  +" + "-" * (width + 2) + "+", file=out)
-    lines = []
-    for raw in window.split("\n"):
-        lines.extend(textwrap.wrap(raw, width) or [""])
-    for line in lines[:8]:
-        print(f"  | {line:<{width}} |", file=out)
-    tail = "... more" if truncated else "(whole caption fits)"
-    print("  +" + "-" * (width + 2 - len(tail) - 2) + f" {tail} " + "+", file=out)
+    for line in (handle + " " + window).split("\n"):
+        while jp.width(line) > width:              # 表示用の折り返し
+            cut, w = 0, 0
+            for i, c in enumerate(line):
+                w += jp.width(c)
+                if w > width:
+                    break
+                cut = i + 1
+            print(f"  | {line[:cut]}{' ' * (width - jp.width(line[:cut]))} |", file=out)
+            line = line[cut:]
+        print(f"  | {line}{' ' * (width - jp.width(line))} |", file=out)
+    tail = TAIL if truncated else "（全部見えている）"
+    print("  +" + "-" * max(1, width + 2 - jp.width(tail) - 2) + f" {tail} " + "+", file=out)
 
 
-def analyse(text, cut=TRUNCATE, keywords=None):
+def analyse(text, width=LINE_WIDTH, lines=LINES, handle_w=HANDLE_WIDTH, keywords=None,
+            handle="ユーザーネーム"):
     text = text.rstrip()
     stripped = text.strip()
     chars = len(stripped)
-    lines = [l for l in stripped.split("\n")]
-    first_line = lines[0].strip() if lines else ""
+    first_line = stripped.split("\n")[0].strip() if stripped else ""
     tags = HASHTAG_RE.findall(stripped)
+    fw_tags = FULLWIDTH_TAG_RE.findall(stripped)
     mentions = MENTION_RE.findall(stripped)
     links = LINK_RE.findall(stripped)
     emoji = EMOJI_RE.findall(stripped)
-    window = visible_window(stripped, cut)
-    truncated = chars > cut
+    window, truncated = visible_window(stripped, width, lines, handle_w)
     asks = [name for pattern, name in ASKS if pattern.search(stripped)]
     filler = [t for t in tags if t.lower() in FILLER_TAGS]
     keywords = [k.strip() for k in (keywords or []) if k.strip()]
@@ -97,80 +136,79 @@ def analyse(text, cut=TRUNCATE, keywords=None):
     def add(name, status, detail):
         checks.append({"check": name, "status": status, "detail": detail})
 
-    add("LENGTH", "FAIL" if chars > LIMIT else "PASS",
-        f"{chars} / {LIMIT} characters" + (f", {chars - LIMIT} over the limit"
-                                           if chars > LIMIT else ""))
+    add("長さ", "FAIL" if chars > LIMIT else "PASS",
+        f"{chars} / {LIMIT}字" + (f"、上限を{chars - LIMIT}字超えている" if chars > LIMIT else ""))
 
     if not first_line:
-        add("FIRST LINE", "FAIL", "the caption opens on a blank line")
-    elif first_line.startswith("#") or first_line.startswith("@"):
-        add("FIRST LINE", "FAIL",
-            "opens on a hashtag or a mention, which is the one position worth a sentence")
-    elif len(first_line) > cut:
-        add("FIRST LINE", "WARN",
-            f"{len(first_line)} characters, so it gets cut at {cut} mid-thought. "
-            "Fine if the cut is a cliffhanger, bad if it is a subordinate clause")
+        add("1行目", "FAIL", "空行から始まっている")
+    elif first_line.startswith(("#", "@", "＃")):
+        add("1行目", "FAIL", "ハッシュタグかメンションから始まっている。いちばん価値のある場所に文がない")
+    elif len(first_line) > len(window.split("\n")[0].strip()):
+        add("1行目", "WARN",
+            f"{len(first_line)}字あり、見える部分の途中で切れる。"
+            "続きが気になる所で切れているなら良し、文の途中の説明で切れているなら悪い")
     else:
-        add("FIRST LINE", "PASS", f"{len(first_line)} characters, lands whole")
+        add("1行目", "PASS", f"{len(first_line)}字、切れずに全部見える")
 
-    add("HOOK IS CONCRETE", "PASS" if CONCRETE_RE.search(window) else "WARN",
-        f"{len(CONCRETE_RE.findall(window))} number(s) or name(s) in the visible window"
-        + ("" if CONCRETE_RE.search(window) else " - nothing checkable before the tap"))
+    found = jp.concrete(window)
+    add("具体性", "PASS" if found else "WARN",
+        f"見える部分に数字・名前が{len(found)}個" + (f"（{', '.join(found[:3])}）" if found else
+                                                    "。続きを押す前に確かめられる物がない"))
 
     if len(tags) > HASHTAG_LIMIT:
-        add("HASHTAGS", "FAIL", f"{len(tags)} tags, over Instagram's cap of {HASHTAG_LIMIT}. "
-                                "Tags past the fifth do not count and the block reads as old")
+        add("ハッシュタグ", "FAIL", f"{len(tags)}個。上限の{HASHTAG_LIMIT}個を超えている。"
+                                   "6個目から先は数えられず、ハッシュタグの壁は古く見える")
     elif len(tags) == HASHTAG_LIMIT and filler:
-        add("HASHTAGS", "WARN", f"{len(tags)} tags, at the cap, and "
-                                f"{len(filler)} of them generic. Spend the five on topics")
+        add("ハッシュタグ", "WARN", f"{len(tags)}個で上限いっぱい、うち{len(filler)}個が何も表さないタグ。"
+                                   "5枠はテーマに使う")
     elif filler:
-        add("HASHTAGS", "WARN", f"{len(tags)} tags, {len(filler)} of them generic "
-                                f"({', '.join(filler[:3])}). Those describe nothing")
+        add("ハッシュタグ", "WARN", f"{len(tags)}個、うち{len(filler)}個が何も表さないタグ"
+                                   f"（{', '.join(filler[:3])}）")
     else:
-        add("HASHTAGS", "PASS", f"{len(tags)} tag(s)" + (f": {' '.join(tags)}" if tags else ""))
+        add("ハッシュタグ", "PASS", f"{len(tags)}個" + (f": {' '.join(tags)}" if tags else ""))
+    if fw_tags:
+        add("全角の＃", "WARN", f"{len(fw_tags)}個（{' '.join(fw_tags[:3])}）。全角の＃はハッシュタグに"
+                                "ならない。半角の # にする")
 
     if not tags:
-        add("TAG PLACEMENT", "PASS", "no tags to place")
-    elif any(re.search(r"(?:^|\s)" + re.escape(t) + r"\b", window) for t in tags):
-        add("TAG PLACEMENT", "WARN", "a hashtag is inside the visible window, "
-                                     "spending feed space on a label")
+        add("タグの位置", "PASS", "置くタグがない")
+    elif any(t in window for t in tags):
+        add("タグの位置", "WARN", "見える部分にハッシュタグがある。フィードの場所をラベルに使っている")
     else:
-        add("TAG PLACEMENT", "PASS", "tags are below the fold")
+        add("タグの位置", "PASS", "タグは「続きを読む」の後ろ")
 
-    add("LINKS", "WARN" if links else "PASS",
-        f"{len(links)} link(s) in the caption, and captions are not clickable. "
-        f"Move it to the bio or the DM" if links else "no dead links in the body")
+    add("リンク", "WARN" if links else "PASS",
+        f"キャプションにリンクが{len(links)}個。キャプションのリンクは押せない。"
+        "プロフィールか DM に移す" if links else "押せないリンクはない")
 
     if len(asks) == 1:
-        add("ONE ASK", "PASS", f"one call to action: {asks[0]}")
+        add("お願いは1つ", "PASS", f"お願いは1つ: {asks[0]}")
     elif not asks:
-        add("ONE ASK", "WARN", "no call to action. Decide what this post is for")
+        add("お願いは1つ", "WARN", "お願いがない。この投稿が何のためにあるかを決める")
     else:
-        add("ONE ASK", "WARN", f"{len(asks)} asks ({', '.join(asks)}). "
-                               "Two asks is the same as none")
+        add("お願いは1つ", "WARN", f"お願いが{len(asks)}つ（{', '.join(asks)}）。2つのお願いは、ないのと同じ")
 
     density = len(emoji) * 100 / max(chars, 1)
-    add("EMOJI", "WARN" if density > 4 else "PASS",
-        f"{len(emoji)} emoji, {density:.1f} per 100 characters"
-        + (" - reads as decoration" if density > 4 else ""))
+    add("絵文字", "WARN" if density > 5 else "PASS",
+        f"{len(emoji)}個、100字あたり{density:.1f}個" + ("。飾りに見える" if density > 5 else ""))
 
     if keywords:
-        low = stripped.lower()
-        found = [k for k in keywords if k.lower() in low]
-        missing = [k for k in keywords if k.lower() not in low]
-        in_window = [k for k in found if k.lower() in window.lower()]
-        status = "PASS" if not missing else ("WARN" if found else "FAIL")
-        add("SEARCH TERMS", status,
-            f"{len(found)}/{len(keywords)} present"
-            + (f", {len(in_window)} in the visible window" if found else "")
-            + (f". Missing: {', '.join(missing)}" if missing else ""))
+        found_k = [k for k in keywords if k.lower() in stripped.lower()]
+        missing = [k for k in keywords if k.lower() not in stripped.lower()]
+        in_window = [k for k in found_k if k.lower() in window.lower()]
+        status = "PASS" if not missing else ("WARN" if found_k else "FAIL")
+        add("検索される言葉", status,
+            f"{len(found_k)}/{len(keywords)}個入っている"
+            + (f"、うち見える部分に{len(in_window)}個" if found_k else "")
+            + (f"。入っていない: {', '.join(missing)}" if missing else ""))
 
     fails = sum(1 for c in checks if c["status"] == "FAIL")
     warns = sum(1 for c in checks if c["status"] == "WARN")
     verdict = "FIX" if fails else ("REVIEW" if warns else "READY")
 
     return {
-        "characters": chars, "limit": LIMIT, "truncate_at": cut,
+        "characters": chars, "limit": LIMIT,
+        "line_width": width, "lines": lines, "handle": handle,
         "visible": window, "truncated": truncated,
         "first_line_chars": len(first_line),
         "hashtags": tags, "mentions": mentions, "links": links,
@@ -179,30 +217,41 @@ def analyse(text, cut=TRUNCATE, keywords=None):
     }
 
 
+STATUS_JA = {"PASS": "OK  ", "WARN": "注意", "FAIL": "NG  "}
+VERDICT_JA = {"READY": "出せる", "REVIEW": "見直す", "FIX": "直す"}
+
+
 def render(a, out=sys.stdout):
-    head = (f"CAPTION LINT  ·  {a['characters']} / {a['limit']} chars  ·  "
-            f"{len(a['hashtags'])} hashtags  ·  {len(a['asks'])} ask(s)")
+    head = (f"キャプションの検査  ·  {a['characters']} / {a['limit']}字  ·  "
+            f"ハッシュタグ{len(a['hashtags'])}個  ·  お願い{len(a['asks'])}つ")
     print("\n" + head, file=out)
-    print("=" * max(len(head), 62), file=out)
-    render_box(a["visible"], a["truncated"], out=out)
+    print("=" * 62, file=out)
+    render_box(a["visible"], a["truncated"], out=out, width=a["line_width"], handle=a["handle"])
     print("", file=out)
     for c in a["checks"]:
-        print(f"  {c['status']:<5} {c['check']:<17} {c['detail']}", file=out)
-    print("-" * max(len(head), 62), file=out)
-    print(f"  VERDICT  {a['verdict']}\n", file=out)
+        name = c["check"] + " " * max(0, 16 - jp.width(c["check"]))
+        print(f"  {STATUS_JA[c['status']]}  {name} {c['detail']}", file=out)
+    print("-" * 62, file=out)
+    print(f"  判定  {VERDICT_JA[a['verdict']]}\n", file=out)
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Lint an Instagram caption.")
-    ap.add_argument("input", nargs="?", default="-", help="caption file, or - for stdin")
-    ap.add_argument("--truncate", type=int, default=TRUNCATE,
-                    help=f"characters shown before '... more' (default {TRUNCATE})")
-    ap.add_argument("--keywords", default="", help="comma-separated terms you want to be found for")
+    ap = argparse.ArgumentParser(description="インスタのキャプションを検査する（日本語版）。")
+    ap.add_argument("input", nargs="?", default="-", help="キャプションのファイル。- で標準入力")
+    ap.add_argument("--width", type=int, default=LINE_WIDTH,
+                    help=f"1行の幅。全角2・半角1で数える（初期値 {LINE_WIDTH}＝全角約23字）")
+    ap.add_argument("--lines", type=int, default=LINES,
+                    help=f"「続きを読む」の前に見える行数（初期値 {LINES}。リールの画面は1）")
+    ap.add_argument("--handle", default=None, help="1行目の頭に出るユーザーネーム（幅の計算に使う）")
+    ap.add_argument("--keywords", default="", help="見つけてほしい言葉。カンマ区切り")
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args()
 
     raw = sys.stdin.read() if args.input == "-" else open(args.input, encoding="utf-8").read()
-    a = analyse(raw, cut=args.truncate, keywords=args.keywords.split(","))
+    handle_w = jp.width(args.handle) if args.handle else HANDLE_WIDTH
+    a = analyse(raw, width=args.width, lines=args.lines, handle_w=handle_w,
+                keywords=re.split(r"[,、，]", args.keywords),
+                handle=args.handle or "ユーザーネーム")
     if args.json:
         print(json.dumps(a, indent=2, ensure_ascii=False))
     else:
@@ -211,4 +260,7 @@ def main():
 
 
 if __name__ == "__main__":
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
     main()

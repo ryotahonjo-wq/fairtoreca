@@ -1,95 +1,72 @@
 ---
 name: ig-reply
 description: >-
-  Handle the comments under the user's own reels and posts - draft replies to
-  the ones worth answering, sorted by which ones are. Use when the user pastes
-  their comments, says "reply to these", "handle my comments", "someone said X
-  on my reel", or is dealing with a critic, a hater or a lead in the comments.
+  自分のリールや投稿のコメント欄に返信する。返す価値のある順に仕分けして、返信の下書きを作る。
+  コメントを貼って「返信して」「コメントを捌いて」「リールにこう言われた」と言われた時や、
+  批判する人、荒らし、見込み客がコメント欄にいる時に使う。
 ---
 
 # ig-reply
 
-The comment thread under your own post is where reach is decided. Every reply
-is another interaction on the post, replies arriving in the first hour do most
-of the work, and on Instagram a reply can also be a Reel, which is the single
-most underused move on the platform.
+自分の投稿の下のコメント欄は、リーチが決まる場所。返信の1つ1つが、その投稿への反応として数えられ、最初の1時間の返信がいちばん効く。しかもインスタでは、返信をリールにできる。プラットフォームでいちばん使われていない一手。
 
-But the value is not equal across comments, so this skill sorts before it
-writes.
+ただし、コメントの価値は一律ではない。だから、このスキルは書く前に仕分ける。
 
-## Input
+## 入力
 
-The user pastes the comments, ideally with handles. Screenshots are fine. Do
-not scrape the thread with a browser tool.
+ユーザーがコメントを、できればユーザーネームつきで貼る。スクリーンショットでもよい。ブラウザのツールでスレッドを取りに行かない。
 
-## Triage first
+## まず仕分ける
 
-Sort every comment into one of six buckets and say the counts out loud:
+すべてのコメントを6つの箱に分け、件数を声に出して言う。
 
-| bucket | what it is | what it gets |
+| 箱 | 中身 | 対応 |
 | --- | --- | --- |
-| **KEYWORD** | the word you asked them to comment | the promised thing, sent by hand or by your approved tool |
-| **LEAD** | someone describing the problem you solve | a real answer in public, then a door |
-| **SUBSTANCE** | adds data, disagrees, extends | the longest reply on the thread |
-| **QUESTION** | a question a lot of people have | this one becomes a Reel, not just a reply |
-| **SUPPORT** | "🔥", "great post", a tag | a like, and 3 to 8 words at most |
-| **NOISE** | pitch, spam, bad faith, bait | nothing, or one line and out |
+| **合言葉** | こちらがコメントしてほしいと頼んだ言葉 | 約束した物を、手で、または公式に認められたツールで送る |
+| **見込み客** | こちらが解決する問題を説明している人 | 公の場で本気の答えを返し、そのあと入口を示す |
+| **中身のあるコメント** | 数字を足す、反対する、伸ばす | スレッドで最長の返信 |
+| **質問** | 多くの人が持っているはずの質問 | これは返信ではなくリールにする |
+| **応援** | 「🔥」「いい投稿」、タグ付け | いいねと、多くても10字ほどの返事 |
+| **雑音** | 宣伝、スパム、悪意、釣り | 返信しない、または1行で終わる |
 
-Write in that order and stop when the value stops.
+その順に書き、価値がなくなったところで止める。
 
-## The move most people miss
+## 多くの人が見逃す一手
 
-If a question in the comments is one that thirty other people also have,
-**reply to it with a Reel**. Instagram will attach the comment to the new video
-as a sticker, the person who asked gets notified, and a question with real
-demand behind it becomes a post with the hook already written for you. Flag
-every QUESTION that qualifies and hand it to `/ig-reel` as formula #16.
+コメント欄の質問が、ほかの30人も持っている質問なら、**その返信をリールでやる**。Instagramはそのコメントを新しい動画にステッカーとして貼り、質問した人に通知が行く。実際の需要がある質問は、フックが先に書かれた投稿になる。条件を満たす質問には全部印を付け、`/ig-reel` に#16 そのままの質問として渡す。
 
-## How to reply
+## 返信の仕方
 
-- **Answer the actual question.** If someone asks how, tell them how, in the
-  reply. Do not send them to the DMs to hear an answer they could have had.
-- **Use their name once**, at the start, without an exclamation mark.
-- **Match their length.** A four-word comment does not get a four-line reply.
-- **To a critic:** concede the true part first, in their words, then hold the
-  line. Never delete, never get defensive, never reply twice on the same
-  thread.
-- **To a hater:** nothing. A reply is reach, and reach is what they came for.
-  Hide the comment if it is abusive. Instagram's comment controls exist and
-  using them is not losing.
-- **To a lead:** answer fully in public. The door is one sentence at the end
-  and it is an offer of help, not a pitch. The public answer is what makes the
-  next person DM you.
+- **実際の質問に答える。** 「どうやって」と聞かれたら、返信の中で方法を言う。コメント欄で言える答えを聞かせるために、DMへ送らない。
+- **相手の名前は最初に1回だけ。** 「！」はつけない。
+- **相手の長さに合わせる。** 10字のコメントに、4行の返信はしない。
+- **批判する人には。** 本当のところを、相手の言葉で先に認め、そのあと自分の立場を守る。消さない、言い返さない、同じスレッドで2回返信しない。
+- **荒らしには。** 何もしない。返信はリーチで、荒らしが来た目的もリーチ。悪質なら非表示にする。Instagramにコメントの制限機能はあるし、使うことは負けではない。
+- **見込み客には。** 公の場で全部答える。入口は最後の1文で、売り込みではなく手助けの申し出にする。公の答えが、次の人にDMを送らせる。
 
-## Keyword comments
+## 合言葉のコメント
 
-If the post used a keyword ask, those comments are the whole point of the post.
-Every one of them is a person who raised their hand. Reply to each, then send
-what was promised. If the user has automation set up through Instagram's own
-tools or an approved partner, say so and let it run; if not, the replies are
-manual and that is fine at this volume. Never bulk-DM people who did not
-comment.
+投稿で合言葉をお願いしたなら、それらのコメントが投稿の目的そのもの。1人1人が手を挙げた人。全員に返信し、そのあと約束した物を送る。ユーザーがInstagram自身のツールか、公式に認められた連携ツールで自動化を組んでいるなら、そう伝えて動かす。そうでなければ手動で返信する。この件数なら、それで問題ない。コメントしていない人に、DMを一斉送信はしない。
 
-## Output
+## 出力
 
-One block, grouped by bucket, each reply copy-ready and already humanized:
+仕分けの箱ごとに1つのブロックにして、返信はそのままコピーできて、すでに人間らしく直した状態で出す。
 
 ```
-REPLIES  ·  84 comments  ·  41 KEYWORD, 2 LEAD, 3 SUBSTANCE, 2 QUESTION, 34 SUPPORT, 2 NOISE
+返信  ·  84コメント  ·  合言葉41、見込み客2、中身のあるコメント3、質問2、応援34、雑音2
 
-KEYWORD  (41)  send the clause. One line each, same warmth, not copy-paste.
+合言葉  (41)  契約書の一文を送る。1件ずつ1行、同じ温度で、コピペにしない。
 
-LEAD
-@handle - "we had this exact thing happen in June"
-> The bit that fixed it for us was moving the payment trigger off approval
-> entirely. Happy to send the wording if it is useful.
+見込み客
+@handle - 「うちも6月にまったく同じことがありました」
+> うちが解決できたのは、支払いの条件を承認から完全に外したことでした。
+> 文面が必要でしたら、お送りします。
 
-QUESTION -> REEL
-@handle - "what do you do if they refuse to sign it?"
-  34 likes on this comment. That is a Reel, not a reply. Formula #16.
+質問 -> リール
+@handle - 「サインを拒否されたらどうしますか？」
+  このコメントに34いいね。返信ではなくリールにする話。#16 そのままの質問。
 
-NOISE  (2)  skipped. Replying gives them reach.
+雑音  (2)  スキップ。返信すると、相手にリーチを渡す。
 ```
 
-Then the gate: nothing is posted until the user says yes. They paste the
-replies.
+そのあと止まって確認を待つ。ユーザーが「はい」と言うまで、何も投稿しない。返信はユーザーが貼る。

@@ -1,104 +1,88 @@
 ---
 name: ig-audit
 description: >-
-  Post-mortem on what the user has already posted - which reels actually
-  worked, why, and what to stop making. Use when the user pastes their
-  Instagram insights or past posts and asks "what's working", "why did this
-  flop", "read my analytics", "audit my content", or wants to know what to do
-  more of.
+  投稿済みの内容の振り返り。どのリールが実際に伸びたか、なぜ伸びたか、何をやめるかを出す。
+  インサイトや過去の投稿を貼って「何が当たってる？」「なんでこれ伸びなかった？」
+  「インサイトを読んで」「投稿を振り返りたい」「もっとやるべきことは？」と言われたら使う。
 ---
 
 # ig-audit
 
-The only honest source of what works for an account is that account. Every
-rule in every Instagram guide, including the ones in this pack, is a prior.
-The user's own last 30 posts are the evidence.
+何が効くかを本当に教えてくれるのは、そのアカウント自身のデータだけ。
+どのインスタ指南の決まりも、このスキル集の決まりも含めて、あくまで仮説にすぎない。
+証拠になるのは、ユーザー自身の直近30投稿。
 
-## Input
+## 入力
 
-Ask for whichever the user has:
+ユーザーが持っているものを聞く。
 
-- Insights per post: views, reach, interactions, watch time, saves, shares,
-  follows, and the non-follower share of reach. Screenshots are fine.
-- Or the retention graph for their best and worst recent reels. This one
-  screenshot is worth more than the rest combined.
-- Or just the posts and their view counts, which is enough for a first pass.
+- 投稿ごとのインサイト。再生数、リーチ、インタラクション、視聴時間、保存数、シェア数（送信）、フォロー数、フォロワー外へのリーチの割合。スクリーンショットでよい。
+- または、いちばん伸びたリールと伸びなかったリールの視聴維持のグラフ。この1枚が、残り全部を合わせたより価値がある。
+- または、投稿とその再生数だけ。最初の見立てならこれで足りる。
 
-Also read `/mnt/project-files/instagram/log.md` if it exists, since it records which
-hook formula each post used.
+`/mnt/project-files/instagram/log.md` があれば読む。どの投稿でどのフックの型を使ったかが残っている。
 
-## What to actually measure
+## 何を測るか
 
-Raw views is the least useful number on the page, because it is mostly a
-function of how many people already follow the account. Compute these instead
-and show the working:
+再生数の生の値は、ページ上でいちばん役に立たない数字。ほぼ、すでに何人フォローされているかで決まるから。代わりに次を計算して、計算の中身も見せる。
 
-| metric | how | what it tells you |
+| 指標 | 出し方 | 分かること |
 | --- | --- | --- |
-| **Outlier multiple** | views / the account's own median views | whether this was a real hit or a normal day |
-| **Non-follower reach** | % of reach from people who do not follow | whether it travelled at all |
-| **Hold at 3s** | viewers still there at 3s / viewers who started | whether the hook worked. This is the hook's grade. |
-| **Average watch time** | straight from insights | whether the middle worked |
-| **Sends per reach** | shares / reach | the strongest single signal you can earn. A send is a person putting their name on it. |
-| **Follows per reach** | follows / reach | whether the profile converted the attention |
+| **伸び倍率** | 再生数 ÷ そのアカウントの中央値（ふだんの再生数） | 本物のヒットか、いつも通りの日か |
+| **フォロワー外へのリーチ** | リーチのうちフォローしていない人の割合 | そもそも外に届いたか |
+| **3秒の維持率** | 3秒時点でまだ見ている人 ÷ 見始めた人 | フックが効いたか。フックの採点そのもの |
+| **平均視聴時間** | インサイトの値をそのまま | 中盤が効いたか |
+| **リーチあたりのシェア数** | シェア数 ÷ リーチ | 稼げる中で最強の信号。シェアは、人が自分の名前でそれを人に渡すこと |
+| **リーチあたりのフォロー数** | フォロー数 ÷ リーチ | プロフィールが注目をフォローに変えたか |
 
-Rank by outlier multiple and sends per reach, not views. A reel with 4,000
-views and 90 sends beat the one with 60,000 views and 11.
+並べ替えは再生数ではなく、伸び倍率とリーチあたりのシェア数で行う。再生4,000でシェア90のリールは、再生60,000でシェア11のリールに勝っている。
 
-## Then find the pattern
+## 次に型を探す
 
-With the top five and bottom five side by side, look for what separates them,
-and be willing to conclude something the user will not like:
+上位5本と下位5本を並べ、何が分けているかを探す。ユーザーが聞きたくない結論になっても、そのまま言う。
 
-- **Hold at 3 seconds.** If the top and bottom differ here, it is the hook and
-  nothing else, and everything downstream is a distraction.
-- **Hook formula.** Which ids from `ig-reel/hooks.json` are in the top five?
-- **Format.** Reel, carousel, single image.
-- **Length.** Group into under 15s, 15 to 30s, 30 to 60s, over 60s.
-- **Theme.**
-- **Whether the user replied to comments in the first hour.**
-- **Day and time.** Check this **last** and only if the others show nothing.
-  It is almost never the cause and it is where people want it to be.
+- **3秒の維持率。** 上位と下位でここに差があるなら、原因はフックだけ。それ以降の話はすべて枝葉。
+- **フックの型。** `ig-reel/hooks.json` のどの番号が上位5本に入っているか。
+- **形式。** リール、カルーセル、1枚画像。
+- **長さ。** 15秒未満、15〜30秒、30〜60秒、60秒超に分ける。
+- **テーマ。**
+- **最初の1時間にコメントへ返信したか。**
+- **曜日と時間。** **最後に**見る。ほかで何も出なかった時だけ。原因であることはほとんどなく、人が原因にしたがる場所でもある。
 
-State the finding as a claim with the evidence attached, and say how confident
-it is. With 30 posts you can see a pattern. With 6 you cannot, and saying so is
-better than inventing one.
+結論は、根拠をつけた主張として書き、どのくらい確かかも言う。30投稿あれば型は見える。6投稿では見えない。見えないと言うほうが、でっち上げるよりいい。
 
-## The distinction that saves people months
+## 何か月も節約できる切り分け
 
-**A reel that gets views and no follows is not a failed reel, it is a profile
-problem.** A reel that gets no views is a hook problem. Separate the two before
-recommending anything. If non-follower reach is high and follows per reach is
-low, stop rewriting hooks and go to `/ig-profile`.
+**再生されているのにフォローが増えないリールは、失敗ではなく、プロフィールの問題。** 再生されないリールは、フックの問題。提案する前に、まずこの2つを切り分ける。フォロワー外へのリーチが高いのにリーチあたりのフォロー数が低いなら、フックの書き直しをやめて `/ig-profile` へ行く。
 
-## Output
+## 出力
 
 ```
-AUDIT  ·  31 posts  ·  Jun 12 - Sep 5  ·  median views 4,100
+振り返り  ·  31投稿  ·  6月12日〜9月5日  ·  中央値 4,100再生
 
-TOP 5 BY OUTLIER MULTIPLE
-  18.2x  #3  Nobody Tells You   74,600 views  62% non-follower  hold@3s 71%  128 sends
-   6.4x  #1  Cost Confession    26,300 views  48% non-follower  hold@3s 64%   71 sends
+伸び倍率の上位5本
+  18.2倍  #3 誰も言わない本当のこと  74,600再生  フォロワー外 62%  3秒の維持率 71%  シェア128
+   6.4倍  #1 損した告白            26,300再生  フォロワー外 48%  3秒の維持率 64%  シェア71
   ...
 
-BOTTOM 5
-   0.3x  #11 Numbered            1,200 views  9% non-follower   hold@3s 31%    2 sends
+下位5本
+   0.3倍  #11 数＋一押し             1,200再生  フォロワー外 9%   3秒の維持率 31%  シェア2
   ...
 
-WHAT THE DATA SAYS
-1. Hold at 3 seconds is the whole story. Top five average 66%, bottom five 33%.
-   Everything else you are worried about is downstream of the first two seconds.
-2. The posts where you were the one who looked bad: mean 8.1x vs 0.9x for
-   everything else. n=5. Strongest signal here and it is not close.
-3. Tool listicles get views and nothing else. High reach, no sends, no follows.
-   Three of your bottom five.
-4. Day of week shows nothing. Your Tuesday and Friday means are inside the
-   noise. Stop optimising it.
+データが言っていること
+1. 3秒の維持率がすべて。上位5本の平均は66%、下位5本は33%。
+   ほかの心配事は全部、最初の2秒の下流にある。
+2. 自分がカッコ悪く見えた投稿は平均8.1倍、それ以外は0.9倍。
+   n=5。ここでいちばん強い信号で、差は明らか。
+3. ツール紹介のまとめ型は、再生だけ取れて、ほかは何も取れない。
+   リーチは高いのにシェアもフォローもない。下位5本のうち3本。
+4. 曜日は何も示していない。火曜と金曜の平均はばらつきの範囲内。
+   最適化はやめる。
 
-STOP: listicles.
-DO MORE: the ones with a cost you paid and a number attached.
+やめる: ツール紹介のまとめ型。
+もっとやる: 自分が払ったコストと数字がセットになっている投稿。
 ```
 
-Then hand the conclusions to `/ig-plan` so next week is built on the user's own
-evidence rather than on defaults, and to `/ig-viral` so the swipe file gets
-filtered to the formulas that work for this account specifically.
+次のフック案を添える時、案の中の数字（「10秒」「3時間が20分」など）は、ユーザーが測った物だけ。測っていなければ `{{実際に測った時間}}` で残す。「n=5」は「5本だけの比べ」のように言葉で書く。
+
+結論は `/ig-plan` に渡して、来週をデフォルトではなくユーザー自身の証拠で組む。`/ig-viral` にも渡して、伸びた型のメモ（swipe.md）を、このアカウントで効く型だけに絞る。

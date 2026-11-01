@@ -1,178 +1,162 @@
 ---
 name: ig-viral
 description: >-
-  Go and find the reels that are actually working right now in the user's
-  niche, rank them by how far each beat its own account, name the hook formula
-  each one used, and turn that into a swipe file they can shoot from. Use when
-  the user says "find viral videos", "what's working right now", "what are
-  people posting in my niche", "reverse engineer this account", "build me a
-  swipe file", "why is this reel doing numbers", or asks what to make next and
-  has no evidence to answer with.
+  本人のジャンルで今本当に伸びているリールを探しに行き、それぞれが自分の
+  アカウントのふだんの再生数を何倍上回ったかで並べ、使ったフックの型の名前を
+  当てて、すぐ撮れる「伸びた型のメモ」にする。「バズってる動画を探して」
+  「今何が伸びてる？」「自分のジャンルでみんな何を出してる？」「このアカウントを
+  分析して」「なんでこのリールは伸びたの？」と言われた時、次に何を作るか聞かれて
+  答える証拠がない時に使う。
 ---
 
 # ig-viral
 
-The research skill. Everything else in this pack writes; this one goes and
-looks. Run it monthly, not daily. Formulas last a season.
+リサーチのスキル。この中のほかのスキルは書く。これだけは見に行く。毎日ではなく
+月に1回。型の寿命は1シーズン。
 
-One tool lives in this folder and it runs:
+このフォルダには、動く道具が1つある。
 
 ```bash
 python3 swipe.py captured.tsv --out /mnt/project-files/instagram/swipe.md
 ```
 
-## The one idea that makes this worth doing
+Windows で `python3` が無いと言われたら `python` か `py` で動かす。
 
-**Raw views are not evidence.** An account with two million followers doing
-400,000 views had a quiet Tuesday. An account with four thousand followers
-doing 400,000 views found something, and that something is copyable.
+## これをやる価値がある、ただ1つの理由
 
-So everything here ranks on the **outlier multiple**: views divided by that
-account's own recent median. Anything above 3x is a signal. Anything below 1.5x
-is that account's normal day and it teaches you nothing, no matter how big the
-number looks.
+**再生数そのものは証拠にならない。** フォロワー200万人のアカウントの40万回は、静かな
+1日。フォロワー4,000人のアカウントの40万回は、何かを見つけた。その何かは、まねできる。
 
-Collect accounts **within about 10x of the user's own size**. A formula that
-works at 2M followers often works because it is at 2M followers.
+だからここでは全部を**伸び倍率**で並べる。再生数を、そのアカウントの最近のふだんの
+再生数（中央値）で割った数。3倍を超えたら合図。1.5倍未満はそのアカウントのいつもの日で、
+数字がどれだけ大きく見えても何も教えてくれない。
 
-## Step 1: pick the accounts
+集めるアカウントは**本人の規模の約10倍以内**。フォロワー200万人で効く型は、200万人だから
+効いていることが多い。
 
-Ask the user for 6 to 12 accounts, or propose them and get approval:
+## 手順1: アカウントを選ぶ
 
-- **4 direct** - same niche, same offer, slightly ahead.
-- **4 adjacent** - different niche, same audience. This is where formats get
-  borrowed from before anybody in the niche has them.
-- **2 to 4 outsized** - much bigger accounts, for format only, never for
-  cadence or tone.
+本人に6〜12アカウントを聞くか、こちらから出して OK をもらう。
 
-Also ask them to open their own **Saved collection**. It is the fastest and
-most relevant corpus that exists and it is already filtered by their taste.
+- **直接の4つ**: 同じジャンル・同じ売り物で、少し先を行っている人。
+- **となりの4つ**: ジャンルは違うが、見ている人が同じ。ジャンルの誰かが使う前に、
+  形を借りられる場所。
+- **大きい2〜4つ**: ずっと大きいアカウント。形だけを見る。頻度や口調はまねしない。
 
-## Step 2: go and look
+本人の**保存済み**のコレクションも開いてもらう。いちばん早く、いちばん関係のある
+素材で、本人の好みですでに選ばれている。
 
-Use whatever browsing tool this session actually has: an in-app browser, a
-browser extension connected to the user's own Chrome, or a computer-use tool.
-There is no API for this and there does not need to be, because the volume is
-small enough to read.
+## 手順2: 見に行く
 
-**Rules that are not negotiable:**
+このセッションで本当に使えるブラウザの道具を使う。アプリ内のブラウザ、本人の Chrome に
+つないだ拡張機能、画面を操作する道具のどれか。これに API は無いし、要らない。量が少ないので
+読めば足りる。
 
-- **Never log into Instagram on the user's behalf and never ask for a
-  password.** If a page needs a login, the user is the one who is already
-  logged in. Drive their browser with them present, or ask them to paste.
-- **This is reading, not scraping.** Ten accounts, a dozen reels each, at human
-  speed. Automated collection at volume violates Instagram's Terms of Use and
-  gets accounts action-blocked. Do not build a crawler, do not use a scraping
-  service, and do not loop this in the background.
-- **Copy the formula, never the video.** The hook shape, the structure, the
-  length, the pattern of cuts. Not their script, not their voice, not their
-  edit. Attribute every row in the swipe file to the account it came from.
+**譲れない決まり:**
 
-**What to capture per reel**, in the creator's own words:
+- **本人の代わりにインスタにログインしない。パスワードを聞かない。** ログインが要る
+  ページなら、ログインしているのは本人。本人がいる所で本人のブラウザを動かすか、貼って
+  もらう。
+- **これは読むことで、機械的な収集ではない。** 10アカウント・1つにつき12本くらいを、人の
+  速さで。大量の自動収集はインスタの利用規約に反し、操作制限がかかる。収集の仕組みを
+  作らない、収集のサービスを使わない、裏で繰り返さない。
+- **まねするのは型で、動画ではない。** フックの形・構成・長さ・カットの打ち方。その人の
+  台本・声・編集はまねしない。メモの全部の行に、どのアカウントから取ったかを書く。
 
-| field | notes |
+**1本ごとに書き取る物**（その人の言葉のまま）:
+
+| 列 | メモ |
 | --- | --- |
-| account | handle |
-| followers | from the profile |
-| median | eyeball the last 12 reels and take the middle view count |
-| views | this reel |
-| hook | the first line, spoken or on screen, verbatim including bad grammar |
-| on-screen | the first text card, if different |
-| length | seconds |
-| cta | what they asked for at the end |
+| account | ユーザーネーム |
+| followers | プロフィールから |
+| median | 最近12本をざっと見て、真ん中の再生数 |
+| views | このリールの再生数 |
+| hook | 1行目。話した言葉か画面の文字を、言い間違いも含めてそのまま |
+| on-screen | 最初のテロップ（違う場合） |
+| length | 秒 |
+| cta | 最後に何を頼んだか |
 
-Median is the important one. Without it you are back to ranking by follower
-count, which is the thing this skill exists to stop.
+大事なのは median。これが無いとフォロワー数で並べることになり、それをやめるために
+このスキルがある。数は画面の表示のまま（「1.2万」「120万」）書いていい。
 
-**When Instagram will not show you enough:** the same hook grammar runs on
-YouTube Shorts, where view counts and transcripts are public and no login is
-involved. It is a legitimate second corpus, and the spoken hook is easier to
-get:
+**インスタで十分に見られない時:** 同じフックの文法は YouTube ショートにもある。再生数も
+字幕も公開されていて、ログインも要らない。正当な2つ目の素材で、話したフックも取りやすい。
 
 ```bash
-# view counts for a channel's shorts
+# チャンネルのショートの再生数
 python3 -m yt_dlp --flat-playlist --playlist-end 40 -J \
   "https://www.youtube.com/@HANDLE/shorts" > channel.json
 
-# the spoken first line of one short, from its auto-captions
-python3 -m yt_dlp --skip-download --write-auto-subs --sub-langs "en.*" \
+# 1本のショートの、話した1行目（自動字幕から）
+python3 -m yt_dlp --skip-download --write-auto-subs --sub-langs "ja.*" \
   --sub-format json3 -o hook "https://www.youtube.com/watch?v=VIDEO_ID"
 ```
 
-Take every caption word with a timestamp under 3.0 seconds. That is the hook,
-as said, not as written.
+字幕の言葉のうち、3.0秒より前の物を全部取る。それがフック。書いた物ではなく、言った物。
+（yt-dlp は `pip install yt-dlp` で入れる別の道具。このスキル集には入っていない）
 
-## Step 3: rank it
+## 手順3: 並べる
 
-Fill a tab-separated file with a header row and run the script:
+1行目に列の名前を書いたタブ区切りのファイルを埋めて、道具を通す。列の名前は英語でも
+日本語（アカウント・フォロワー・中央値・再生数・フック）でもいい。
 
 ```
 account	followers	median	views	hook
-@someone	48000	11000	412000	nobody tells you your first 30 reels are supposed to flop
+@someone	4.8万	1.1万	41.2万	誰も言わないけど、最初の30本のリールは伸びなくて当たり前
 ```
 
 ```bash
 python3 swipe.py captured.tsv --out /mnt/project-files/instagram/swipe.md
 ```
 
-It computes the outlier multiple, names the hook formula using the same 26
-formulas `/ig-reel` writes from, scores each hook with `hookscore.py`, and
-prints what separates the top third from the bottom third.
+伸び倍率を計算し、`/ig-reel` が書く時と同じ26の型でフックの型の名前を当て、`hookscore.py` で
+各フックを採点し、上位3分の1と下位3分の1の違いを出す。
 
-## Step 4: say what it means, carefully
+## 手順4: 意味を、慎重に言う
 
-Report three things and no more:
+言うのは3つだけ。
 
-1. **Which formulas over-index** in the top third, with counts. Two formulas
-   appearing four times each across six accounts is a finding. One appearing
-   twice is not.
-2. **What the top third have in common structurally** that the bottom third do
-   not: hook length, whether the payoff is visual, whether the first frame
-   moves, where the ask is.
-3. **The unclassified rows.** Every hook the classifier could not name is
-   either noise or a formula that is not in `hooks.json` yet. Read them by
-   hand. This is the most valuable column in the output and it is the reason
-   the script prints the count.
+1. **上位3分の1に多い型**を、数つきで。6アカウントにまたがって2つの型が4回ずつ出たなら
+   発見。1つが2回なら発見ではない。
+2. **上位3分の1に共通していて、下位にない形**: フックの長さ、答えが目で見えるか、最初の
+   コマが動くか、お願いがどこにあるか。
+3. **型なしの行。** 型の名前が当たらなかったフックは、ただの雑音か、まだ `hooks.json` に
+   ない型。手で読む。出力でいちばん価値のある列で、道具がその数を出す理由。
 
-Then state the sample size and the confidence in plain words. Forty reels
-across six accounts supports a claim. Twelve does not, and saying so is the
-difference between research and horoscopes.
+それから、本数と確からしさをふつうの言葉で言う。6アカウントで40本なら何かが言える。
+12本では言えない。そう言うことが、リサーチと占いの違い。
 
-## Step 5: turn it into something to shoot
+## 手順5: 撮れる物にする
 
-For the top three formulas, write **the user's version**: their own story,
-their own number, in the shape that is working. Hand each one to `/ig-reel`
-with the formula id already chosen.
+上位3つの型それぞれについて、**本人の版**を書く。本人の話・本人の数字を、効いている形で。借りるのは型だけ。元のフックの言い回しは借りない（「会社員のまま月5万円、最初にやったのはこれだけ」を「会社員のまま月{{金額}}円、最初にやったのはこれだけ」にするのは、型ではなく文のまね）。
+それぞれを、型の番号を決めた状態で `/ig-reel` に渡す。
 
-Never hand back "make a reel like this one". Hand back a hook line they could
-say tomorrow.
+「これみたいなリールを作って」で返さない。本人が明日言えるフックの1行で返す。
 
-## Output
+## 出力
 
 ```
-SWIPE  ·  38 reels  ·  7 accounts  ·  baseline: account median
+伸びた型のメモ  ·  38本  ·  7アカウント  ·  基準: アカウントの中央値
 
-OUTLIERS (above 3x)
-  38.4x  hook 86  #3  Nobody Tells You   @acct_a    412,000  (median 10,700)
-  11.2x  hook 79  #9  The Steal          @acct_c    180,000  (median 16,100)
+伸びた物（3倍超）
+  38.4倍  フック65点  #3  誰も言わない本当のこと  @acct_a   41.2万回（中央値1.07万）
+  11.2倍  フック50点  #9  盗んでいい              @acct_c   18万回（中央値1.61万）
   ...
 
-WHAT IS OVER-INDEXING
-  #3 Nobody Tells You   x5 in the top third, 0 in the bottom
-  #2 Negative Command   x4
-  median hook length    8 words up top, 19 at the bottom
+多く出ている型
+  #3 誰も言わない本当のこと  上位に5回、下位に0回
+  #2「やめて」命令           4回
+  フックの長さの中央値       上位18字、下位35字
 
-UNCLASSIFIED (6)
-  Two of these are the same shape and it is not in hooks.json: a hook that
-  opens on someone else's comment read out loud. Worth adding.
+型なし（6本）
+  2本が同じ形で、hooks.json に無い。人のコメントを読み上げて始めるフック。足す価値あり。
 
-YOUR VERSION
-  #3  "Nobody tells you the first 20 proposals are supposed to lose."
+あなたの版
+  #3 「誰も言わないけど、最初の20件の提案は落ちて当たり前。」
   ...
 ```
 
-Write the swipe file to `/mnt/project-files/instagram/swipe.md`. `/ig-reel` and
-`/ig-plan` both read it, which is the point: after this runs once, the rest of
-the pack is working from the user's own evidence instead of from defaults.
+メモは `/mnt/project-files/instagram/swipe.md` に書く。`/ig-reel` と `/ig-plan` の両方がこれを読む。
+それが狙い。1回回せば、ほかのスキルは初期値ではなく本人の証拠で動くようになる。
 
-Nothing is posted, followed, liked or messaged by this skill. It reads.
+このスキルは、投稿もフォローもいいねもメッセージもしない。読むだけ。
