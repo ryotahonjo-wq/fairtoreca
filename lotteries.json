@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-01T08:53:00+09:00",
+ "updatedAt": "2026-11-02T08:53:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -117,46 +117,6 @@
    "addedAt": "2026-10-12T08:55:00+09:00"
   },
   {
-   "id": "op-tsutaya-kamagaya",
-   "game": "onepiece",
-   "product": "EB-05 Heroines Edition vol.2",
-   "shop": "TSUTAYA 鎌ケ谷店",
-   "method": "store",
-   "end": "2026-10-25T21:45:00+09:00",
-   "url": "https://livepocket.jp/e/3ftqq",
-   "note": "店頭抽選（会員）。LivePocketで応募",
-   "source": "りょうた共有（X）＋ https://cardchusen.com/onepiece/eb05-heroines-v2",
-   "addedAt": "2026-10-12T10:20:00+09:00"
-  },
-  {
-   "id": "pk-aeon-kyushu-mega",
-   "game": "pokemon",
-   "product": "MEGA スペシャルデッキセットMEGA",
-   "shop": "イオン九州",
-   "method": "app",
-   "start": "2026-10-17T00:00:00+09:00",
-   "end": "2026-10-25T23:59:00+09:00",
-   "result": "11/12 12:00〜順次",
-   "url": "https://www.aeon-kyushu.info/customer/information/archives/139",
-   "note": "iAEONアプリのみ・基本ルールのクイズ正解者が抽選対象・1人1個・店頭購入11/13〜11/17",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-17T08:57:00+09:00"
-  },
-  {
-   "id": "op-animate",
-   "game": "onepiece",
-   "product": "EB-05 Heroines Edition vol.2",
-   "shop": "アニメイトオンライン",
-   "method": "online",
-   "start": "2026-10-19T10:00:00+09:00",
-   "end": "2026-10-25T23:59:00+09:00",
-   "result": "10/27までに",
-   "url": "https://www.animate-onlineshop.jp/products/detail.php?product_id=3567552",
-   "note": "Web抽選・当選者は通販で郵送",
-   "source": "https://nyuka-now.com/archives/97393",
-   "addedAt": "2026-10-17T08:57:00+09:00"
-  },
-  {
    "id": "op-joshin",
    "game": "onepiece",
    "product": "EB-05 Heroines Edition vol.2",
@@ -184,87 +144,6 @@
    "end": "2026-11-01T23:59:00+09:00"
   },
   {
-   "id": "op-tokiwa-shinurayasu",
-   "game": "onepiece",
-   "product": "EB-05 Heroines Edition vol.2",
-   "shop": "ときわ書房 ニューコースト新浦安店（千葉）",
-   "method": "online",
-   "start": "2026-10-19T00:00:00+09:00",
-   "end": "2026-10-25T23:59:00+09:00",
-   "result": "10/29 21時前後（自分で確認）",
-   "url": "https://shoplottery.e-starbox.com/lottery/entry?code=Hphm7w4at3",
-   "note": "10/18までに発行された同店の会員カードが必要・現金のみ・1BOX購入権",
-   "source": "https://x.com/pica1100",
-   "addedAt": "2026-10-20T08:56:00+09:00"
-  },
-  {
-   "id": "pk-shimamura",
-   "game": "pokemon",
-   "product": "30th CELEBRATION カードセット各種ほか",
-   "shop": "しまむら（しまむらパーク）",
-   "method": "app",
-   "start": "2026-10-20T13:00:00+09:00",
-   "end": "2026-10-25T23:00:00+09:00",
-   "result": "10/26予定",
-   "url": "https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1",
-   "note": "しまむらアプリの会員証から応募・当選者はオンラインで注文（10/26 12:00〜10/31 23:00）",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-21T08:54:00+09:00"
-  },
-  {
-   "id": "pk-ryuseinopao-mega",
-   "game": "pokemon",
-   "product": "MEGA スペシャルデッキセットMEGA メガオーダイル・メガカイリュー・メガゲンガー",
-   "shop": "竜星のPAO 各店",
-   "method": "online",
-   "start": "2026-10-23T11:50:00+09:00",
-   "end": "2026-10-25T23:59:00+09:00",
-   "result": "11/5以降随時",
-   "url": "https://livepocket.jp/e/3v6ni",
-   "note": "LivePocket・1店舗1応募のみ・5,500円・店頭販売",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-22T08:53:00+09:00"
-  },
-  {
-   "id": "op-mugiwara-eb05",
-   "game": "onepiece",
-   "product": "EB-05 Heroines Edition vol.2",
-   "shop": "麦わらストア 各店",
-   "method": "online",
-   "start": "2026-10-23T00:00:00+09:00",
-   "end": "2026-10-25T23:59:00+09:00",
-   "result": "公式ページで確認",
-   "url": "https://www.mugiwara-store.com/news/3012/",
-   "note": "Web抽選・当選者は店頭販売",
-   "source": "https://nyuka-now.com/archives/97393",
-   "addedAt": "2026-10-23T08:53:00+09:00"
-  },
-  {
-   "id": "op-otakarasouko",
-   "game": "onepiece",
-   "product": "EB-05 Heroines Edition vol.2・HEROINES PRECIOUS BOX",
-   "shop": "お宝創庫・プレイズ（一部店舗）",
-   "method": "app",
-   "start": "2026-10-22T12:00:00+09:00",
-   "end": "2026-10-25T23:45:00+09:00",
-   "url": "https://www.otakarasouko.com/information/105017357/",
-   "note": "アプリ抽選・当選者は店頭販売・PRECIOUS BOXは https://www.otakarasouko.com/information/105017354/",
-   "source": "https://nyuka-now.com/archives/97393",
-   "addedAt": "2026-10-23T08:53:00+09:00"
-  },
-  {
-   "id": "pk-itoyokado",
-   "game": "pokemon",
-   "product": "MEGA スペシャルデッキセットMEGA・ストームエメラルダ",
-   "shop": "イトーヨーカドー・アリオ（一部店舗）",
-   "method": "store",
-   "start": "2026-10-23T10:00:00+09:00",
-   "end": "2026-10-25T23:59:00+09:00",
-   "note": "店頭抽選・対象は一部店舗のみ（店頭で確認）",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-23T08:53:00+09:00"
-  },
-  {
    "id": "pk-pelican",
    "game": "pokemon",
    "product": "ハドウシーカー・MEGA スペシャルデッキセットMEGA",
@@ -287,20 +166,6 @@
    "end": "2026-10-26T16:59:00+09:00",
    "url": "https://www.pokemoncenter-online.com/lottery/landing-page.html",
    "note": "ポケモンセンターオンライン会員・Web抽選・当選者はオンライン購入（一部抽選は電話番号認証が必要）",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-24T08:55:00+09:00"
-  },
-  {
-   "id": "pk-hobbystation-storm",
-   "game": "pokemon",
-   "product": "ストームエメラルダ",
-   "shop": "ホビーステーション",
-   "method": "online",
-   "start": "2026-10-23T12:00:00+09:00",
-   "end": "2026-10-25T23:59:00+09:00",
-   "result": "11/6予定",
-   "url": "https://livepocket.jp/e/jrssp",
-   "note": "LivePocketでWeb抽選・当選者は店頭販売",
    "source": "https://nyuka-now.com/archives/2459",
    "addedAt": "2026-10-24T08:55:00+09:00"
   },
@@ -805,6 +670,47 @@
    "note": "Joshin web会員向けにメールで案内・当選者はオンライン購入",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-11-01T08:53:00+09:00"
+  },
+  {
+   "id": "pk-torecaace",
+   "game": "pokemon",
+   "product": "30th CELEBRATION BOX・メガブレイブ・メガシンフォニア",
+   "shop": "トレカエース各店",
+   "method": "store",
+   "end": "2026-11-03T23:59:00+09:00",
+   "result": "11/5頃 メールで通知",
+   "url": "https://www.toreca-ace.com/blog/shop/",
+   "note": "店頭のQRコードからLivePocketで応募",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-11-02T08:53:00+09:00"
+  },
+  {
+   "id": "pk-seagull",
+   "game": "pokemon",
+   "product": "30th CELEBRATION BOX・ストームエメラルダ",
+   "shop": "シーガル各店",
+   "method": "online",
+   "start": "2026-11-01T10:00:00+09:00",
+   "end": "2026-11-03T20:00:00+09:00",
+   "result": "11/5 20:00までに通知",
+   "url": "https://seagullonline.jp/gullmoba/",
+   "note": "Web抽選・当選者は店頭購入",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-11-02T08:53:00+09:00"
+  },
+  {
+   "id": "op-aeon-hokkaido-op18",
+   "game": "onepiece",
+   "product": "ブースターパック 神の支配【OP-18】",
+   "shop": "イオン北海道",
+   "method": "app",
+   "start": "2026-11-01T08:00:00+09:00",
+   "end": "2026-11-03T23:59:00+09:00",
+   "result": "11/20 8:00以降 順次",
+   "url": "https://www.aeon-hokkaido.jp/iaeonapp/campaign/2611_optcg/",
+   "note": "iAEONアプリで応募",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-11-02T08:53:00+09:00"
   }
  ]
 }
