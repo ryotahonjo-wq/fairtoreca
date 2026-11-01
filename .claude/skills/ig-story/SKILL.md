@@ -1,97 +1,73 @@
 ---
 name: ig-story
 description: >-
-  Write the day's Instagram Stories - the frame-by-frame sequence, which
-  stickers to use where, and the one that moves people into the DMs. Use when
-  the user says "stories", "what do I post on my story", "story sequence",
-  "poll idea", "I have nothing to story about", or wants to sell something
-  without making a post about it.
+  その日のInstagramストーリーズを書く。1枚ずつの流れ、どこにどのスタンプを使うか、DMへ誘う1枚。
+  「ストーリーズ」「ストーリーズに何を載せる？」「ストーリーズの流れ」「アンケートのネタ」
+  「ストーリーズのネタがない」と言われた時や、投稿を作らずに何かを売りたい時に使う。
 ---
 
 # ig-story
 
-Stories are not a smaller feed. The feed is how strangers find you. Stories are
-how the people who already follow you decide whether you are a person worth
-buying from, and they are the only surface on Instagram where a tap turns into
-a conversation in one move.
+ストーリーズは、小さいフィードではない。フィードは、知らない人に見つけてもらう場所。ストーリーズは、すでにフォローしている人が、この人から買う価値があるかを決める場所。しかも、タップ1回が会話になる、インスタで唯一の場所。
 
-Nobody outside your followers sees these, so the job is completely different:
-depth, not reach.
+見るのはフォロワーだけなので、仕事がまったく違う。リーチではなく、深さ。
 
-## The daily shape
+## 1日の形
 
-Three to seven frames a day. Beyond about seven, the tap-forward rate climbs
-and the last frames play to nobody, which is exactly where people put the ask.
+1日3〜7枚。7枚を超えると、タップで飛ばされる率が上がり、最後の数枚は誰も見ていない状態になる。人はまさにそこにお願いを置く。
 
 ```
-1       THE OPEN     something happening today, with a face or a hand in it.
-2-3     THE MIDDLE   the actual content: the process, the result, the mistake.
-4       THE ASK      one sticker. Poll, question box, quiz or link.
-5       THE CLOSE    the answer, the outcome, or tomorrow's setup.
+1       導入      今日起きていること。顔か手が映っている。
+2-3     中盤      本当の中身。過程、結果、失敗。
+4       お願い    スタンプを1つ。アンケート、質問、クイズ、リンクのどれか。
+5       締め      答え、結果、または明日の前振り。
 ```
 
-Put the ask at frame 4, not frame 7. Completion drops with every tap and the
-ask should be seen by the people who are still there.
+お願いは7枚目ではなく、4枚目に置く。完走率は1タップごとに下がるので、お願いは、まだ残っている人に見られる位置に置く。
 
-## The stickers, and what each is actually for
+## スタンプと、それぞれの本当の役割
 
-| sticker | job | use when |
+| スタンプ | 役割 | 使う時 |
 | --- | --- | --- |
-| **Poll** | the cheapest tap there is | you want volume of response, not information |
-| **Question box** | harvesting the exact words people use | you need content ideas or objections, verbatim |
-| **Quiz** | teaching by letting them be wrong | there is a common misconception in the niche |
-| **Slider** | vibe check | nothing important. Fun, low value |
-| **Link** | the only clickable surface besides the bio | there is somewhere real to go |
-| **Countdown** | a deadline people can subscribe to | a launch, a live, a close date |
-| **Add yours** | reach beyond your followers, occasionally | the prompt is one anyone in the niche can answer |
+| **アンケート** | いちばん軽いタップ | 情報ではなく、反応の数がほしい |
+| **質問ボックス** | 人が使う言葉をそのまま集める | 投稿ネタや反対意見を、原文のまま知りたい |
+| **クイズ** | 間違えさせて教える | そのジャンルによくある思い込みがある |
+| **スライダー** | ノリの確認 | 重要なことは何もない。楽しいが価値は低い |
+| **リンク** | プロフィール以外で唯一クリックできる場所 | 本当に行き先がある |
+| **カウントダウン** | 通知を登録できる締切 | 募集開始、ライブ、締切日がある |
+| **Add Yours** | フォロワー外にも届く。たまに | 同じジャンルの誰でも答えられるお題 |
 
-The question box is the most undervalued one in the list. Every answer is a
-caption, a Reel hook or a DM opener written in the audience's own words. Feed
-them to `/ig-reel` as formula #16.
+一覧の中でいちばん過小評価されているのは質問ボックス。答えの1つ1つが、オーディエンス自身の言葉で書かれた、キャプションにも、リールのフックにも、DMの書き出しにもなる。それを `/ig-reel` に#16 そのままの質問として渡す。
 
-## Rules
+## 決まり
 
-- **A face or a hand in the first frame.** Text on a coloured background gets
-  tapped through, and the first frame decides whether the rest get watched.
-- **One idea per frame.** Reading a paragraph on a story is not a thing anyone
-  does.
-- **Keep text inside the middle.** On 1080x1920, nothing above y=250 or below
-  y=1600. The profile row sits on top and the reply bar sits underneath.
-- **Talk to one person.** "You" singular. Stories are the closest thing to a
-  DM that is not one.
-- **Do not repost your own feed post to stories with no comment.** It is the
-  single most ignored frame on the platform. If you are pointing at a post, say
-  what happened in the comments and why it is worth going back for.
-- **Sell on stories, not in posts.** Three frames of context, one frame of
-  offer, one frame of proof. That sequence sells more than a feed post about
-  the same thing and costs you no reach.
+- **1枚目に顔か手。** 色背景に文字だけだと飛ばされる。1枚目が、残りが見られるかを決める。
+- **1枚に1つの考え。** ストーリーズで段落を読む人はいない。
+- **文字は真ん中に収める。** 1080x1920 で、y=250 より上と y=1600 より下には何も置かない。上にプロフィールの行が、下に返信バーが来る。
+- **1人に向けて話す。** 「皆さん」ではなく、1人の「あなた」。ストーリーズは、DMではないものの中でDMにいちばん近い。
+- **自分のフィード投稿を、コメントなしでストーリーズに再投稿しない。** プラットフォームでいちばん無視される1枚。投稿を指すなら、コメント欄で何が起きたか、なぜ見に戻る価値があるかを言う。
+- **売るのは、投稿ではなくストーリーズで。** 前置き3枚、オファー1枚、実績1枚。この流れは、同じ内容のフィード投稿より売れて、リーチも失わない。
 
-## The DM funnel, done honestly
+## DMへの流れを、誠実に
 
-The sequence that works: a story that names a problem, a question box or a poll
-that lets people say "that's me", and then a reply to each person who answered.
-The conversation starts because they spoke first.
+効く流れ。問題を名指しするストーリーズ、「それ私だ」と言える質問ボックスかアンケート、そして答えた1人1人への返信。会話が始まるのは、相手が先に話したから。
 
-Automated keyword DM replies are a real, supported feature for professional
-accounts, through Instagram's own tools and approved partners. Bulk DMing
-people who did not interact is not, and it is what gets accounts restricted.
-The rule is simple: **they act first, then you reply.**
+合言葉へのDMの自動返信は、プロアカウントなら、Instagram自身のツールと公式に認められた連携ツールで使える、本物の機能。やり取りしていない人へのDMの一斉送信は違い、アカウントに制限がかかる原因になる。決まりは単純。**相手が先に動き、そのあとこちらが返す。**
 
-## Output
+## 出力
 
-The frames in order, each with what is on screen, what is said, and which
-sticker, plus what to do with the answers:
+枠を順に出す。各枠に、画面に何が映るか、何を言うか、どのスタンプか、答えをどうするか。
 
 ```
-STORIES  ·  Tuesday  ·  5 frames
+ストーリーズ  ·  火曜  ·  5枚
 
-1  [selfie, walking]      "Third refund request this year. Same reason."
-2  [screen recording]     the clause, highlighted
-3  [talking]              "Approval is a feeling. Delivery is a date."
-4  [poll]                 "Have you been burned by a late approval?"  Yes / Not yet
-5  [text on photo]        "Reply and I will send you the clause."
+1  [自撮り、歩きながら]      「今年3件目の返金依頼。理由は毎回同じ」
+2  [画面録画]               契約書の一文を、ハイライトで
+3  [話している]             「承認は気分。納品は日付」
+4  [アンケート]             「承認が遅れて痛い目を見たことある？」  ある / まだ
+5  [写真に文字]             「返信してくれたら、その一文を送ります」
 
-After: everyone who votes Yes gets a reply. That is the whole funnel.
+そのあと: 「ある」に投票した全員に返信する。仕組みはそれだけ。
 ```
 
-Nothing is posted. The user posts it.
+何も投稿しない。投稿するのはユーザー。

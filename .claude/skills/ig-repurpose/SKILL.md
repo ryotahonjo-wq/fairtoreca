@@ -1,88 +1,69 @@
 ---
 name: ig-repurpose
 description: >-
-  Turn one long asset - a YouTube video, podcast, livestream, newsletter, blog
-  post or client call - into a week of reels and carousels. Use when the user
-  says "repurpose this", "turn this into reels", "I have a video/podcast/
-  transcript", "cut this up", or pastes something long and wants it on
-  Instagram.
+  長い素材1本（YouTube動画、ポッドキャスト、ライブ配信、メルマガ、ブログ記事、お客さんとの打ち合わせ）を、1週間分のリールとカルーセルに作り直す。
+  「これを使い回して」「リールにして」「動画/ポッドキャスト/文字起こしがある」「切り抜いて」と言われた時や、
+  長い物を貼ってインスタに出したいと言われた時に使う。
 ---
 
 # ig-repurpose
 
-One good long asset contains four to six posts. Most people extract one and
-throw the rest away.
+よくできた長い素材1本の中には、4〜6本分の投稿が入っている。ほとんどの人は1本だけ取り出して、残りを捨てる。
 
-## Input
+## 入力
 
-A transcript, an article, a newsletter, a script, a call summary, a livestream.
-If the user gives a URL and this session has a transcript tool, use it;
-otherwise ask them to paste. Read the whole thing before extracting anything.
+文字起こし、記事、メルマガ、台本、打ち合わせの要約、ライブ配信。使うのは、ユーザー本人の素材か、使う許可を取った素材だけ。他人の動画・音声・記事を、許可なく作り直さない（「切り抜いて」と言われても同じ。お客さんとの打ち合わせは、お客さんの許可と、名前や数字を伏せることが先）。ユーザーがURLを出し、このセッションに文字起こしのツールがあれば使う。なければ貼ってもらう。取り出す前に、全体を最後まで読む。
 
-If the source is a video the user owns, ask for the file too. A Reel built on
-their own footage beats one built on their own words read again.
+素材がユーザー本人の動画なら、ファイルも出してもらう。本人の映像で作ったリールは、本人の言葉をもう一度読み上げたリールに勝つ。
 
-## Extract, do not summarise
+## 要約せず、取り出す
 
-A summary of a video is not a Reel. Nobody wants the summary. Go through the
-asset and pull out the things that stand alone:
+動画の要約はリールではない。要約をほしがる人はいない。素材を通して見て、単体で立つ物を抜き出す。
 
-| pull | what it is |
+| 抜き出す物 | 中身 |
 | --- | --- |
-| **Claims** | every sentence that would start an argument |
-| **Numbers** | every figure, cost, duration, percentage |
-| **Stories** | every moment with a person, a scene and a cost |
-| **Mechanisms** | every "the way this actually works is..." |
-| **Mistakes** | every admission of something that went wrong |
-| **Lines** | every sentence already quotable as-is |
+| **主張** | 議論が始まりそうな文、すべて |
+| **数字** | 数値、費用、期間、割合、すべて |
+| **話** | 人と場面とコストがある瞬間、すべて |
+| **仕組み** | 「実際の仕組みはこう」というくだり、すべて |
+| **失敗** | うまくいかなかったことを認めている所、すべて |
+| **名言** | すでにそのまま引用できる文、すべて |
 
-List what you found, with counts, before writing anything. If the asset yields
-fewer than four items, it is thin, and four posts squeezed out of it will be
-thin too. Say that.
+書き始める前に、見つけた物を件数つきで一覧にする。素材から4つ未満しか出ないなら、薄い素材で、そこから絞り出した4投稿も薄くなる。そう言う。
 
-## Then pick the format per extract
+## 抜き出した物ごとに形式を選ぶ
 
-Not everything is a Reel.
+全部がリールではない。
 
-- **Claim, mistake, story** to a Reel. They need a voice and a face.
-- **Mechanism, numbered list** to a carousel. They need to be re-read.
-- **A quotable line** to a story frame, not a post.
+- **主張、失敗、話**はリール。声と顔が要る。
+- **仕組み、番号つきのリスト**はカルーセル。読み返される必要がある。
+- **引用できる1文**はストーリーズの1枚。投稿にはしない。
 
-## Then build the week
+## 1週間を組む
 
-Each extract becomes one post and each post stands completely on its own. The
-viewer has not seen the source and never will. Never write "as I said in my
-latest video". The post is the thing.
+抜き出した1つが1投稿になり、どの投稿も完全に単体で立たせる。見る人は元の素材を見ていないし、これからも見ない。「前の動画でも話しましたが」と書かない。投稿そのものが主役。
 
-Assign a hook formula from `ig-reel/hooks.json` to each and vary them. Five
-posts from one source with the same hook shape reads as a content mill, because
-it is one.
+それぞれにフックの型を `ig-reel/hooks.json` から割り当て、バラバラにする。1つの素材から出た5投稿が同じフックの形だと、コンテンツ量産工場に見える。実際そうだから。
 
-If the source is the user's own video, **use the actual footage**. The clip
-where they said the thing, with the real reaction in it, beats a re-record
-every time. Cut on the sentence, not on the breath.
+素材がユーザー本人の動画なら、**実際の映像を使う**。本人がそれを言った所の、本物の反応が入ったクリップは、撮り直しにいつも勝つ。切るのは息継ぎではなく、文の切れ目で。
 
-Order across the week so the strongest claim goes first, the story lands
-midweek, and the mechanism goes last, when the people who liked the earlier
-ones are watching for it.
+週の中の順番は、いちばん強い主張を最初に、話を週の半ばに、仕組みを最後に置く。前の投稿を気に入った人が、続きを待っている時に当たるように。
 
-## Output
+## 出力
 
 ```
-SOURCE: "Why we killed discovery calls" (42 min podcast, 8,900 words)
+素材: 「なぜうちはヒアリングの電話をやめたか」（42分のポッドキャスト、8,900字）
 
-FOUND  5 claims, 9 numbers, 3 stories, 4 mechanisms, 2 mistakes, 7 quotable lines
+見つけた物  主張5、数字9、話3、仕組み4、失敗2、名言7
 
-WEEK
-TUE  REEL      #2  Negative Command  Stop running discovery calls
-                                     use the 14:20 clip, he laughs at the end
-WED  CAROUSEL  Job B caption         The 4-question form that replaced the call
-FRI  REEL      #21 Mid-Sentence      "...and he asked for a refund nine days later"
-SUN  REEL      #5  Time Collapse     Six hours a week back, one deleted link
+1週間
+火  リール      #2「やめて」命令     ヒアリングの電話をやめて
+                                     14:20のクリップを使う。最後に彼が笑っている
+水  カルーセル  役割B のキャプション  電話の代わりになった4つの質問フォーム
+金  リール      #21 話の途中から     「…そして9日後、彼は返金を求めてきた」
+日  リール      #5 時間の短縮        週に6時間が戻った、消したリンク1つ
 
-Say "write Tuesday" and I will draft it.
+「火曜を書いて」と言えば、下書きを作る。
 ```
 
-Then draft on request, one at a time, each through `/ig-reel` and `/ig-human`.
-Do not dump four finished scripts at once. They will all sound the same and the
-user will shoot none of them.
+そのあと、頼まれたら下書きを、1本ずつ、それぞれ `/ig-reel`（リール台本）と `/ig-human`（AIっぽさ消し）に通して作る。完成した台本を4本いっぺんに出さない。全部同じ声に聞こえて、ユーザーは1本も撮らない。

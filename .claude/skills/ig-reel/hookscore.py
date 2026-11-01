@@ -1,111 +1,91 @@
 #!/usr/bin/env python3
 """
-hookscore.py - score the first line of a Reel on the five things strong hooks
-have in common, and rank a batch of them against each other.
+hookscore.py - リールの1行目（フック）を、強いフックに共通する5つの性質で
+採点し、何案かを並べて順位をつける。日本語版。
 
-What this is:  five local heuristics, computed on your machine from the text
-alone. They measure properties that hooks which hold attention tend to share -
-a length you can say in under three seconds, a concrete marker, something at stake,
-the payload at the front rather than the back, and a viewer to aim it at.
+これは何か: 文字だけから、手元のPCで計算する5つの目安。2〜3秒で言い切れる
+長さ、具体的な目印（数字・名前）、何かが懸かっていること、肝心の言葉が前に
+あること、見ている人に向いていること。
 
-What this is NOT:  a view predictor. It was tested against 74 real short-form
-hooks, transcribed from the first three seconds of the top eight and bottom
-eight performers on five channels. Separating a real hook from a deliberately
-bad one it does well: AUC 0.83, and 9 of 10 written-to-be-bad hooks scored
-below the real median. Separating a good creator's hits from that same
-creator's misses it barely does at all: AUC 0.56, where 0.50 is a coin flip.
+これは何でないか: 再生数の予測ではない。英語版は実際のフック74本で試して、
+「わざと下手に書いたフック」を見分けるのは得意（AUC 0.83）、「同じ人の当たりと
+外れ」を見分けるのはほぼできない（AUC 0.56。0.50がコイン投げ）という結果だった。
+日本語版の試験の結果は README の「日本語版で測ったこと」にある。
 
-So use it for what it measured well. It catches greetings, preambles, hooks
-with nothing concrete in them and hooks that take five seconds to say. It will
-not tell you which of two decent hooks will travel, and nothing that reads text
-can, because that is decided by your face, your edit, your audio and who
-Instagram shows it to. Trust the retention graph over this script.
+使い道は、言い切れない・中身がない・あいさつから入る・長すぎるフックを、撮る前に
+落とすこと。まあまあのフック2つのどちらが伸びるかは、文字からは分からない。
+顔・編集・音・インスタが誰に見せるかで決まる。最後は自分の視聴維持のグラフを信じる。
 
-Each check returns 0 to 100. Higher is better.
+各項目は0〜100。高いほど良い。
 
-Usage
-  python3 hookscore.py hooks.txt              # one hook per line, ranked
-  python3 hookscore.py --hook "I lost $18,000 on one missing contract."
-  pbpaste | python3 hookscore.py -
+使い方
+  python3 hookscore.py hooks.txt              # 1行に1案。順位をつける
+  python3 hookscore.py --hook "契約書の1行で20万円損しました"
+  python3 hookscore.py hooks.txt --cps 10     # 話す速さ（1秒に話すかなの数）
   python3 hookscore.py hooks.txt --json
 """
 
 import argparse
 import json
+import os
 import re
 import statistics
 import sys
 
-WORD_RE = re.compile(r"[A-Za-z0-9$%'’-]+")
-NUMBER_RE = re.compile(
-    r"\$\s?\d[\d,]*(?:\.\d+)?"                       # money, whole
-    r"|\b\d[\d,]*(?:\.\d+)?\s?"                      # a figure, with or
-    r"(?:%|k\b|x\b|hrs?\b|hours?\b|mins?\b|minutes?\b"  # without a unit
-    r"|days?\b|weeks?\b|months?\b|years?\b)?",
-    re.IGNORECASE)
-PROPER_RE = re.compile(r"(?<!^)\b[A-Z][a-z]{2,}\b")
-HASHTAG_RE = re.compile(r"(?:^|\s)#\w+")
-EMOJI_RE = re.compile(r"[\U0001F300-\U0001FAFF☀-➿]")
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import jp  # noqa: E402
 
-# Spoken hooks say their numbers out loud. "Zero dollars" and "twenty grand"
-# are as concrete as "$0" and "$20,000", and counting only digits missed them.
-# "one" and "first" are deliberately absent: they are filler far more often
-# than they are a quantity.
-SPOKEN_NUMBERS = {
-    "zero", "two", "three", "four", "five", "six", "seven", "eight", "nine",
-    "ten", "eleven", "twelve", "fifteen", "twenty", "thirty", "forty", "fifty",
-    "sixty", "seventy", "eighty", "ninety", "hundred", "thousand", "million",
-    "billion", "dozen", "half", "twice", "triple",
-}
-MONEY_WORDS = {
-    "dollars", "dollar", "bucks", "grand", "percent", "cents",
-    "millionaire", "billionaire", "revenue", "profit", "salary", "rent",
-}
+DEFAULT_CPS = 9.0       # 1秒に話すかなの数。撮る前の素の速さ。カット編集後は約10
 
-# Words that put something on the line. A hook with none of these is a
-# statement; a hook with one is a reason to keep watching.
-STAKES = {
-    "stop", "never", "wrong", "mistake", "mistakes", "lost", "lose", "losing",
-    "cost", "costs", "broke", "broken", "failed", "failure", "fail", "nobody",
-    "no", "not", "don't", "dont", "doesn't", "didn't", "can't", "won't",
-    "quit", "quitting", "fired", "deleted", "delete", "killed", "kills", "kill",
-    "replaced", "replaces", "cut", "beat", "free", "paid", "charged", "hired",
-    "saved", "first",
-    "banned", "illegal", "worst", "hate", "hated", "wasted", "waste", "scam",
-    "lie", "lied", "lying", "truth", "secret", "hidden", "stole", "stolen",
-    "before", "until", "instead", "but", "except", "unless", "problem",
-    "risk", "danger", "warning", "regret", "wish", "should", "shouldn't",
-    "still", "already", "only", "without", "versus", "vs", "actually",
-}
+# 何かが懸かっている言葉。どれも入っていなければただの説明、1つあれば見続ける理由。
+STAKES = [
+    "損", "失敗", "間違", "後悔", "危険", "危な", "ヤバ", "やば", "終わ", "消え",
+    "無料", "タダ", "無駄", "誰も", "知らな", "知らず", "実は", "本当は", "ほんとは",
+    "嘘", "ウソ", "秘密", "裏", "禁止", "NG", "ダメ", "だめ", "やめ", "辞め", "捨て",
+    "負け", "失っ", "失う", "炎上", "最悪", "地獄", "しないと", "しなきゃ", "なのに",
+    "だけど", "けど", "でも", "まだ", "もう", "二度と", "絶対", "クビ", "解約", "削除",
+    "卒業", "不要", "いらない", "要らない", "置き換", "代わり", "奪", "倒", "勝て",
+    "稼", "払っ", "払う", "盗", "パクっ", "パクれ", "バレ", "怒", "嫌", "下手", "遅れ",
+    "差がつ", "変わ", "しかない", "だけで", "ずに", "せずに", "なしで", "以外",
+    "逆に", "勘違い", "落とし穴", "注意", "警告", "知ってる", "知って", "知りたかった",
+    "衝撃", "驚", "まさか", "正直", "本音", "現実", "真実", "なぜ", "唯一", "初めて",
+    "前に", "までに", "代わりに", "それより", "ではなく", "じゃなく", "のに",
+    "今は", "今では", "前は", "昔は", "だけ", "たった", "ついに", "ゼロ", "0円",
+]
+STAKES_RE = re.compile("|".join(map(re.escape, STAKES)))
+NEG_RE = re.compile(r"ない|ません|なかった|ねえ|ねぇ")
 
-# Openers that spend the first second saying nothing.
+# 最初の1秒を何も言わずに使ってしまう出だし。
 WEAK_OPENERS = [
-    "so", "ok", "okay", "hey", "hi", "hello", "guys", "yo", "alright",
-    "welcome", "today", "basically", "honestly", "look", "listen", "um",
-    "just", "let", "lets", "let's", "i wanted", "i want", "one of",
-    "have you", "did you", "do you", "are you", "in this", "in today",
-    "the thing", "a lot", "there is", "there are", "this is", "it is",
-    "as a", "when it", "if you've", "you know",
+    "えー", "えっと", "あの", "あのー", "はい", "どうも", "こんにちは", "こんばんは",
+    "おはよう", "みなさん", "皆さん", "今日は", "今回は", "本日は", "さて", "ということで",
+    "というわけで", "突然ですが", "早速ですが", "さっそく", "最近", "ちなみに", "まず",
+    "今日の", "今回の", "これから", "今から", "では",
 ]
 
-# Imperatives that earn the front position.
-IMPERATIVES = {
-    "stop", "steal", "copy", "delete", "try", "watch", "read", "save",
-    "use", "build", "make", "write", "send", "take", "start", "quit",
-    "never", "always", "don't", "dont", "do", "put", "run", "check",
-}
+# 相手に向いている形。命令・お願い・問いかけ・「〜な人」の呼びかけ。
+ADDRESS_YOU = re.compile(r"あなた|君|きみ|お前|おまえ|アナタ")
+ADDRESS_CALL = re.compile(
+    r"(?:な|てる|ている|でる|の|する|した|い|た)(?:人|方)(?:へ|は|、|！|!|って|いる|いない|必見|に|[。？?]|$)|"
+    r"(?:女性|男性|ママ|パパ|さん|たち|ども|子)へ(?:[。！!、]|$)|^\s*(?:いいか|聞いて|見て)[、！!]")
+ADDRESS_ACT = re.compile(
+    r"(?:して|しろ|するな|しないで|やめて|見て|使って|やって|試して|聞いて|消して|保存して|"
+    r"てください|なさい|ましょう|べき|せよ|すな|ないで|しとけ|とけ)(?:[。！？!?」\s]|$)|"
+    r"(?:ませんか|てない|知ってる|知ってた|わかる|分かる|どっち|どれ|ですか|ますか)[？?]")
+ADDRESS_IF = re.compile(r"^[^。！？\n]{2,30}(?:なら|たら|れば)[、,\s]")
+ADDRESS_I = re.compile(r"僕|ぼく|私|わたし|俺|おれ|自分|うち|我々")
 
 DEALBREAKERS = [
-    (re.compile(r"(?i)^\s*(?:stop scrolling|don'?t scroll)"),
-     "Opens with \"stop scrolling\". Asking for attention proves you have not earned it."),
-    (re.compile(r"(?i)\b(?:in (?:this|today'?s) (?:video|reel)|i'?m going to show you|i'?ll show you how)\b"),
-     "Video preamble. Delete it and open on the payoff."),
-    (re.compile(r"(?i)^\s*(?:hey |hi |what'?s up |welcome )"),
-     "Greeting. Nobody came to the feed to be greeted."),
-    (HASHTAG_RE,
-     "Hashtag in the hook. Hashtags belong at the bottom of the caption, if anywhere."),
-    (EMOJI_RE,
-     "Emoji in the hook. On-screen text at hook size has room for words or for an emoji, not both."),
+    (re.compile(r"^\s*(?:ちょっと待って|待って[！!、]|スクロール(?:しないで|を止めて|する手を止めて|やめて)|最後まで見て|見逃さないで)"),
+     "注目をお願いする出だし（「ちょっと待って」「最後まで見て」）。注目を頼むのは、まだ掴めていない証拠。"),
+    (re.compile(r"この動画では|今回の動画では|今日の動画では|(?:今日|今回)は[^。！？\n]{0,25}(?:紹介|解説|お話し|話)(?:します|していきます|しようと思います)"),
+     "動画の前置き（「今日は〜を紹介します」）。消して、答えから始める。"),
+    (re.compile(r"^\s*(?:はいどうも|どうも[、,！!]|どうも[^。、]{0,12}です|こんにちは|こんばんは|おはようございます|はじめまして|みなさんこんにちは)"),
+     "あいさつ。あいさつを聞きにフィードを見ている人はいない。"),
+    (re.compile(r"(?:^|[\s　])[#＃][^\s#＃]+"),
+     "フックにハッシュタグ。ハッシュタグはキャプションの最後に置く物。"),
+    (re.compile(r"[\U0001F300-\U0001FAFF☀-➿]"),
+     "フックに絵文字。フックの大きさのテロップに、言葉と絵文字の両方を置く場所はない。"),
 ]
 
 
@@ -113,109 +93,105 @@ def clamp(n):
     return max(0.0, min(100.0, n))
 
 
-def words(text):
-    # "$18,000" is one word when it is spoken, so it is one word here too.
-    return WORD_RE.findall(re.sub(r"(?<=\d),(?=\d)", "", text))
-
-
-def check_length(text):
-    """A hook has to land before the thumb moves. Roughly two seconds."""
-    w = words(text)
-    n = len(w)
-    secs = n / 2.75                      # ~165 words per minute, spoken
-    chars = len(text.strip())
-    if 5 <= n <= 12:
+def check_length(text, cps):
+    """指が動く前に言い切れるか。2〜3秒が目安。"""
+    mora = jp.yomi(text)
+    secs = mora / cps
+    chars = len(re.sub(r"\s", "", text))
+    if 8 <= mora <= 26:
         score = 100.0
-    elif n < 5:
-        score = clamp(100 - (5 - n) * 20)
+    elif mora < 8:
+        score = clamp(100 - (8 - mora) * 10)
     else:
-        score = clamp(100 - (n - 12) * 11)
-    if chars > 60:                       # two lines of big on-screen text
+        score = clamp(100 - (mora - 26) * 4)
+    if chars > 26:                       # 大きなテロップで2行を超える
         score -= 12
-    return clamp(score), f"{n} words, {chars} chars, ~{secs:.1f}s spoken (want 5-12 words)"
+    return clamp(score), f"{chars}字・読み約{mora:.0f}音・話すと約{secs:.1f}秒（目安は8〜26音＝約1〜3秒）"
 
 
 def check_specificity(text):
-    """One concrete thing beats three abstract ones."""
-    nums = [n.strip() for n in NUMBER_RE.findall(text) if n.strip()]
-    propers = set(PROPER_RE.findall(text))
-    low = [w.lower().strip("'’") for w in words(text)]
-    spoken = [w for w in low if w in SPOKEN_NUMBERS or w in MONEY_WORDS]
-    hits = len(nums) + len(propers) + len(spoken)
+    """具体的な1つは、ぼんやりした3つに勝つ。"""
+    found = jp.concrete(text)
+    hits = len(found)
     score = 15.0 if hits == 0 else clamp(45 + hits * 30)
-    found = ", ".join(nums[:2] + sorted(propers)[:2] + spoken[:2])
-    return score, (f"{hits} concrete marker(s)" + (f": {found}" if found else
-                   " - no number, no name, nothing checkable"))
+    return score, (f"具体的な目印 {hits}個" + (f": {', '.join(found[:3])}" if found else
+                   "（数字も名前もない。確かめられる物が何もない）"))
 
 
 def check_stakes(text):
-    """Tension, cost, negation. Something the viewer might lose."""
-    w = [x.lower().strip("'’") for x in words(text)]
-    hits = [x for x in w if x in STAKES]
-    markers = sorted(set(hits))
-    if re.search(r"\$\s?\d", text):
-        markers.append("a price")
+    """緊張・損・否定。見ている人が失うかもしれない何か。"""
+    markers = sorted(set(STAKES_RE.findall(text)))
+    if NEG_RE.search(text):
+        markers.append("否定")
+    if re.search(r"[0-9０-９][0-9０-９,]*\s?(?:万|億)?円|[$¥￥]\s?[0-9]", text):
+        markers.append("金額")
     n = len(markers)
     score = {0: 20.0, 1: 70.0}.get(n, 100.0)
-    detail = f"{n} tension marker(s)" + (f": {', '.join(markers[:4])}" if markers else
-                                         " - nothing is at stake in this line")
+    detail = f"懸かっている物の目印 {n}個" + (f": {', '.join(markers[:4])}" if markers else
+                                               "（この1行には何も懸かっていない）")
     return clamp(score), detail
 
 
+def _payload_pos(text):
+    """肝心の言葉（数字・名前・懸かっている言葉）が何文字目に出てくるか。"""
+    pos = []
+    for m in STAKES_RE.finditer(text):
+        pos.append(m.start())
+    for m in jp.NUM_RE.finditer(text):
+        pos.append(m.start())
+    for m in jp.KANJI_NUM_RE.finditer(text):
+        pos.append(m.start())
+    for m in jp.LATIN_NAME_RE.finditer(text):
+        if m.group(0).strip() not in jp.GENERIC_LATIN and len(m.group(0).strip()) >= 2:
+            pos.append(m.start())
+    for m in jp.QUOTED_RE.finditer(text):
+        pos.append(m.start())
+    return min(pos) if pos else None
+
+
 def check_frontload(text):
-    """The interesting word cannot be in position nine."""
-    w = words(text)
-    if not w:
-        return 0.0, "empty"
-    low = [x.lower().strip("'’") for x in w]
-    opener = " ".join(low[:2])
-    penalty = 0
-    hit_opener = None
+    """面白い言葉が後ろにあると、そこまで聞いてもらえない。"""
+    t = text.strip()
+    if not t:
+        return 0.0, "空"
+    penalty, hit = 0, None
     for weak in WEAK_OPENERS:
-        if opener.startswith(weak) or low[0] == weak:
-            penalty, hit_opener = 30, weak
+        if t.startswith(weak):
+            penalty, hit = 30, weak
             break
-    payload = None
-    for i, token in enumerate(low):
-        if (token in STAKES or token in SPOKEN_NUMBERS or token in MONEY_WORDS
-                or NUMBER_RE.match(w[i]) or (i and PROPER_RE.match(w[i]))):
-            payload = i
-            break
-    if payload is None:
-        base = 30.0
-        where = "no payload word anywhere in the line"
-    elif payload <= 3:
-        base = 100.0
-        where = f"payload at word {payload + 1}"
-    elif payload <= 6:
-        base = 70.0
-        where = f"payload at word {payload + 1}, could move forward"
+    p = _payload_pos(t)
+    if p is None:
+        base, where = 30.0, "肝心の言葉がどこにもない"
+    elif p <= 6:
+        base, where = 100.0, f"肝心の言葉が{p + 1}文字目"
+    elif p <= 12:
+        base, where = 70.0, f"肝心の言葉が{p + 1}文字目。もっと前に出せる"
     else:
-        base = 40.0
-        where = f"payload at word {payload + 1}, too late"
-    detail = where + (f"; weak opener \"{hit_opener}\"" if hit_opener else "")
-    return clamp(base - penalty), detail
+        base, where = 40.0, f"肝心の言葉が{p + 1}文字目。遅すぎる"
+    return clamp(base - penalty), where + (f"／弱い出だし「{hit}」" if hit else "")
 
 
 def check_address(text):
-    """Aimed at one viewer, or floating in the air."""
-    low = text.lower()
-    w = [x.lower().strip("'’") for x in words(text)]
-    if re.search(r"\b(you|your|you're|youre|yourself)\b", low):
-        return 100.0, "speaks to the viewer"
-    if w and w[0] in IMPERATIVES:
-        return 90.0, f"imperative opener (\"{w[0]}\")"
-    if re.search(r"\b(i|my|me|we|our)\b", low):
-        return 70.0, "first person, no viewer named"
-    return 35.0, "third person, nobody in the room"
+    """見ている1人に向けているか、宙に浮いているか。"""
+    if ADDRESS_YOU.search(text) or ADDRESS_CALL.search(text):
+        return 100.0, "見ている人に向けている"
+    if ADDRESS_ACT.search(text):
+        return 90.0, "命令・お願い・問いかけで相手に向けている"
+    if ADDRESS_IF.search(text):
+        return 90.0, "「〜なら」の条件で、見ている人を指している"
+    if ADDRESS_I.search(text):
+        return 70.0, "一人称。見ている人は出てこない"
+    return 55.0, "誰に向けた言葉か書いていない（日本語は主語を省くのが普通なので、英語版の35点より甘くしている）"
 
 
 CHECKS = ["LENGTH", "SPECIFICITY", "STAKES", "FRONTLOAD", "ADDRESS"]
+LABELS = {"LENGTH": "長さ", "SPECIFICITY": "具体性", "STAKES": "懸かっている物",
+          "FRONTLOAD": "前に置く", "ADDRESS": "相手に向く"}
 
 
-def run(text):
+def run(text, cps=DEFAULT_CPS):
     results = {
-        "LENGTH": check_length(text),
+        "LENGTH": check_length(text, cps),
         "SPECIFICITY": check_specificity(text),
         "STAKES": check_stakes(text),
         "FRONTLOAD": check_frontload(text),
@@ -223,8 +199,8 @@ def run(text):
     }
     flags = [msg for pattern, msg in DEALBREAKERS if pattern.search(text)]
     scores = [results[c][0] for c in CHECKS]
-    # The weakest property caps the hook, same logic as detect.py: one bad
-    # property is enough for the thumb to keep moving.
+    # いちばん弱い性質がフックの上限になる（detect.py と同じ考え方）。
+    # 1つでも弱いと、指は止まらない。
     overall = statistics.mean(scores) * 0.6 + min(scores) * 0.4 - len(flags) * 15
     overall = clamp(overall)
     verdict = "STRONG" if overall >= 70 and min(scores) >= 55 and not flags else (
@@ -232,46 +208,55 @@ def run(text):
     return results, overall, verdict, flags
 
 
+VERDICT_JA = {"STRONG": "強い", "OK": "まあまあ", "WEAK": "弱い"}
+
+
 def bar(score, width=24):
     filled = round(score / 100 * width)
     return "#" * filled + "." * (width - filled)
 
 
+def pad(s, n):
+    """全角を2として幅をそろえる。"""
+    return s + " " * max(0, n - jp.width(s))
+
+
 def render_one(text, results, overall, verdict, flags, out=sys.stdout):
-    print("\nHOOK SCORE", file=out)
+    print("\nフックの点数", file=out)
     print("=" * 62, file=out)
-    print(f"  \"{text.strip()}\"\n", file=out)
+    print(f"  「{text.strip()}」\n", file=out)
     for name in CHECKS:
         score, detail = results[name]
-        print(f"  {name:<13} {bar(score)} {score:5.1f}", file=out)
-        print(f"  {'':<13} {detail}", file=out)
+        print(f"  {pad(LABELS[name], 14)} {bar(score)} {score:5.1f}", file=out)
+        print(f"  {'':<14} {detail}", file=out)
     print("-" * 62, file=out)
-    print(f"  {'HOOK SCORE':<13} {bar(overall)} {overall:5.1f}   {verdict}", file=out)
+    print(f"  {pad('合計', 14)} {bar(overall)} {overall:5.1f}   {VERDICT_JA[verdict]}", file=out)
     for f in flags:
-        print(f"\n  DEALBREAKER  {f}", file=out)
+        print(f"\n  致命的  {f}", file=out)
     if verdict != "STRONG":
         weakest = min(CHECKS, key=lambda c: results[c][0])
-        print(f"\n  Weakest property: {weakest}. Fix that one and re-run.", file=out)
+        print(f"\n  いちばん弱いのは「{LABELS[weakest]}」。そこを直してもう一度。", file=out)
     print("", file=out)
 
 
 def render_table(rows, out=sys.stdout):
-    print("\nHOOK RANKING\n" + "=" * 78, file=out)
+    print("\nフックの順位\n" + "=" * 78, file=out)
     for i, r in enumerate(rows, 1):
         mark = "->" if i == 1 else "  "
-        hook = r["hook"] if len(r["hook"]) <= 62 else r["hook"][:59] + "..."
-        print(f"{mark} {r['score']:5.1f} {r['verdict']:<7} {hook}", file=out)
-        print(f"        weakest: {r['weakest']} ({r['checks'][r['weakest']]['score']:.0f})", file=out)
+        hook = r["hook"] if len(r["hook"]) <= 34 else r["hook"][:32] + "…"
+        print(f"{mark} {r['score']:5.1f} {pad(VERDICT_JA[r['verdict']], 8)} {hook}", file=out)
+        print(f"        いちばん弱い: {LABELS[r['weakest']]} ({r['checks'][r['weakest']]['score']:.0f})", file=out)
         for f in r["flags"]:
-            print(f"        dealbreaker: {f}", file=out)
-    print("\nShoot the top one. If the top one is under 50, none of these are the hook.\n",
-          file=out)
+            print(f"        致命的: {f}", file=out)
+    print("\n1位で撮る。1位が50点未満なら、どれもまだフックになっていない。\n", file=out)
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Score a Reel hook on five properties.")
-    ap.add_argument("input", nargs="?", default="-", help="file with one hook per line, or -")
-    ap.add_argument("--hook", help="score a single hook given on the command line")
+    ap = argparse.ArgumentParser(description="リールのフックを5つの性質で採点する（日本語版）。")
+    ap.add_argument("input", nargs="?", default="-", help="1行に1案のファイル。- で標準入力")
+    ap.add_argument("--hook", help="1案だけをその場で採点する")
+    ap.add_argument("--cps", type=float, default=DEFAULT_CPS,
+                    help=f"1秒に話すかなの数（初期値 {DEFAULT_CPS}）")
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args()
 
@@ -281,12 +266,12 @@ def main():
         raw = sys.stdin.read() if args.input == "-" else open(args.input, encoding="utf-8").read()
         lines = [l.strip() for l in raw.splitlines() if l.strip()]
     if not lines:
-        print("nothing to score", file=sys.stderr)
+        print("採点するフックがない", file=sys.stderr)
         sys.exit(2)
 
     payload = []
     for line in lines:
-        results, overall, verdict, flags = run(line)
+        results, overall, verdict, flags = run(line, args.cps)
         payload.append({
             "hook": line,
             "checks": {k: {"score": round(v[0], 1), "detail": v[1]} for k, v in results.items()},
@@ -301,7 +286,7 @@ def main():
         return
 
     if len(payload) == 1:
-        results, overall, verdict, flags = run(lines[0])
+        results, overall, verdict, flags = run(lines[0], args.cps)
         render_one(lines[0], results, overall, verdict, flags)
     else:
         render_table(sorted(payload, key=lambda r: -r["score"]))
@@ -310,4 +295,7 @@ def main():
 
 
 if __name__ == "__main__":
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
     main()

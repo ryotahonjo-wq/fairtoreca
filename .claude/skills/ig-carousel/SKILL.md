@@ -1,103 +1,84 @@
 ---
 name: ig-carousel
 description: >-
-  Build an Instagram carousel - the cover that earns the swipe, slide-by-slide
-  copy, and the 1080x1350 files to upload. Use when the user says "carousel",
-  "slides", "swipe post", "turn this into a carousel", or has a list-shaped or
-  step-shaped idea that would die as a single image.
+  Instagramのカルーセルを作る。スワイプさせる表紙、1枚ずつの文面、アップロード用の1080x1350の画像まで。
+  「カルーセル」「スライド投稿」「スワイプ投稿」「これをカルーセルにして」と言われた時や、
+  リスト型・手順型のネタで、1枚の画像には入りきらない時に使う。
 ---
 
 # ig-carousel
 
-Carousels are the highest-dwell format on the grid, because a swipe is an
-interaction and a scroll is not. They also get a second chance: Instagram can
-show a carousel again starting from a later slide to someone who did not engage
-the first time, so slide two has to stand on its own as well.
+カルーセルは、プロフィールの一覧（グリッド）で最も滞在時間が長い形式。スワイプは操作で、スクロールは操作ではないから。しかも二度目のチャンスがある。最初に反応しなかった人には、Instagramが後ろのスライドから始めてカルーセルを見せ直すことがある。だから2枚目も単体で立っていないといけない。
 
-The format rewards one idea broken into steps. It punishes a caption cut into
-pieces.
+この形式で伸びるのは、1つの考えを手順に分けたもの。キャプションを細切れにしただけのものは伸びない。
 
-## When to use it instead of a Reel
+## リールではなくカルーセルにする時
 
-Use a carousel when the idea has **sequence and needs to be re-read**: steps, a
-framework with parts, a before and after, a list worth screenshotting. Use a
-Reel when the idea has motion, a face, or a payoff that has to be seen
-happening.
+アイデアに**順序があり、読み返される**ならカルーセル。手順、パーツのあるフレームワーク、ビフォーアフター、スクリーンショットしたくなるリスト。動き、顔、実際に起きるところを見せないと成立しないオチがあるならリール。
 
-If the idea is one claim, it is neither. Hand it to `/ig-reel` and say so.
+アイデアが1つの主張だけなら、どちらでもない。`/ig-reel` に渡して、そう伝える。
 
-## Structure
+## 構成
 
-6 to 10 slides. The cap is 20 and 20 is almost always a book nobody finishes.
-Under 5 and the swipe never starts.
+6〜10枚。上限は20枚だが、20枚はほぼ誰も読み切らない本になる。5枚未満だとスワイプが始まらない。
 
 ```
-1         COVER     the hook. 6 words or fewer, at a size that is legible in
-                    the grid at thumbnail. One line of promise under it.
-2         THE STAKE why this matters, in one sentence. This slide is also a
-                    second cover, so it cannot be setup.
-3 to N    ONE IDEA PER SLIDE. A headline of 3 to 7 words, at most 25 words
-                    under it. If a slide needs a paragraph, it is two slides.
-N+1       RECAP     the whole thing as a list. This is the screenshot slide.
-LAST      CTA       one action. Save, comment a keyword, or follow. One.
+1         表紙      フック。15字前後まで。一覧のサムネでも読める大きさ。
+                    その下に約束を1行。
+2         なぜ大事か  なぜ大事かを1文で。この枚は2枚目の表紙でもあるので、前置きにしない。
+3〜N      1枚に1つの考え。見出しは8〜15字。その下は多くても50字前後。
+                    段落が要るなら、2枚に分ける。
+N+1       まとめ    全体をリストにする。スクリーンショットされる枚。
+最後      CTA       行動は1つ。保存、コメントの合言葉、フォローのどれか1つ。
 ```
 
-## Slide copy rules
+## 1枚ごとの文面の決まり
 
-- **The cover is 80% of the result.** Six words. Big. Nothing on the deck saves
-  a cover nobody swipes.
-- **Design for the grid crop.** The profile grid crops to a portrait rectangle
-  that is taller than it is wide, and the exact ratio has moved more than once.
-  Build at 1080x1350 and keep the cover text well inside the middle, clear of
-  the outer 120 pixels on every side, and the crop stops mattering.
-- **Number the slides** (3/8). Completion goes up when people can see the end.
-- **No slide is a paragraph.** If it cannot be said in 25 words, split it.
-- **The recap slide is the one people screenshot and send.** Sends are the
-  strongest signal you can earn. Make it standalone and readable with no
-  context.
-- **The handle on every slide**, small, bottom corner. Screenshots travel
-  without you.
-- **Alt text on the cover at minimum.** It is read by screen readers and by
-  Instagram.
+- **表紙が結果の8割を決める。** 15字前後。大きく。誰もスワイプしない表紙は、ほかの何をしても救えない。
+- **グリッドの切り取りに合わせて作る。** プロフィールの一覧は縦長の長方形に切り取られる。比率は何度も変わってきた。1080x1350で作り、表紙の文字を真ん中に寄せて、四辺の外側120ピクセルは空けておく。そうすれば切り取りは気にならなくなる。
+- **スライドに番号をふる**（3/8）。終わりが見えると最後まで見られやすい。
+- **段落のスライドは作らない。** 50字で言えないなら分ける。
+- **まとめの枚は、人がスクリーンショットして送る枚。** シェアは稼げる中で最強の信号。前後の文脈がなくても読める、単体で完結する作りにする。
+- **全スライドの隅に、小さくユーザーネーム。** スクリーンショットは、本人の知らない所まで回っていくから。
+- **表紙には最低でも代替テキスト。** スクリーンリーダーとInstagramが読む。
 
-## Building the files
+## ファイルを作る
 
-Instagram wants 1080x1350 (4:5), JPEG or PNG, up to 20 items. Build it as HTML
-and print each slide:
+Instagramが求めるのは1080x1350（4:5）、JPEGかPNG、最大20枚。HTMLで作って1枚ずつ書き出す。
 
 ```bash
-# one <section> per slide, 1080x1350, page-break-after: always
-# then Chrome headless --print-to-pdf, or any HTML-to-image you already use
+# 1枚につき<section>を1つ、1080x1350、page-break-after: always
+# そのあとChromeのヘッドレスで--print-to-pdf、または普段使っているHTMLから画像にする方法で出す
 ```
 
-Write the HTML with `width:1080px; height:1350px`, a single accent colour, and
-type no smaller than 32px, because this is read on a phone at a third of its
-real size. If the project has a brand skill or a design system, use it and do
-not invent a palette.
+HTMLは `width:1080px; height:1350px`、アクセントカラーは1色、文字は32px以上で書く。スマホで本来の3分の1の大きさで読まれるから。プロジェクトにブランドのスキルやデザインの決まりがあるなら、それを使い、配色を自分で作らない。
 
-## Output
+日本語は、何もしないと言葉の途中で改行される（「毎回ゼ／ロから」「ほしくな／い」）。
 
-The slide-by-slide copy first, as a numbered list the user can read in ten
-seconds and edit before anything is rendered. Then the **caption**, which for a
-carousel is Job B in `/ig-caption`: the caption is doing work here, because the
-cover has already used its six words.
+- `<html lang="ja">` にして、文字の部分に `word-break: auto-phrase;`（言葉の切れ目で改行する。Chrome 119 以降）を付ける。
+- 見出しは、区切りのいい所に自分で `<br>` を入れて、改行の位置を決める。
+- 書き出したら、**全部の枚を1枚ずつ目で見る**。言葉の途中の改行、はみ出し、重なりが1つでもあれば直して作り直す。見ていない枚があるまま渡さない。
+- ユーザーネームなど `{{ }}` が残ったまま画像にしない。先に聞くか、文字を入れずに作って、そう伝える。
 
-Run both through `/ig-human`. Build the files only after the user approves the
-copy.
+## 出力
+
+まず、1枚ずつの文面を番号つきのリストで出す。10秒で読めて、画像にする前にユーザーが直せる形にする。次に**キャプション**。カルーセルのキャプションは、`/ig-caption` の役割B。表紙が15字を使い切っているので、ここではキャプションが仕事をする。
+
+どちらも `/ig-human`（AIっぽさ消し）に通す（自分の目で見直すだけで済ませず、このスキルの隣の `ig-human` フォルダの `detect.py` を実際に動かして、点数を1行で添える）。ユーザーが文面を承認してから、ファイルを作る。
 
 ```
-CAROUSEL  ·  8 slides
+カルーセル  ·  8枚
 
-1  COVER   THE $18,000 CLAUSE
-           One line I now put in every contract.
-2  STAKE   I approved the work. They asked for the money back nine days later.
-3          WHAT IT SAYS
-           Payment on delivery, not on approval.
+1  表紙     20万円の一文
+           今は全部の契約書に入れている1行。
+2  なぜ大事か  仕事を承認されたのに、9日後に返金を求められた。
+3          書いてある内容
+           支払いは承認ではなく、納品時点で。
 ...
-7  RECAP   All four lines, in order.
-8  CTA     Comment CONTRACT and I will send the full clause.
+7  まとめ   4つの文言を順番に全部。
+8  CTA     「契約書」とコメントしてくれたら、全文を送る。
 
-Caption: Job B, hook in line 1, one ask, 3 tags.
+キャプション: 役割B。1行目にフック、お願いは1つ、ハッシュタグ3個。
 ```
 
-Nothing is uploaded. The user posts it.
+アップロードはしない。投稿するのはユーザー。

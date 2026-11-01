@@ -1,118 +1,82 @@
 ---
 name: ig-dm
 description: >-
-  Write Instagram DMs that get replies - the keyword delivery, the first
-  message to someone who engaged, the collab pitch, and the two follow-ups. Use
-  when the user says "DM this person", "what do I send them", "outreach
-  message", "how do I follow up", "pitch this brand", or is reaching out to
-  someone specific.
+  返信がもらえるInstagramのDMを書く。コメントの合言葉への届け物、反応してくれた人への最初の一通、コラボの提案、2回の追いメッセージ。
+  「この人にDMしたい」「何て送ればいい？」「営業のメッセージ」「追いメッセージの送り方」
+  「このブランドに提案したい」など、特定の誰かに連絡する時に使う。
 ---
 
 # ig-dm
 
-Instagram DMs are the only place on the platform where money actually changes
-hands, and they are also where most accounts burn the goodwill their content
-earned. The difference is entirely about who moved first.
+InstagramのDMは、プラットフォームの中でお金が実際に動く唯一の場所。そして、多くのアカウントが、投稿で得た好意を使い切ってしまう場所でもある。違いは完全に、どちらが先に動いたかにある。
 
-## The three kinds of DM, and only three are worth writing
+## 書く価値があるDMは3種類だけ
 
-**1. The reply to a hand raised.** They commented the keyword, answered the
-poll, replied to a story, or saved and asked. They moved first. This is 90% of
-the DMs worth sending and it converts because it is not outreach.
+**1. 手を挙げた人への返信。** 合言葉をコメントした、アンケートに答えた、ストーリーズに返信した、保存して質問してきた。向こうが先に動いた。書く価値のあるDMの9割はこれで、営業ではないから成約する。
 
-**2. The warm approach.** Someone whose posts the user has genuinely been
-commenting on for weeks. There is a shared thread of conversation already.
+**2. 温めてからの声かけ。** ユーザーが何週間も本気でコメントを続けてきた相手。すでに会話の糸がある。
 
-**3. The collab or brand pitch.** A specific proposal to a specific account,
-with a reason it is them.
+**3. コラボ・ブランドへの提案。** 特定のアカウントへの具体的な提案で、なぜその人なのかの理由がある。
 
-Everything else is cold DMing strangers, which is what everybody else does, and
-it is why reply rates sit where they do. If the user is asking for a cold
-sequence, say plainly that it is the lowest-yield thing they could do with the
-same hour, and offer the alternative: comment on those ten accounts for two
-weeks first. Then write it if they still want it.
+それ以外は、知らない人へのコールドDMで、みんながやっていることでもある。返信率が低いのはそのせい。ユーザーがコールドDMの流れを頼んできたら、同じ1時間でできることの中でいちばん成果が低いと、はっきり言う。代わりに、その10アカウントに2週間コメントを続ける案を出す。それでもやりたいと言われたら、書く。
 
-## Before writing, get the specifics
+## 書く前に、具体情報をもらう
 
-Ask in one batched question:
+1回のまとめた質問で聞く。
 
-1. **Who** - handle, what they do, and what they posted or did that started
-   this.
-2. **The trigger** - the actual reason to message today. A keyword they
-   commented, a story they replied to, a post they published. Not "they fit the
-   ICP".
-3. **What the user wants** - a conversation, a sale, a collab, a referral. Be
-   honest internally, even if the message does not lead with it.
+1. **だれに**。ユーザーネーム、その人がやっていること、きっかけになった投稿や行動。
+2. **きっかけ**。今日メッセージする本当の理由。コメントしてくれた合言葉、返信してくれたストーリーズ、出した投稿。「ターゲットに合うから」は理由ではない。
+3. **ユーザーが望むこと**。会話、販売、コラボ、紹介。メッセージの冒頭には出さなくても、内心では正直に。
 
-If there is no trigger, there is no message. Say so.
+きっかけがないなら、メッセージもない。そう言う。
 
-## The keyword delivery
+## コメントの合言葉への届け物
 
-The most common DM in this pack and the easiest to ruin. They commented one
-word. They are expecting the thing. So:
+このスキル集でいちばんよくあるDMで、いちばん壊しやすい。相手は合言葉をコメントした。物が届くと思っている。だから次の形にする。
 
 ```
-{their name}, here it is: {the thing, or the link}.
+{相手の名前}さん、お待たせしました。こちらです。{物、またはリンク}
 
-{one line on how to use it}
+{使い方を1行}
 
-{one question they can answer in four words}
+{ひと言で答えられる質問を1つ}
 ```
 
-Send the thing **first**, in message one, with no gate. A keyword post that
-delivers a "before I send it, can I ask what you do?" is a bait and switch and
-it is remembered. The question at the end is what starts the conversation, and
-it is optional for them.
+物は**最初に**、1通目に、条件なしで送る。「送る前に、お仕事を教えてもらえますか？」と言う合言葉の投稿は、釣って別の物を売るのと同じで、覚えられる。最後の質問は会話を始めるためのもので、相手が答えるかどうかは自由。
 
-Automated keyword replies are a supported feature for professional accounts,
-through Instagram's own tools or an approved partner. Using that is fine.
-Sending unsolicited bulk DMs is not, and it is the fastest route to a
-restricted account.
+合言葉への自動返信は、プロアカウントなら、Instagram自身のツールか公式に認められた連携ツールを通して使える機能。それを使うのは問題ない。仕組みの上の決まりがあり、コメントへの自動の返信DMは、コメントから7日以内に1通だけ。相手が返してくるまで、2通目は送れない。だから1通目に物を入れる。頼んでいない人へのDMの一斉送信は問題で、アカウントに制限がかかる最短の道。
 
-## The first message to someone warm
+## 温めた相手への最初の一通
 
-- **Two to four sentences.** A screen of text is a delete.
-- **Reference the specific thing.** The comment, the post, the reply. In their
-  words.
-- **Give before asking.** A number, a template, a name, an answer.
-- **One ask, small.** "Worth a quick call?" beats "let me walk you through the
-  platform".
-- **No link and no calendar in message one.** It reads as a funnel because it
-  is one.
-- **No voice note to a stranger.** It is a great tool and it is for people who
-  already know the user's voice.
+- **2〜4文。** 画面1つ分の文章は、消される。
+- **具体的なことに触れる。** コメント、投稿、返信。その人の言葉で。
+- **先に渡す。** 数字、テンプレ、名前、答え。
+- **お願いは1つで、小さく。** 「プラットフォームの全体をご説明します」より「少しお話しできますか？」。
+- **1通目にリンクやカレンダーは入れない。** 売り込みの流れに見えるし、実際そうだから。
+- **知らない人に音声メッセージは送らない。** 強い手段だが、ユーザーの声をすでに知っている人向け。
 
-## The collab pitch
+## コラボの提案
 
-Four lines, in this order: what you have watched them do, the specific idea,
-what they get, what you need from them. A collab post lands on both grids and
-reaches both audiences, which is the strongest single growth mechanic on
-Instagram that does not involve paying anybody. Pitch it as that and be
-concrete about who does what.
+4行で、この順番。相手がやっているのを見て何を思ったか、具体的な案、相手が得ること、こちらが相手にほしいこと。コラボ投稿は両方のプロフィールの一覧に載り、両方のオーディエンスに届く。人にお金を払わずにできる、インスタで最強の伸ばし方。そのように伝え、だれが何をするかを具体的にする。
 
-## Follow-ups
+企業からお金や商品をもらって出す投稿になるなら、提案の時点で「PR」の表示をすると決めておく。日本では2023年10月から、広告だと分からない広告（ステルスマーケティング）が法律で禁止されている。投稿には「PR」「広告」と書き、インスタの「タイアップ投稿」の表示も使う。
 
-Two. That is the number.
+## 追いメッセージ
 
-- **+4 days** - add something new. Never "just bumping this". If there is
-  nothing new, there is no follow-up.
-- **+10 days** - the close-the-loop message. Say you will stop, and mean it.
-  This one gets a surprising share of the total replies, because it removes the
-  pressure.
+2回。この回数で。
 
-Then stop. A third converts nobody and costs the relationship.
+- **4日後**。新しい何かを足す。「念のためのご連絡です」だけの催促は絶対にしない。新しい物がないなら、追いメッセージも送らない。
+- **10日後**。区切りのメッセージ。もう連絡しないと言い、その通りにする。これは全返信の中で意外に大きな割合を取る。圧がなくなるから。
 
-## Never
+そこで止める。3回目は誰も成約させず、関係を壊す。
 
-- Never automate outreach DMs, and never use a tool that sends on a schedule to
-  people who did not interact. It violates Instagram's Terms of Use and
-  restricts the account.
-- Never fabricate having watched something, a mutual, or a shared anything.
-- Never open with "Hey! Quick question" and then not ask a question.
-- Never send the pitch in the same message as the compliment.
+## やってはいけないこと
 
-## Output
+- 営業のDMを自動化しない。やり取りしていない人に、時間指定で送るツールは使わない。Instagramの利用規約に反し、アカウントに制限がかかる。
+- 見たことがない物を見たふり、共通の知り合いや共通点をでっち上げない。
+- 「突然すみません、1つだけいいですか？」で始めて、質問しない、はやらない。
+- 褒め言葉と提案を同じメッセージに入れない。
 
-The message, the character count, and the two follow-ups with the day each
-goes out, all run through `/ig-human`. The user sends every one of them by
-hand, or through their own approved automation for keyword replies only.
+## 出力
+
+メッセージ、文字数、2回の追いメッセージとそれぞれを送る日を出す。すべて `/ig-human`（AIっぽさ消し）に通してから。ユーザーはすべて手で送る。自動化を使っていいのは、合言葉への返信を、自分の公式に認められたツールで行う場合だけ。

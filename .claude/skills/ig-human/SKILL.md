@@ -1,111 +1,115 @@
 ---
 name: ig-human
 description: >-
-  Strip the machine fingerprint out of any draft - em dashes, AI slop words,
-  invisible watermark characters - and score it against a five-check detection
-  panel before it goes out. Use whenever text needs to sound human, when the
-  user says humanize, "does this sound like AI", "remove the em dashes",
-  "de-slop this", "this sounds like ChatGPT", or before any caption, script,
-  comment, reply or DM is shown to the user.
+  下書きから機械が書いた跡を消す。AIの日本語に多い決まり文句（「〜することが
+  できます」「さまざまな」「いかがでしたか」など）、長いダッシュやマークダウンの
+  記号、見えない文字を消し、出す前に5項目で人らしさを採点する。「AIっぽさを消して」
+  「AIが書いたっぽい？」「人間っぽくして」「ChatGPTっぽい文を直して」と言われた時、
+  キャプション・台本・コメント・返信・DM を本人に見せる前に毎回使う。
 ---
 
 # ig-human
 
-Two tools live in this folder and they both actually run. Use them. Do not
-eyeball this.
+このフォルダには、本当に動く道具が2つある。使うこと。目分量で判断しない。
 
 ```bash
-python3 humanize.py draft.txt --report        # clean it, show what changed
-python3 detect.py draft.txt                    # score it, five checks
-python3 detect.py before.txt after.txt         # prove the delta
+python3 humanize.py draft.txt --report        # 消して、何を変えたかを見せる
+python3 detect.py draft.txt                    # 5項目で採点する
+python3 detect.py before.txt after.txt         # 前後の差を見せる
 ```
 
-Both read `slop.json`: 154 stock words and phrases with plain-English
-replacements, 18 invisible character classes, 11 typographic substitutions and
-16 structural tells. The last block of each list is Instagram-specific, the
-vocabulary that only shows up in captions and voiceovers. It is meant to be
-edited. If the user has a word they always use that the lexicon strips, take it
-out of the file.
+Windows で `python3` が無いと言われたら `python` か `py` で動かす。
 
-## Why this matters more on Instagram than it looks
+どちらも `slop.json` を読む。AIの日本語の決まり文句117個とその言い換え、見えない文字
+18種類、記号の置き換え10個、文の形の跡19種類が入っている。最後のほうの塊はインスタ
+特有の、キャプションとナレーションにしか出ない決まり文句。自由に直していい。本人が
+いつも使う言葉が消されるなら、ファイルからその行を消す。
 
-Captions are short and scripts get said out loud. A written-sounding line in a
-600-character caption is a larger share of the text than the same line in an
-essay, and a voiceover that nobody could say naturally is obvious in the first
-take. The tell here is not a detector flagging the post. The tell is a person
-scrolling past something that reads like a brand, or a creator stumbling over
-their own script.
+英語版の辞書（delve・leverage・em dash など）は日本語の文にはほぼ出てこないので、
+日本語版では一から作り直した。日本語は活用で語の形が変わるので、1語だけを置き換えると
+文が壊れる。置き換えは「することができ → でき」のような、文が壊れない単位で書いてある。
 
-## What gets fixed automatically
+## インスタで、見た目以上に大事な理由
 
-**1. Invisible characters.** Zero-width spaces and joiners, word joiners, soft
-hyphens, byte-order marks, Unicode tag characters, invisible separators,
-non-breaking and narrow spaces. A keyboard does not produce these. They survive
-copy-paste, they are invisible in every editor, and they are the most
-mechanical thing in generated text. `humanize.py` deletes every one, including
-any remaining Unicode format character it does not have a name for.
+キャプションは短く、台本は声に出して言われる。600字のキャプションの中の書き言葉の1行は、
+長い記事の中の同じ1行より、全体に占める割合が大きい。誰も自然に言えないナレーションは、
+1回目の撮影ですぐ分かる。ばれるのは判定の道具にではない。ブランドの広告みたいな文を
+流し読みする人と、自分の台本につっかえる本人に、ばれる。
 
-**2. Typography.** Em dash to comma, en dash to hyphen, curly quotes to
-straight, ellipsis to three dots, bullet character to hyphen. The em dash pass
-is the one that matters: it collapses the dash to a comma and then cleans up
-the double punctuation and orphaned periods that leaves behind.
+## 自動で直す物
 
-**3. The slop lexicon.** delve, leverage, robust, seamless, crucial, testament
-to, "in today's fast-paced world", plus the Instagram block: "stop scrolling",
-"in today's video", "follow for more", "tag someone who needs this", "the
-algorithm loves", "run don't walk". Each swapped for a plain word or deleted,
-with capitalisation preserved and URLs left untouched.
+**1. 見えない文字。** 幅ゼロの空白・つなぎ文字・ソフトハイフン・BOM・タグ文字・改行しない
+空白など。キーボードでは打てない。コピーしても残り、どのエディタでも見えず、生成文の
+いちばん機械的な跡。`humanize.py` は全部消す。名前の付いていない書式文字も消す。全角の
+空白は日本語でふつうに使うので触らない。絵文字どうしをつなぐ文字（家族の絵文字など）も残す。
 
-## What does NOT get fixed automatically
+**2. 記号。** 長いダッシュ（— ―）を「、」に、数字の間の短いダッシュを「〜」に、英語のかぎ
+（“”）を「」に、黒丸（•）を「・」に。マークダウンの太字（**）と見出しの記号（##）は消す。
+インスタでは記号のまま出るので。三点リーダー（…）と矢印（→）は日本語でふつうに使うので
+触らない（英語版はここも直すが、日本語では直さない）。
 
-Structural tells get **flagged, not rewritten**, because changing the shape of
-a sentence needs judgement:
+**3. 決まり文句。** 「することができます」「において」「さまざまな」「非常に」「重要です」
+「を活用して」「シームレスに」「革新的な」「徹底解説」「現代社会において、」「いかがでしたか」、
+それにインスタの塊（「スクロールしないで」「この動画では、」「最後まで見てね」「いいねと
+フォローお願いします」）。ふつうの言い方に替えるか消す。リンクの中は触らない。
 
-- "It's not just X, it's Y" and "not only X but also Y"
-- Rule-of-three triads
-- Rhetorical one-word question lines: "The result?"
-- The video preamble: "in this video I'm going to show you"
-- Emoji bullet lists
-- Three or more shouted words in a row
-- Hashtag walls
-- Reflex bait: "follow for more", "tag someone who", "double tap if"
+## 自動では直さない物
 
-That list is your job. Rewrite each flagged line by hand, keeping the meaning,
-then re-run `detect.py`. This is the part that moves the score from REVIEW to
-PASS, and it is the part a script cannot do.
+文の形の跡は、**知らせるだけで書き換えない**。文の形を変えるには判断が要るから。
 
-## The five checks
+- 「〜だけでなく、〜も」「単なる〜ではなく」
+- 「大切なのは〜ではなく〜」
+- 3つ並べ（「A、B、そしてC」「ポイントは3つ」）
+- 1行だけの問いかけ（「その結果は？」）
+- 動画の前置き（「今日は〜を紹介します」）
+- 「〜ではないでしょうか」「〜しましょう！」の連発
+- 文末が同じ形で3回以上続く（「〜ます。〜ます。〜ます。」）
+- 文の長さがそろいすぎている
+- 絵文字の箇条書き、ハッシュタグの壁、反射の「フォローしてね」
 
-`detect.py` scores five signals 0-100, higher is more human:
+ここはあなたの仕事。知らされた行を、意味を残したまま1つずつ手で書き直し、`detect.py` を
+もう一度通す。判定を「見直す」から「合格」に動かすのはこの部分で、道具にはできない部分。
 
-| check | what it measures | machine looks like |
-| --- | --- | --- |
-| BURSTINESS | sentence-length variation | every sentence the same length |
-| SPECIFICITY | numbers, names, concrete markers per 100 words | abstract nouns, no figures |
-| SLOP DENSITY | lexicon hits per 100 words | stock vocabulary |
-| FINGERPRINT | invisible chars, em dashes, curly quotes per 1k chars | typographically perfect |
-| VOICE | contractions, person, structural tells | no contractions, staged reveals |
+## 5つの項目
 
-The verdict weights the mean at 60% and the **weakest single check** at 40%,
-because one signal is enough. PASS needs an overall of 70+ with no check
-below 55.
+`detect.py` は5つを0〜100で採点する。高いほど人らしい。
 
-## Say this honestly
+| 項目     | 何を見るか                                | 機械っぽいと                |
+| ------ | ------------------------------------ | --------------------- |
+| 文のばらつき | 文の長さの変化（箇条書きの行は数えない）                 | どの文も同じ長さ              |
+| 具体性    | 100字あたりの数字・名前・具体的な目印                 | ぼんやりした名詞だけ、数字なし       |
+| 決まり文句  | 100字あたりの辞書の言い回し                      | 定番の言い回し               |
+| 記号の跡   | 1,000字あたりの見えない文字・長いダッシュ・英語のかぎ・マークダウン | 記号が整いすぎ               |
+| 話し手の声  | 話し言葉の語尾・人称・文末の種類・文の形の跡               | 「です・ます」だけが続く、型どおりの見せ方 |
 
-These are five local heuristics modelled on the signals public detectors key
-on. They run entirely on the user's machine and nothing is uploaded. They are
-**not** GPTZero, Originality, Copyleaks, Winston or Turnitin, they do not call
-those APIs, and they cannot promise those verdicts. Fixing what they measure
-does tend to move those numbers, because they are measuring the same underlying
-things. That is the claim. Do not make a bigger one on the user's behalf, and
-do not tell a user their text is undetectable.
+判定は、平均を6割、**いちばん弱い1項目**を4割で計算する。合図は1つで足りるから。
+合格は全体70点以上で、55点未満の項目がないこと。
 
-## Order of operations
+「です・ます」で書く人は「話し手の声」が低めに出る。その時は数字より、文末が単調に
+なっていないか（言い切り・体言止め・問いかけが混ざっているか）を見る。
+
+コメントやDMのような短い文（100字前後まで）は、全体の点が低く出やすい。文が少ないと
+ばらつきが測れず、数字の無い短い文は具体性が0になるから。短い文は全体の点で判断せず、
+「決まり文句」と「記号の跡」が100点かどうかで見る。点を上げるために、数字を作ったり
+文を足したりしない。
+
+## 正直に言うこと
+
+これは、公開されている判定の道具が見ている合図をまねた、手元で動く5つの目安。本人のPCの
+中だけで動き、何も送信しない。GPTZero・Originality・Copyleaks・Winston・Turnitin では
+**ない**。それらに問い合わせないし、その判定を約束できない。ここで測る物を直すと、向こうの
+数字も動きやすい。同じ物を測っているから。言えるのはそこまで。本人の代わりにそれ以上を
+言わない。「この文はAIだとばれない」と本人に言わない。
+
+日本語版で測った結果（README）: 人が書いて伸びた日本語の投稿200本の中央値は73点、AIの定番の
+書き方で書いた12本は全部「AIっぽい」。ただし人の投稿の約1割も「AIっぽい」と出る。数字の
+ない意見の投稿や、「です・ます」だけの投稿が低く出やすい。
+
+## 手順
 
 1. `humanize.py draft.txt -o clean.txt --report`
-2. Read the structural flags. Rewrite those lines yourself.
-3. `detect.py draft.txt clean.txt` to show the before and after.
-4. If the verdict is not PASS, fix the weakest check named in the output and go
-   again. Two rounds is normal. Five means the draft was written by formula,
-   and the fix is a different draft, not more passes.
-5. Show the user the cleaned text and the score. Never the score alone.
+2. 文の形の知らせを読む。その行を自分で書き直す。
+3. `detect.py draft.txt clean.txt` で前後を見せる。
+4. 合格でなければ、出力でいちばん弱い項目を直して、もう一度。2周はふつう。5周かかるなら
+   下書きが型どおりに書かれていて、直すべきは周回ではなく別の下書き。
+5. 直した文と点数を本人に見せる。点数だけを見せない。
