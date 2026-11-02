@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-02T08:53:00+09:00",
+ "updatedAt": "2026-11-03T08:54:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -157,19 +157,6 @@
    "result": "11/21以降 店頭掲示"
   },
   {
-   "id": "pk-pokecen-hadou",
-   "game": "pokemon",
-   "product": "拡張パック ハドウシーカー",
-   "shop": "ポケモンセンターオンライン",
-   "method": "online",
-   "start": "2026-10-23T16:00:00+09:00",
-   "end": "2026-10-26T16:59:00+09:00",
-   "url": "https://www.pokemoncenter-online.com/lottery/landing-page.html",
-   "note": "ポケモンセンターオンライン会員・Web抽選・当選者はオンライン購入（一部抽選は電話番号認証が必要）",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-24T08:55:00+09:00"
-  },
-  {
    "id": "op-aeon-kyushu-op18",
    "game": "onepiece",
    "product": "ブースターパック 神の支配【OP-18】",
@@ -180,20 +167,6 @@
    "result": "11/20 12:00以降順次",
    "url": "https://www.aeon-kyushu.info/customer/information/archives/140",
    "note": "iAEONアプリからのみ応募・当選者は店頭販売",
-   "source": "https://nyuka-now.com/archives/97393",
-   "addedAt": "2026-10-25T08:55:00+09:00"
-  },
-  {
-   "id": "op-fullcomp-eb05-2",
-   "game": "onepiece",
-   "product": "EB-05 Heroines Edition vol.2・HEROINES PRECIOUS BOX",
-   "shop": "フルコンプ（一部店舗）",
-   "method": "online",
-   "start": "2026-10-24T16:49:00+09:00",
-   "end": "2026-10-26T23:59:00+09:00",
-   "result": "10/27〜10/28予定",
-   "url": "https://livepocket.jp/e/up9fr",
-   "note": "LivePocketでWeb抽選・当選者は店頭販売",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-25T08:55:00+09:00"
   },
@@ -711,6 +684,59 @@
    "note": "iAEONアプリで応募",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-11-02T08:53:00+09:00"
+  },
+  {
+   "id": "pk-biccamera-ikebukuro-30th",
+   "game": "pokemon",
+   "product": "30th CELEBRATION BOX",
+   "shop": "ビックカメラ池袋本店",
+   "method": "store",
+   "start": "2026-11-02T09:30:00+09:00",
+   "end": "2026-11-03T20:00:00+09:00",
+   "result": "11/7 13:00頃予定",
+   "url": "https://www.biccamera.com/bc/i/shop/shoplist/shop001.jsp",
+   "note": "店頭で応募・詳細は店舗で確認",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-11-03T08:54:00+09:00"
+  },
+  {
+   "id": "pk-dorasuta-mega",
+   "game": "pokemon",
+   "product": "MEGA スペシャルデッキセットMEGA",
+   "shop": "ドラゴンスター各店",
+   "method": "online",
+   "start": "2026-11-01T22:00:00+09:00",
+   "end": "2026-11-05T23:59:00+09:00",
+   "result": "11/10予定",
+   "url": "https://dorasuta.membercard.jp/lottery",
+   "note": "ドラスタ会員・Web抽選・当選者は店頭購入",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-11-03T08:54:00+09:00"
+  },
+  {
+   "id": "pk-torecastation-mega",
+   "game": "pokemon",
+   "product": "30th CELEBRATION BOX・MEGA スペシャルデッキセットMEGA",
+   "shop": "トレカステーション 各店",
+   "method": "store",
+   "start": "2026-11-02T00:00:00+09:00",
+   "end": "2026-11-08T23:59:00+09:00",
+   "result": "11/10",
+   "note": "店頭のQRコードからLivePocketで応募",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-11-03T08:54:00+09:00"
+  },
+  {
+   "id": "db-tsutaya-morimachi",
+   "game": "dragonball",
+   "product": "REACH THE GOD",
+   "shop": "TSUTAYA森町店 トレカコーナー",
+   "method": "store",
+   "end": "2026-11-06T23:59:00+09:00",
+   "url": "https://livepocket.jp/e/chm06",
+   "note": "LivePocketで応募・会員登録が必要",
+   "source": "https://www.cardchusen.com/dragonball",
+   "addedAt": "2026-11-03T08:54:00+09:00"
   }
  ]
 }
