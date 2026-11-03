@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-03T08:54:00+09:00",
+ "updatedAt": "2026-11-04T08:53:00+09:00",
  "sources": "入荷Now・カード抽選.com・トレカ抽選情報・各ショップ公式",
  "lotteries": [
   {
@@ -169,20 +169,6 @@
    "note": "iAEONアプリからのみ応募・当選者は店頭販売",
    "source": "https://nyuka-now.com/archives/97393",
    "addedAt": "2026-10-25T08:55:00+09:00"
-  },
-  {
-   "id": "pk-dorasuta-30th",
-   "game": "pokemon",
-   "product": "30th CELEBRATION BOX",
-   "shop": "ドラゴンスター 各店",
-   "method": "online",
-   "start": "2026-10-25T22:00:00+09:00",
-   "end": "2026-10-27T23:59:00+09:00",
-   "result": "10/30予定",
-   "url": "https://dorasuta.membercard.jp/lottery",
-   "note": "ドラスタ会員・Web抽選・当選者は店頭購入11/1〜11/3",
-   "source": "https://nyuka-now.com/archives/2459",
-   "addedAt": "2026-10-26T08:55:00+09:00"
   },
   {
    "id": "pk-yellowsub",
@@ -737,6 +723,129 @@
    "note": "LivePocketで応募・会員登録が必要",
    "source": "https://www.cardchusen.com/dragonball",
    "addedAt": "2026-11-03T08:54:00+09:00"
+  },
+  {
+   "id": "pk-cardlabo-mega",
+   "game": "pokemon",
+   "product": "MEGA スペシャルデッキセットMEGA",
+   "shop": "カードラボ（一部店舗）",
+   "method": "online",
+   "start": "2026-11-02T00:00:00+09:00",
+   "end": "2026-11-06T23:59:00+09:00",
+   "result": "11/7〜11/8",
+   "url": "https://www.c-labo.jp/blog/",
+   "note": "Web抽選・当選者は店頭購入",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-11-04T08:53:00+09:00"
+  },
+  {
+   "id": "pk-cardlabo-hadou",
+   "game": "pokemon",
+   "product": "拡張パック ハドウシーカー",
+   "shop": "カードラボ（一部店舗）",
+   "method": "online",
+   "start": "2026-11-03T00:00:00+09:00",
+   "end": "2026-11-19T23:59:00+09:00",
+   "result": "11/20〜11/26",
+   "url": "https://www.c-labo.jp/blog/",
+   "note": "Web抽選・当選者は店頭購入",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-11-04T08:53:00+09:00"
+  },
+  {
+   "id": "pk-dorasuta-tsuhan-mega",
+   "game": "pokemon",
+   "product": "MEGA スペシャルデッキセットMEGA",
+   "shop": "ドラゴンスター通販",
+   "method": "online",
+   "start": "2026-11-02T00:00:00+09:00",
+   "end": "2026-11-04T23:59:00+09:00",
+   "result": "11/5予定",
+   "url": "https://dorasuta.membercard.jp/lottery",
+   "note": "Web抽選・当選者は通販で購入",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-11-04T08:53:00+09:00"
+  },
+  {
+   "id": "pk-shimamura-1103",
+   "game": "pokemon",
+   "product": "30th CELEBRATION BOX・ストームエメラルダ・メガブレイブ・メガシンフォニア",
+   "shop": "しまむら（しまむらパーク）",
+   "method": "app",
+   "start": "2026-11-03T13:00:00+09:00",
+   "end": "2026-11-08T23:00:00+09:00",
+   "result": "11/9予定",
+   "url": "https://www.shop-shimamura.com/disp/itemlist/?pre_rsv_icon=1",
+   "note": "しまむらアプリで応募・当選者は通販で購入",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-11-04T08:53:00+09:00"
+  },
+  {
+   "id": "pk-yamada-hadou",
+   "game": "pokemon",
+   "product": "拡張パック ハドウシーカー",
+   "shop": "ヤマダデンキ",
+   "method": "app",
+   "start": "2026-11-02T23:00:00+09:00",
+   "end": "2026-11-04T23:59:00+09:00",
+   "result": "11/24",
+   "url": "https://www.yamada-denki.jp/service/pointservice/digital-kaiin.html",
+   "note": "ヤマダデジタル会員アプリで応募・当選者は店頭受け取り",
+   "source": "https://nyuka-now.com/archives/2459",
+   "addedAt": "2026-11-04T08:53:00+09:00"
+  },
+  {
+   "id": "op-jumpshop-op18",
+   "game": "onepiece",
+   "product": "ブースターパック 神の支配【OP-18】",
+   "shop": "JUMP SHOP各店",
+   "method": "online",
+   "end": "2026-11-07T23:59:00+09:00",
+   "result": "11/8〜11/9",
+   "url": "https://jumpshop-benelic.com/pages/about-enter-shop",
+   "note": "Web抽選・当選者は店頭受け取り",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-11-04T08:53:00+09:00"
+  },
+  {
+   "id": "op-shimamura-eb05",
+   "game": "onepiece",
+   "product": "EB-05 Heroines Edition vol.2",
+   "shop": "しまむら（しまむらパーク）",
+   "method": "app",
+   "start": "2026-11-03T13:00:00+09:00",
+   "end": "2026-11-08T23:00:00+09:00",
+   "result": "11/9",
+   "url": "https://www.shop-shimamura.com/item/0162100011072/?cl=210",
+   "note": "しまむらアプリで応募・当選者は通販で購入",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-11-04T08:53:00+09:00"
+  },
+  {
+   "id": "op-hobbystation-op18",
+   "game": "onepiece",
+   "product": "ブースターパック 神の支配【OP-18】",
+   "shop": "ホビーステーション",
+   "method": "online",
+   "start": "2026-11-03T12:00:00+09:00",
+   "end": "2026-11-05T23:59:00+09:00",
+   "result": "11/20",
+   "url": "https://livepocket.jp/e/ky8qv",
+   "note": "LivePocketでWeb抽選・当選者は店頭購入",
+   "source": "https://nyuka-now.com/archives/97393",
+   "addedAt": "2026-11-04T08:53:00+09:00"
+  },
+  {
+   "id": "db-champion-osu",
+   "game": "dragonball",
+   "product": "フュージョンワールド STORY BOOSTER 01・DUAL EVOLUTION",
+   "shop": "トレカチャンピオン大須店",
+   "method": "store",
+   "end": "2026-11-08T23:59:00+09:00",
+   "url": "https://x.com/Champion_osu/status/2116315419539833263",
+   "note": "店頭で応募・会員と本人確認が必要",
+   "source": "https://www.cardchusen.com/dragonball",
+   "addedAt": "2026-11-04T08:53:00+09:00"
   }
  ]
 }
